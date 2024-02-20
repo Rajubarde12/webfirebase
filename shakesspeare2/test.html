@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSX Example</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Include Babel for JSX transpilation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Your JSX code -->
+  <script type="text/babel">
+    // Sample JSX code within JavaScript
+    const element = (
+      <div>
+        <h1>Hello, World!</h1>
+        <p>This is a JSX example.</p>
+      </div>
+    );
+
+    // Render the JSX element using React (assuming React is imported)
+    ReactDOM.render(element, document.getElementById('root'));
+  </script>
+</body>
+</html>

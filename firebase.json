@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "shakesspeare",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
