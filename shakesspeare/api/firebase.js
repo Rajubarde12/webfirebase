@@ -29,7 +29,7 @@ export const getdata = async (docname, docLoc) => {
 }
 
 export const setdata = async (docname, docloc, data) => {
-    alert('setdata')
+
 
     const docRef = doc(db, docname, docloc)
     await setDoc(docRef, data)
@@ -42,4 +42,12 @@ export const getdata2 = async (docname, docLoc) => {
     getDoc(docRef).then(data => {
         console.log(data)
     })
+}
+export const setdata2 = async (docname, docloc, data) => {
+
+
+    const docRef = doc(db, docname, docloc)
+    await setDoc(docRef, data)
+
+
 }

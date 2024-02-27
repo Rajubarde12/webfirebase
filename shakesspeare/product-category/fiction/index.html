@@ -2667,43 +2667,67 @@
       unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
   </style>
+  <style>
+    .mycostumeclass{
+      margin-left:100px;
+      align-self: center;
+    }
+  </style>
 </head>
 
 <body
   class="archive tax-product_cat term-fiction term-80 theme-flatsome woocommerce woocommerce-page woocommerce-no-js lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border">
   <!-- BEGIN WAYBACK TOOLBAR INSERT -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="../../api/firebase.js"></script>
+  <script type="module" src="../../api/firebase.js"></script>
+  <script>
+    $(document).ready(async function(){
+     const email= await sessionStorage.getItem('isLogin')
+        if(email==null||email==undefined||email==''){
+          alert('you need to login first')
+          window.location.href='../../'
+        }
+    })
+  </script>
   <script type="module">
-    import { getdata, setdata, getdata2 } from '../../api/firebase.js'
+    import { getdata, setdata,  } from '../../api/firebase.js'
 
 
 
     $(document).ready(function () {
       getdatas()
-      var itemsPerPage = 8;
+   
       $(document).on('click', '.page-number', function (e) {
         var itemsPerPage = 8;
         e.preventDefault();
         var page = parseInt($(this).text());
-       displayPage(page,itemsPerPage)
+        displayPage(page, itemsPerPage,'noraml','')
+      });
+      $('#woocommerce-product-search-field-0').on('keyup', async function () {
+        var query = $(this).val();
+        // var searchResults = await searchProducts(query);
+        displayPage(1,8,'search',query);
+
       });
     });
+   async function searchProducts(query,products) {
+    
+      var results = [];
+     
+      products.forEach(function (product) {
+        if (product["Description"].toLowerCase().includes(query.toLowerCase()) || product["Short description"].toLowerCase().includes(query.toLowerCase())) {
+          results.push(product);
+        }
+      });
+      
+      return results
+    }
 
     async function getdatas() {
 
 
-      // const filterdata = await data.products
-      //     .filter(item => item["tax:product_cat"].includes("Fiction"))
-      //     .map(item => ({
-      //         "ID": item["ID"],
-      //         "Meta:_stock_status": item["stock_status"],
-      //         "Short description": item["post_title"],
-      //         "Image": item['images'],
-      //         "Meta:_price": item['regular_price'],
-      //         "Description": item['post_content']
-      //     }));  
      
+
       const firebasedata = await getdata('Fiction', 'products')
       var totalPages = Math.ceil(firebasedata.products.length / 8);
 
@@ -2756,11 +2780,11 @@
         myhtml += '<ul class="page-numbers nav-pagination links text-center">'
         // myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
         for (let i = 1; i <= totalPages; i++)
-        if(i==1){
-          myhtml += '<li><span aria-current="page" class="page-number current">'+i+'</span></li>'
-        }else{
-          myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
-        }
+          if (i == 1) {
+            myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
+          } else {
+            myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
+          }
         myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
         myhtml += '	</nav></div></div></div></div>'
       }
@@ -2769,8 +2793,9 @@
 
 
     }
-   async  function paginate(mydata,totalpage,page) {
+    async function paginate(mydata, totalpage, page,type) {
       var outputElement = $('#mainId')
+      console.log('thi is serchhdd dat',mydata)
       var myhtml = ''
       if (true) {
 
@@ -2783,6 +2808,7 @@
         myhtml += '</form>'
         myhtml += ' </aside></div></div>'
         myhtml += '<div class="col large-9"><div class="shop-container"><div class="woocommerce-notices-wrapper"></div><div class="products row row-small large-columns-4 medium-columns-3 small-columns-2">'
+          if(mydata.length>0){
         for (let i = 0; i < mydata.length; i++) {
           const urlRegex = /(https?:\/\/[^\s]+)/;
           const matches = mydata[i]['Image'].match(urlRegex);
@@ -2803,40 +2829,46 @@
           myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
           myhtml += '</div></div></div></div></div>'
         }
+      }else{
+        myhtml+='<h1 class="mycostumeclass">No data found</h1>'
+      }
         myhtml += '</div>'
         myhtml += '<div class="container"><nav class="woocommerce-pagination">'
         myhtml += '<ul class="page-numbers nav-pagination links text-center">'
         // myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
+        if(mydata.length>=8){
         for (let i = 1; i <= totalpage; i++)
-        if(i==page){
-          myhtml += '<li><span aria-current="page" class="page-number current">'+i+'</span></li>'
-        }else{
-          myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
-        }
+          if (i == page) {
+            myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
+          } else {
+            myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
+          }
         myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
         myhtml += '	</nav></div></div></div></div>'
       }
+    }
 
 
-      
+
       outputElement.html(myhtml);
 
     }
-  async  function displayPage(page, itemsPerPage) {
-    const firebasedata = await getdata('Fiction', 'products')
-    const mydata=firebasedata.products
+    async function displayPage(page, itemsPerPage,type,querry) {
+      const firebasedata = await getdata('Fiction', 'products')
+      const productsArr = firebasedata.products
+      let mydata=[]
+      if(type=='normal'){
+        mydata=productsArr
+      }
+      else{
+        mydata=await searchProducts(querry,[...productsArr])
+      }
       var startIndex = (page - 1) * itemsPerPage;
       var endIndex = Math.min(startIndex + itemsPerPage, mydata.length);
       var currentPageData = mydata.slice(startIndex, endIndex);
       var totalPages = Math.ceil(mydata.length / itemsPerPage);
-      paginate(currentPageData,totalPages,page);
+      paginate(currentPageData, totalPages, page);
     }
-
-
-  </script>
-  <script>
-
-
 
 
   </script>
@@ -3158,7 +3190,7 @@
       </div>
     </div>
 
-    <main id="main" class="">
+    <main id="main" style="height: 150vh;" class="">
       <div id="mainId" role="main"></div>
       <!-- raju3 -->
 

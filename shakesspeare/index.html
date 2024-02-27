@@ -67,7 +67,7 @@
 	<link rel="icon" href="webroot/uploads/cropped-Become-Shakespeare-Favicon-192x192.png" sizes="192x192" />
 	<link rel="apple-touch-icon" href="webroot/uploads/cropped-Become-Shakespeare-Favicon-180x180.png" />
 	<meta name="msapplication-TileImage" content="webroot/uploads/cropped-Become-Shakespeare-Favicon-270x270.png" />
-   
+
 
 	<style id="woocommerce-inline-inline-css" type="text/css">
 		.woocommerce form .form-row .required {
@@ -2185,8 +2185,7 @@
 										</div>
 									</div>
 								</li>
-								<li class="account-item has-icon
-    ">
+								<li class="account-item has-icon">
 
 									<a href="my-account/" class="nav-top-link nav-top-not-logged-in is-small"
 										data-open="#login-form-popup">
@@ -15652,35 +15651,42 @@
 								<div class="col-inner">
 									<h3>Schedule A Call</h3>
 									<div class="wpcf7 no-js" id="wpcf7-f3789-o1" lang="en-US" dir="ltr">
-										<div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
-										<form action="/web/20230520095344/https://becomeshakespeare.com/#wpcf7-f3789-o1" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
-										<div style="display: none;">
-										<input type="hidden" name="_wpcf7" value="3789"/>
-										<input type="hidden" name="_wpcf7_version" value="5.7.6"/>
-										<input type="hidden" name="_wpcf7_locale" value="en_US"/>
-										<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f3789-o1"/>
-										<input type="hidden" name="_wpcf7_container_post" value="0"/>
-										<input type="hidden" name="_wpcf7_posted_data_hash" value=""/>
-										<input type="hidden" name="_wpcf7_recaptcha_response" value=""/>
+										<div class="screen-reader-response">
+											<p role="status" aria-live="polite" aria-atomic="true"></p>
+											<ul></ul>
 										</div>
-										<p><script data-b24-form="inline/7/9h76jh" data-skip-moving="true">
-										 (function(w,d,u){
-										 var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);
-										 var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
-										 })(window,document,'https://becomeshakespeare-51d08.web.app/webroot/js/loader_7.js');
-										</script>
-										</p><div class="wpcf7-response-output" aria-hidden="true"></div>
+										<form action="/web/20230520095344/https://becomeshakespeare.com/#wpcf7-f3789-o1"
+											method="post" class="wpcf7-form init" aria-label="Contact form"
+											novalidate="novalidate" data-status="init">
+											<div style="display: none;">
+												<input type="hidden" name="_wpcf7" value="3789" />
+												<input type="hidden" name="_wpcf7_version" value="5.7.6" />
+												<input type="hidden" name="_wpcf7_locale" value="en_US" />
+												<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f3789-o1" />
+												<input type="hidden" name="_wpcf7_container_post" value="0" />
+												<input type="hidden" name="_wpcf7_posted_data_hash" value="" />
+												<input type="hidden" name="_wpcf7_recaptcha_response" value="" />
+											</div>
+											<p>
+												<script data-b24-form="inline/7/9h76jh" data-skip-moving="true">
+													(function (w, d, u) {
+														var s = d.createElement('script'); s.async = true; s.src = u + '?' + (Date.now() / 180000 | 0);
+														var h = d.getElementsByTagName('script')[0]; h.parentNode.insertBefore(s, h);
+													})(window, document, 'https://becomeshakespeare-51d08.web.app/webroot/js/loader_7.js');
+												</script>
+											</p>
+											<div class="wpcf7-response-output" aria-hidden="true"></div>
 										</form>
-										</div>
+									</div>
 								</div>
 							</div>
 
-								<style>
-									#col-1878018992>.col-inner {
-										padding: 0px 0px 0px 20px;
-									}
-								</style>
-							
+							<style>
+								#col-1878018992>.col-inner {
+									padding: 0px 0px 0px 20px;
+								}
+							</style>
+
 						</div>
 					</div>
 				</div>
@@ -15716,7 +15722,7 @@
 
 
 
-			<!-- // $("#drop1, #drop2, #drop3, #drop4, #drop5").click(function () {
+	<!-- // $("#drop1, #drop2, #drop3, #drop4, #drop5").click(function () {
 			// 	var clickedId = $(this).attr("id"); // Get the ID of the clicked element
 			// 	var value = '';
 
@@ -15729,7 +15735,7 @@
 			$("#drop1").click(function(){
                inputField.val('I have a ready manuscript')
 			   element2.css('display', 'none'); -->
-			   <!-- toggleDropdown()
+	<!-- toggleDropdown()
 			})
 			$("#drop2").click(function(){
                inputField.val('My manuscript will be ready shortly')
@@ -15739,7 +15745,7 @@
 			$("#drop3").click(function(){
                inputField.val('I have just started writing')
 			   element2.css('display', 'none'); -->
-			   <!-- toggleDropdown()
+	<!-- toggleDropdown()
 			})
 			$("#drop4").click(function(){
                inputField.val('My book is already published')
@@ -15755,7 +15761,7 @@
 
 			inputField.on("click", toggleDropdown); -->
 
-		<!-- }); -->
+	<!-- }); -->
 
 
 
@@ -16070,22 +16076,23 @@
 							<h3 class="uppercase">Login</h3>
 
 							<form class="woocommerce-form woocommerce-form-login login" method="post">
-
 								<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-									<label for="username">Username or email address&nbsp;<span
+									<span id="emailError" style="color: red;"></span>
+									<label for="username">Username or email address<span
 											class="required">*</span></label>
 									<input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
 										name="username" id="username" autocomplete="username" value />
+
 								</p>
 								<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-									<label for="password">Password&nbsp;<span class="required">*</span></label>
+									<label for="password">Password<span class="required">*</span></label>
+									<span id="passwordError" style="color: red;"></span>
 									<input class="woocommerce-Input woocommerce-Input--text input-text" type="password"
 										name="password" id="password" autocomplete="current-password" />
-								</p>
 
+								</p>
 								<div class="g-recaptcha" data-sitekey="6LezZ_EkAAAAAJ5mPw9RQ3AXTJUtegL30t2tHinV"></div>
 								<br />
-
 								<p class="form-row">
 									<label
 										class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
@@ -16094,17 +16101,16 @@
 										<span>Remember me</span>
 									</label>
 									<input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce"
-										value="12df7e4eef" /><input type="hidden" name="_wp_http_referer" value="/" />
+										value="12df7e4eef" />
+									<input type="hidden" name="_wp_http_referer" value="/" />
 									<button type="submit"
 										class="woocommerce-button button woocommerce-form-login__submit" name="login"
 										value="Log in">Log in</button>
 								</p>
 								<p class="woocommerce-LostPassword lost_password">
-									<a href="https://becomeshakespeare.com/my-account/lost-password/">Lost
-										your
+									<a href="https://becomeshakespeare.com/my-account/lost-password/">Lost your
 										password?</a>
 								</p>
-
 							</form>
 						</div>
 
@@ -16118,35 +16124,36 @@
 
 							<form method="post" class="woocommerce-form woocommerce-form-register register">
 								<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-									<label for="reg_email">Email address&nbsp;<span class="required">*</span></label>
+									<label for="reg_email">Email address<span class="required">*</span></label>
+									<span id="emailError2" style="color: red;"></span>
 									<input type="email" class="woocommerce-Input woocommerce-Input--text input-text"
 										name="email" id="reg_email" autocomplete="email" value />
+
 								</p>
 								<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-									<label for="reg_password">Password&nbsp;<span class="required">*</span></label>
+									<label for="reg_password">Password<span class="required">*</span></label>
+									<span id="passwordError2" style="color: red;"></span>
 									<input type="password" class="woocommerce-Input woocommerce-Input--text input-text"
 										name="password" id="reg_password" autocomplete="new-password" />
+
 								</p>
 								<!--<div class="g-recaptcha" data-sitekey="6LezZ_EkAAAAAJ5mPw9RQ3AXTJUtegL30t2tHinV"></div>-->
 								<br />
 								<div class="woocommerce-privacy-policy-text">
-									<p>Your personal data will be used to support your experience
-										throughout this
-										website, to manage access to your account, and for other purposes
-										described in
+									<p>Your personal data will be used to support your experience throughout this
+										website, to manage access to your account, and for other purposes described in
 										our <a href="https://becomeshakespeare.com/privacy-policy/"
-											class="woocommerce-privacy-policy-link" target="_blank">privacy
-											policy</a>.
+											class="woocommerce-privacy-policy-link" target="_blank">privacy policy</a>.
 									</p>
 								</div>
 								<p class="woocommerce-form-row form-row">
 									<input type="hidden" id="woocommerce-register-nonce"
-										name="woocommerce-register-nonce" value="9fe54015e8" /><input type="hidden"
-										name="_wp_http_referer" value="/" /> <button type="submit"
+										name="woocommerce-register-nonce" value="9fe54015e8" />
+									<input type="hidden" name="_wp_http_referer" value="/" />
+									<button type="submit"
 										class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit"
 										name="register" value="Register">Register</button>
 								</p>
-
 							</form>
 
 						</div>
@@ -16491,11 +16498,11 @@
 			document.body.className = c;
 		})();
 	</script>
-	  <script type="text/javascript" id="flatsome-js-js-extra">
+	<script type="text/javascript" id="flatsome-js-js-extra">
 		/* <![CDATA[ */
 		var flatsomeVars = { "theme": { "version": "3.16.1" }, "ajaxurl": "https://becomeshakespeare-51d08.web.app/webroot/js/", "rtl": "", "sticky_height": "70", "assets_url": "https://becomeshakespeare-51d08.web.app/webroot/js/", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false }, "i18n": { "mainMenu": "Main Menu", "toggleButton": "Toggle" }, "options": { "cookie_notice_version": "1", "swatches_layout": false, "swatches_box_select_event": false, "swatches_box_behavior_selected": false, "swatches_box_update_urls": "1", "swatches_box_reset": false, "swatches_box_reset_extent": false, "swatches_box_reset_time": 300, "search_result_latency": "0" }, "is_mini_cart_reveal": "1" };
 		/* ]]> */
-	  </script>
+	</script>
 	<!-- <script type="text/javascript" id="flatsome-js-js-extra">
 		/* <![CDATA[ */
 		var flatsomeVars = { "theme": { "version": "3.16.1" }, "ajaxurl": "http:\/\/web.archive.org\/web\/20230520095344\/https:\/\/www.becomeshakespeare.com\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "70", "assets_url": "http:\/\/web.archive.org\/web\/20230520095344\/https:\/\/www.becomeshakespeare.com\/wp-content\/themes\/flatsome\/assets\/js\/", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false }, "i18n": { "mainMenu": "Main Menu", "toggleButton": "Toggle" }, "options": { "cookie_notice_version": "1", "swatches_layout": false, "swatches_box_select_event": false, "swatches_box_behavior_selected": false, "swatches_box_update_urls": "1", "swatches_box_reset": false, "swatches_box_reset_extent": false, "swatches_box_reset_time": 300, "search_result_latency": "0" }, "is_mini_cart_reveal": "1" };
@@ -16546,6 +16553,129 @@
 		id="wpos-custombox-legacy-js-js"></script>
 	<script type="text/javascript" src="webroot/js/custombox.min.js?ver=2.6" id="wpos-custombox-popup-js-js"></script>
 	<script type="text/javascript" src="webroot/js/popupaoc-public.js?ver=2.6" id="popupaoc-public-js-js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="module">
+		import { getdata } from './api/firebase.js'
+		$(document).ready(function () {
+
+			$('form.woocommerce-form-login').submit(async function (event) {
+
+				event.preventDefault();
+
+
+				var email = $('#username').val().toLowerCase();
+				var password = $('#password').val();
+				var rememberMeValue = $('#rememberme').prop('checked');
+
+
+				if (email.trim() === '') {
+					$('#emailError').text('Email is required');
+					return;
+				} else {
+					$('#emailError').text('');
+				}
+				if (password.trim() === '') {
+					$('#passwordError').text('Password is required');
+					return;
+				} else {
+					$('#passwordError').text('');
+				}
+
+				const userDoc = await getdata('logindata', 'user')
+				const users = userDoc.userDetails
+				let userFound = false;
+
+				users.forEach(user => {
+					if (user.email === email && user.password === password) {
+						userFound = true;
+						return;
+					}
+				});
+
+				if (userFound) {
+					swal({
+						title: "success!",
+						text: "Login success.",
+						icon: "success",
+						button: "OK",
+					}).then((ok) => {
+
+						if (ok) {
+							window.location.reload()
+						}
+					});
+					sessionStorage.setItem('isLogin', email);
+
+				} else {
+
+					swal({
+						title: "Error!",
+						text: "User not found with provided credentials.",
+						icon: "error",
+						button: "OK",
+					}).then((ok) => {
+
+						if (ok) {
+							$('input[type=text], input[type=password]').val('');
+						}
+					});
+				}
+			});
+		});
+	</script>
+	<script type="module">
+		import { setdata2, getdata } from './api/firebase.js'
+		$(document).ready(async function () {
+
+			$('form.woocommerce-form-register').submit(async function (event) {
+				event.preventDefault();
+
+				var email = $('#reg_email').val().toLowerCase();
+				var password = $('#reg_password').val();
+
+				// Reset previous error messages
+				$('#emailError2').text('');
+				$('#passwordError2').text('');
+
+				// Validate email and password fields
+				if (!email.trim()) {
+					$('#emailError2').text('Email is required');
+					return;
+				} else if (!isValidEmail(email)) {
+					$('#emailError2').text('Invalid email format');
+					return;
+				}
+
+				if (!password.trim()) {
+					$('#passwordError2').text('Password is required');
+					return;
+				}
+
+				const userDoc = await getdata('logindata', 'user');
+				const users = userDoc.userDetails;
+
+				// Check if the email is already registered
+				if (users.some(user => user.email === email)) {
+					swal("Error!", "User already registered.", "error");
+				} else {
+					// Register user if email is not already registered
+					await setdata2('logindata', 'user', { userDetails: [...users, { email, password }] });
+					swal("Success!", "User registered successfully.", "success").then((value) => {
+						// Clear the form fields upon clicking "OK" on the SweetAlert dialog
+						if (value) {
+							$('#reg_email').val('');
+							$('#reg_password').val('');
+						}
+					});
+				}
+			});
+		});
+
+		// Function to validate email format
+		function isValidEmail(email) {
+			return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+		}
+	</script>
 
 </body>
 
