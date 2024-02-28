@@ -16633,11 +16633,10 @@
 				var email = $('#reg_email').val().toLowerCase();
 				var password = $('#reg_password').val();
 
-				// Reset previous error messages
 				$('#emailError2').text('');
 				$('#passwordError2').text('');
 
-				// Validate email and password fields
+				
 				if (!email.trim()) {
 					$('#emailError2').text('Email is required');
 					return;
@@ -16654,14 +16653,14 @@
 				const userDoc = await getdata('logindata', 'user');
 				const users = userDoc.userDetails;
 
-				// Check if the email is already registered
+				
 				if (users.some(user => user.email === email)) {
 					swal("Error!", "User already registered.", "error");
 				} else {
-					// Register user if email is not already registered
+					
 					await setdata2('logindata', 'user', { userDetails: [...users, { email, password }] });
 					swal("Success!", "User registered successfully.", "success").then((value) => {
-						// Clear the form fields upon clicking "OK" on the SweetAlert dialog
+					
 						if (value) {
 							$('#reg_email').val('');
 							$('#reg_password').val('');
@@ -16671,7 +16670,7 @@
 			});
 		});
 
-		// Function to validate email format
+	
 		function isValidEmail(email) {
 			return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 		}

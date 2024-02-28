@@ -2668,8 +2668,8 @@
     }
   </style>
   <style>
-    .mycostumeclass{
-      margin-left:100px;
+    .mycostumeclass {
+      margin-left: 100px;
       align-self: center;
     }
   </style>
@@ -2681,52 +2681,52 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script type="module" src="../../api/firebase.js"></script>
   <script>
-    $(document).ready(async function(){
-     const email= await sessionStorage.getItem('isLogin')
-        if(email==null||email==undefined||email==''){
-          alert('you need to login first')
-          window.location.href='../../'
-        }
+    $(document).ready(async function () {
+      const email = await sessionStorage.getItem('isLogin')
+      if (email == null || email == undefined || email == '') {
+        alert('you need to login first')
+        window.location.href = '../../'
+      }
     })
   </script>
   <script type="module">
-    import { getdata, setdata,  } from '../../api/firebase.js'
+    import { getdata, setdata, } from '../../api/firebase.js'
 
 
 
     $(document).ready(function () {
       getdatas()
-   
+
       $(document).on('click', '.page-number', function (e) {
         var itemsPerPage = 8;
         e.preventDefault();
         var page = parseInt($(this).text());
-        displayPage(page, itemsPerPage,'noraml','')
+        displayPage(page, itemsPerPage, 'noraml', '')
       });
       $('#woocommerce-product-search-field-0').on('keyup', async function () {
         var query = $(this).val();
         // var searchResults = await searchProducts(query);
-        displayPage(1,8,'search',query);
+        displayPage(1, 8, 'search', query);
 
       });
     });
-   async function searchProducts(query,products) {
-    
+    async function searchProducts(query, products) {
+
       var results = [];
-     
+
       products.forEach(function (product) {
         if (product["Description"].toLowerCase().includes(query.toLowerCase()) || product["Short description"].toLowerCase().includes(query.toLowerCase())) {
           results.push(product);
         }
       });
-      
+
       return results
     }
 
     async function getdatas() {
 
 
-     
+
 
       const firebasedata = await getdata('Fiction', 'products')
       var totalPages = Math.ceil(firebasedata.products.length / 8);
@@ -2763,14 +2763,14 @@
           myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['Meta:_stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
           myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
           myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
-          myhtml += '<a href="' + 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/' + '" aria-label="&quot;' + mydata[i]['Short description'] + '">'
-          myhtml += '<img width="247" height="296" src="' + url + '"	class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"alt="" loading="lazy" /> </a>	</div>'
+          myhtml += '<a href="../../product/?id=' + mydata[i]['ID'] + '" aria-label="&quot;' + mydata[i]['Short description'] + '">'
+          myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" /> </a>    </div>'
           myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
-          myhtml += '	<div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
+          myhtml += '    <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
           myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
           myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
-          myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="' + 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/' + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['Short description'] + '"</a></p>'
-          myhtml += '			</div>'
+          myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="../../product/?id=' + mydata[i]['ID'] + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['Short description'] + '"</a></p>'
+          myhtml += '            </div>'
           myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['Meta:_price'] + '</bdi></span>'
           myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
           myhtml += '</div></div></div></div></div>'
@@ -2793,9 +2793,9 @@
 
 
     }
-    async function paginate(mydata, totalpage, page,type) {
+    async function paginate(mydata, totalpage, page, type) {
       var outputElement = $('#mainId')
-      console.log('thi is serchhdd dat',mydata)
+      console.log('thi is serchhdd dat', mydata)
       var myhtml = ''
       if (true) {
 
@@ -2808,60 +2808,60 @@
         myhtml += '</form>'
         myhtml += ' </aside></div></div>'
         myhtml += '<div class="col large-9"><div class="shop-container"><div class="woocommerce-notices-wrapper"></div><div class="products row row-small large-columns-4 medium-columns-3 small-columns-2">'
-          if(mydata.length>0){
-        for (let i = 0; i < mydata.length; i++) {
-          const urlRegex = /(https?:\/\/[^\s]+)/;
-          const matches = mydata[i]['Image'].match(urlRegex);
-          const url = matches ? matches[0] : null;
+        if (mydata.length > 0) {
+          for (let i = 0; i < mydata.length; i++) {
+            const urlRegex = /(https?:\/\/[^\s]+)/;
+            const matches = mydata[i]['Image'].match(urlRegex);
+            const url = matches ? matches[0] : null;
 
-          myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['Meta:_stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
-          myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
-          myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
-          myhtml += '<a href="' + 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/' + '" aria-label="&quot;' + mydata[i]['Short description'] + '">'
-          myhtml += '<img width="247" height="296" src="' + url + '"	class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"alt="" loading="lazy" /> </a>	</div>'
-          myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
-          myhtml += '	<div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
-          myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
-          myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
-          myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="' + 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/' + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['Short description'] + '"</a></p>'
-          myhtml += '			</div>'
-          myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['Meta:_price'] + '</bdi></span>'
-          myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
-          myhtml += '</div></div></div></div></div>'
+            myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['Meta:_stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
+            myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
+            myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
+            myhtml += '<a href="' + 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/' + '" aria-label="&quot;' + mydata[i]['Short description'] + '">'
+            myhtml += '<img width="247" height="296" src="' + url + '"	class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"alt="" loading="lazy" /> </a>	</div>'
+            myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
+            myhtml += '	<div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
+            myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
+            myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
+            myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="' + 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/' + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['Short description'] + '"</a></p>'
+            myhtml += '			</div>'
+            myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['Meta:_price'] + '</bdi></span>'
+            myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
+            myhtml += '</div></div></div></div></div>'
+          }
+        } else {
+          myhtml += '<h1 class="mycostumeclass">No data found</h1>'
         }
-      }else{
-        myhtml+='<h1 class="mycostumeclass">No data found</h1>'
-      }
         myhtml += '</div>'
         myhtml += '<div class="container"><nav class="woocommerce-pagination">'
         myhtml += '<ul class="page-numbers nav-pagination links text-center">'
         // myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
-        if(mydata.length>=8){
-        for (let i = 1; i <= totalpage; i++)
-          if (i == page) {
-            myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
-          } else {
-            myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
-          }
-        myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
-        myhtml += '	</nav></div></div></div></div>'
+        if (mydata.length >= 8) {
+          for (let i = 1; i <= totalpage; i++)
+            if (i == page) {
+              myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
+            } else {
+              myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
+            }
+          myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
+          myhtml += '	</nav></div></div></div></div>'
+        }
       }
-    }
 
 
 
       outputElement.html(myhtml);
 
     }
-    async function displayPage(page, itemsPerPage,type,querry) {
+    async function displayPage(page, itemsPerPage, type, querry) {
       const firebasedata = await getdata('Fiction', 'products')
       const productsArr = firebasedata.products
-      let mydata=[]
-      if(type=='normal'){
-        mydata=productsArr
+      let mydata = []
+      if (type == 'normal') {
+        mydata = productsArr
       }
-      else{
-        mydata=await searchProducts(querry,[...productsArr])
+      else {
+        mydata = await searchProducts(querry, [...productsArr])
       }
       var startIndex = (page - 1) * itemsPerPage;
       var endIndex = Math.min(startIndex + itemsPerPage, mydata.length);

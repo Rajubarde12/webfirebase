@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
 import { } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js'
 import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
-// import { datas } from "../data/datas";
+
 const firebaseConfig = {
     apiKey: "AIzaSyCluB5nhyjiSG-uDkUiH_xIhvapnUwXgUw",
     authDomain: "becomeshakespeare-51d08.firebaseapp.com",
