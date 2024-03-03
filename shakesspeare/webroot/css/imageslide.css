@@ -1,0 +1,12 @@
+.custumstyle{
+    height: 500px;
+    /* position: absolute; */
+    width: 50px;;
+    border-width: 5px;
+    
+}
+.buttun-image{
+    border-width: 1px;
+    width: 50px;
+    height: 80px;
+}

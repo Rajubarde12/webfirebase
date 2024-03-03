@@ -24,7 +24,7 @@ export const getdata = async (docname, docLoc) => {
     const docRef = doc(db, docname, docLoc)
     const firebasedata = await getDoc(docRef);
     const data = await firebasedata.data()
-    console.log(data);
+    // console.log(data);
     return data
 }
 
