@@ -3076,32 +3076,73 @@
 
                 </li>
                 <li class="header-divider"></li>
-                <li class="cart-item has-icon has-dropdown">
+                <li class="cart-item has-icon">
 
-                  <a href="https://www.becomeshakespeare.com/cart/" title="Cart" class="header-cart-link is-small">
+                  <a href="https://wordpress.becomeshakespeare.com/cart/"
+                      class="header-cart-link off-canvas-toggle nav-top-link is-small"
+                      data-open="#cart-popup" data-class="off-canvas-cart" title="Cart"
+                      data-pos="right">
 
 
-
-                    <span class="image-icon header-cart-icon" data-icon-label="0">
-                      <img class="cart-img-icon" alt="Cart"
-                        src="https://www.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
-                    </span>
+                      <span class="image-icon header-cart-icon" data-icon-label="2">
+                          <img class="cart-img-icon" alt="Cart"
+                              src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+                      </span>
                   </a>
 
-                  <ul class="nav-dropdown nav-dropdown-default">
-                    <li class="html widget_shopping_cart">
-                      <div class="widget_shopping_cart_content">
 
 
-                        <p class="woocommerce-mini-cart__empty-message">No products in the cart.
-                        </p>
+                  <!-- Cart Sidebar Popup -->
+                  <div id="cart-popup" class="mfp-hide widget_shopping_cart">
+                      <div class="cart-popup-inner inner-padding">
+                          <div class="cart-popup-title text-center">
+                              <h4 class="uppercase">Cart</h4>
+                              <div class="is-divider"></div>
+                          </div>
+                          <div class="widget_shopping_cart_content">
 
 
+                              <ul class="woocommerce-mini-cart cart_list product_list_widget ">
+                                  <li class="woocommerce-mini-cart-item mini_cart_item">
+                                      <a href="https://wordpress.becomeshakespeare.com/cart/?remove_item=c5b2cebf15b205503560c4e8e6d1ea78&#038;_wpnonce=b603651ca6"
+                                          class="remove remove_from_cart_button"
+                                          aria-label="Remove #GoodForNothingNalayak from cart"
+                                          data-product_id="1998"
+                                          data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78"
+                                          data-product_sku="8098f913b539">&times;</a> <a
+                                          href="https://wordpress.becomeshakespeare.com/product/goodfornothingnalayak/">
+                                          <img width="247" height="296"
+                                              src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/03/74A-247x296.jpg"
+                                              class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                              alt="#GoodForNothingNalayak" decoding="async"
+                                              fetchpriority="high" />#GoodForNothingNalayak </a>
+                                      <span class="quantity">3 &times; <span
+                                              class="woocommerce-Price-amount amount"><bdi><span
+                                                      class="woocommerce-Price-currencySymbol">&#8377;</span>150.00</bdi></span></span>
+                                  </li>
+                              </ul>
+
+                              <p class="woocommerce-mini-cart__total total">
+                                  <strong>Subtotal:</strong> <span
+                                      class="woocommerce-Price-amount amount"><bdi><span
+                                              class="woocommerce-Price-currencySymbol">&#8377;</span>450.00</bdi></span>
+                              </p>
+
+
+                              <p class="woocommerce-mini-cart__buttons buttons"><a
+                                      href="https://wordpress.becomeshakespeare.com/cart/"
+                                      class="button wc-forward">View cart</a><a
+                                      href="https://wordpress.becomeshakespeare.com/checkout/"
+                                      class="button checkout wc-forward">Checkout</a></p>
+
+
+
+                          </div>
+                          <div class="cart-sidebar-content relative"></div>
                       </div>
-                    </li>
-                  </ul>
+                  </div>
 
-                </li>
+              </li>
               </ul>
             </div>
 
