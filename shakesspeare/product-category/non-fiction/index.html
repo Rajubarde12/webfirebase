@@ -472,19 +472,19 @@
 	<link rel="stylesheet" id="flatsome-main-css"
 		href="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/css/flatsome.css?ver=3.16.1"
 		type="text/css" media="all" />
-	<style id="flatsome-main-inline-css" type="text/css">
-		@font-face {
-			font-family: "fl-icons";
-			font-display: block;
-			src: url(https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.eot?v=3.16.1);
-			src:
-				url(https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.eot#iefix?v=3.16.1) format("embedded-opentype"),
-				url(https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.woff2?v=3.16.1) format("woff2"),
-				url(https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.ttf?v=3.16.1) format("truetype"),
-				url(https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.woff?v=3.16.1) format("woff"),
-				url(https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.svg?v=3.16.1#fl-icons) format("svg");
-		}
-	</style>
+		<style id="flatsome-main-inline-css" type="text/css">
+			@font-face {
+			  font-family: "fl-icons";
+			  font-display: block;
+			  src: url(webroot/fl-icons.eot?v=3.16.1);
+			  src:
+				url(../../webroot/themefont/fl-icons.eot#iefix?v=3.16.1) format("embedded-opentype"),
+				url(../../webroot/themefont/fl-icons.woff2?v=3.16.1) format("woff2"),
+				url(../../webroot/themefont/fl-icons.ttf?v=3.16.1) format("truetype"),
+				url(../../webroot/themefont/fl-icons.woff?v=3.16.1) format("woff"),
+				url(https://becomeshakespeare.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.svg?v=3.16.1#fl-icons) format("svg");
+			}
+		  </style>
 	<link rel="stylesheet" id="flatsome-shop-css"
 		href="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/css/flatsome-shop.css?ver=3.16.1"
 		type="text/css" media="all" />
@@ -2747,7 +2747,6 @@
 			  const urlRegex = /(https?:\/\/[^\s]+)/;
 			  const matches = mydata[i]['images'].match(urlRegex);
 			  const url = matches ? matches[0] : null;
-	
 			  myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
 			  myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
 			  myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
@@ -2860,6 +2859,78 @@
 	
 	
 	  </script>
+	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	  <script type="module">
+		import { getdata, setdata, } from '../../api/firebase.js'
+		$(document).ready(async function () {
+		  const prevItem = await getdata('cart_items', 'cart');
+		  appendCart(prevItem)
+	
+		})
+	
+		async function appendCart(cartItem) {
+		  $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length - 1);
+	
+		  const idarr = cartItem.cart.map(item => item.id);
+		  const data = await filteritems_id(idarr);
+	
+		  var outputelement = $('#cartitems');
+		  var myhtml = '';
+		  let price = 0;
+	
+		  if (data.length > 0) {
+			for (let i = 0; i < data.length; i++) {
+			  const urlRegex = /(https?:\/\/[^\s]+)/;
+			  const matches = data[i]['images'].match(urlRegex);
+			  const url = matches ? matches[0] : null;
+			  const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity;
+			  price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity);
+			  myhtml += '<li class="woocommerce-mini-cart-item mini_cart_item">';
+			  myhtml += '<a href="#" class="remove remove_from_cart_button" aria-label="Remove ' + data[i]["post_title"] + ' from cart" data-product_id="' + data[i]['ID'] + '" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78" data-product_sku="' + data[i]["sku"] + '">&times;</a>';
+			  myhtml += '<a href="#">';
+			  myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="#' + data[i]["post_title"] + '" decoding="async" fetchpriority="high" />#' + data[i]["post_title"].substring(0, 15) + '.... </a>';
+			  myhtml += '<span class="quantity">' + quantity + ' &times; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + data[i]["regular_price"] + '</bdi></span></span> </li>';
+			}
+	
+			$('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
+		  } else {
+			myhtml += '<h5>No Products into the cart</h5>'
+		  }
+		  outputelement.html(myhtml);
+	
+		  // Adding event listener to remove button
+		  $('.remove').on('click', function (e) {
+			e.preventDefault();
+			const productId = $(this).data('product_id');
+			removeFromCart(productId)
+	
+		  });
+		}
+	
+	
+		async function filteritems_id(idarr) {
+		  const firebasedata = await getdata('Finction_update', 'products');
+		  const data = firebasedata.products.filter(item => {
+			return idarr.includes(item.ID.toString());
+		  });
+		  return data;
+		}
+	
+	
+		async function removeFromCart(id) {
+		  const prevItem = await getdata('cart_items', 'cart');
+		  let data = [...prevItem.cart]
+		  const newdata = data.filter(item => item.id != id.toString())
+		  await setdata('cart_items', 'cart', { cart: newdata })
+		  Swal.fire({
+			icon: 'success',
+			title: 'Item removed',
+			showConfirmButton: false,
+			timer: 1500
+		  });
+		  appendCart({ cart: newdata });
+		}
+	  </script>
   
 
 	<div id="wrapper">
@@ -2952,33 +3023,33 @@
 								class="header-nav header-nav-main nav nav-left  nav-line-bottom nav-size-xlarge nav-spacing-xlarge nav-uppercase">
 								<li id="menu-item-270"
 									class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-270 menu-item-design-default has-dropdown">
-									<a href="../publishing-packages/" class="nav-top-link"
+									<a href="../../publishing-packages/" class="nav-top-link"
 										aria-expanded="false" aria-haspopup="menu">Publish<i
 											class="icon-angle-down"></i></a>
 									<ul class="sub-menu nav-dropdown nav-dropdown-default">
 										<li id="menu-item-2179"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2179">
-											<a href="../publishing-packages/">Publishing
+											<a href="../../publishing-packages/">Publishing
 												Packages</a></li>
 										<li id="menu-item-381"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-381">
-											<a href="../royalty-calculator/">Royalty
+											<a href="../../royalty-calculator/">Royalty
 												Calculator</a></li>
 										<li id="menu-item-383"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-383">
-											<a href="../book-editing-services/">Additional
+											<a href="../../book-editing-services/">Additional
 												Services</a></li>
 										<li id="menu-item-3738"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3738">
-											<a href="../waf/">Wordit Art Fund</a></li>
+											<a href="../../waf/">Wordit Art Fund</a></li>
 										<li id="menu-item-382"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-382">
-											<a href="../faq/">FAQs</a></li>
+											<a href="../../faq/">FAQs</a></li>
 									</ul>
 								</li>
 								<li id="menu-item-271"
 									class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-271 active menu-item-design-default has-dropdown">
-									<a href="../shop/" class="nav-top-link"
+									<a href="../../shop/" class="nav-top-link"
 										aria-expanded="false" aria-haspopup="menu">Shop<i
 											class="icon-angle-down"></i></a>
 									<ul class="sub-menu nav-dropdown nav-dropdown-default">
@@ -2988,16 +3059,21 @@
 										<li id="menu-item-3911"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3911">
 											<a
-												href="../product-category/fiction/">Fiction</a>
+												href="../fiction/">Fiction</a>
 										</li>
 										<li id="menu-item-3912"
 											class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-3912 active">
-											<a href="../product-category/non-fiction/"
+											<script>
+												function refresh() {
+												  window.location.reload()
+												}
+											  </script>
+											<a onclick="refresh()"
 												aria-current="page">Non-Fiction</a></li>
 										<li id="menu-item-3910"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3910">
 											<a
-												href="../product-category/poetry/">Poetry</a>
+												href="../poetry/">Poetry</a>
 										</li>
 									</ul>
 								</li>
@@ -3072,16 +3148,15 @@
 								<li class="header-divider"></li>
 								<li class="cart-item has-icon has-dropdown">
 
-									<a href="https://www.becomeshakespeare.com/cart/" title="Cart"
-										class="header-cart-link is-small">
-
-
-
-										<span class="image-icon header-cart-icon" data-icon-label="0">
-											<img class="cart-img-icon" alt="Cart"
-												src="https://www.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
-										</span>
-									</a>
+									<a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"
+									data-class="off-canvas-cart" title="Cart" data-pos="right">
+				
+				
+									<span class="image-icon header-cart-icon" data-icon-label="0">
+									  <img class="cart-img-icon" alt="Cart"
+										src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+									</span>
+								  </a>
 
 									<ul class="nav-dropdown nav-dropdown-default">
 										<li class="html widget_shopping_cart">
@@ -3105,36 +3180,48 @@
 							<ul class="mobile-nav nav nav-right ">
 								<li class="cart-item has-icon">
 
-									<a href="https://www.becomeshakespeare.com/cart/"
-										class="header-cart-link off-canvas-toggle nav-top-link is-small"
-										data-open="#cart-popup" data-class="off-canvas-cart" title="Cart"
-										data-pos="right">
-
-										<span class="image-icon header-cart-icon" data-icon-label="0">
-											<img class="cart-img-icon" alt="Cart"
-												src="https://www.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
-										</span>
-									</a>
+									<a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"
+									data-class="off-canvas-cart" title="Cart" data-pos="right">
+				
+				
+									<span class="image-icon header-cart-icon" data-icon-label="0">
+									  <img class="cart-img-icon" alt="Cart"
+										src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+									</span>
+								  </a>
 
 
 									<!-- Cart Sidebar Popup -->
 									<div id="cart-popup" class="mfp-hide widget_shopping_cart">
 										<div class="cart-popup-inner inner-padding">
-											<div class="cart-popup-title text-center">
-												<h4 class="uppercase">Cart</h4>
-												<div class="is-divider"></div>
-											</div>
-											<div class="widget_shopping_cart_content">
-
-
-												<p class="woocommerce-mini-cart__empty-message">No products in the cart.
-												</p>
-
-
-											</div>
-											<div class="cart-sidebar-content relative"></div>
+										  <div class="cart-popup-title text-center">
+											<h4 class="uppercase">Cart</h4>
+											<div class="is-divider"></div>
+										  </div>
+										  <div class="widget_shopping_cart_content">
+					
+					
+											<ul class="woocommerce-mini-cart cart_list product_list_widget ">
+											  <div id="cartitems"></div>
+											</ul>
+					
+											<p class="woocommerce-mini-cart__total total">
+											  <strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span
+													class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
+											</p>
+					
+					
+											<p class="woocommerce-mini-cart__buttons buttons"><a
+												href="https://wordpress.becomeshakespeare.com/cart/" class="button wc-forward">View
+												cart</a><a href="https://wordpress.becomeshakespeare.com/checkout/"
+												class="button checkout wc-forward">Checkout</a></p>
+					
+					
+					
+										  </div>
+										  <div class="cart-sidebar-content relative"></div>
 										</div>
-									</div>
+									  </div>
 
 								</li>
 							</ul>

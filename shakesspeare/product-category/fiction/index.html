@@ -15,15 +15,15 @@
   <link rel="dns-prefetch" href="//web.archive.org/web/20230328020012/https://cdn.jsdelivr.net/" />
   <link rel="dns-prefetch" href="//web.archive.org/web/20230328020012/https://s.w.org/" />
   <link rel="prefetch"
-    href="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/js/chunk.countup.js?ver=3.16.1" />
+    href="../../webroot/js/chunk.countup.js" />
   <link rel="prefetch"
-    href="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/js/chunk.sticky-sidebar.js?ver=3.16.1" />
+    href="../../webroot/js/chunk.sticky-sidebar.js" />
   <link rel="prefetch"
-    href="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/js/chunk.tooltips.js?ver=3.16.1" />
+    href="../../webroot/js/chunk.tooltips.js" />
   <link rel="prefetch"
-    href="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/js/chunk.vendors-popups.js?ver=3.16.1" />
+    href="../../webroot/js/chunk.vendors-popups.js" />
   <link rel="prefetch"
-    href="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/js/chunk.vendors-slider.js?ver=3.16.1" />
+    href="../../webroot/js/chunk.vendors-slider.js" />
   <link rel="alternate" type="application/rss+xml" title="BecomeShakespeare » Feed"
     href="https://www.becomeshakespeare.com/feed/" />
   <link rel="alternate" type="application/rss+xml" title="BecomeShakespeare » Comments Feed"
@@ -211,13 +211,13 @@
     }
   </style>
   <link rel="stylesheet" id="contact-form-7-css"
-    href="https://www.becomeshakespeare.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.6.4"
+    href="../../webroot/css/style.css"
     type="text/css" media="all" />
   <link rel="stylesheet" id="sp-ea-font-awesome-css"
-    href="https://www.becomeshakespeare.com/wp-content/plugins/easy-accordion-free/public/assets/css/font-awesome.min.css?ver=2.1.19"
+    href="../../webroot/css/font-awesome.min.css"
     type="text/css" media="all" />
   <link rel="stylesheet" id="sp-ea-style-css"
-    href="https://www.becomeshakespeare.com/wp-content/plugins/easy-accordion-free/public/assets/css/ea-style.css?ver=2.1.19"
+    href="../../webroot/css/ea-style.css"
     type="text/css" media="all" />
   <style id="sp-ea-style-inline-css" type="text/css">
     #sp-ea-7115 .spcollapsing {
@@ -500,16 +500,16 @@
       }
     };
   </script>
-  <script type="text/javascript" src="https://www.becomeshakespeare.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0"
+  <script type="text/javascript" src="../../webroot/js/jquery.min.js"
     id="jquery-core-js"></script>
   <script type="text/javascript"
-    src="https://www.becomeshakespeare.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2"
+    src="../../webroot/js/jquery-migrate.min.js"
     id="jquery-migrate-js"></script>
-  <script type="text/javascript"
+  <!-- <script type="text/javascript"
     src="https://www.becomeshakespeare.com/wp-content/plugins/recaptcha-woo/js/rcfwc.js?ver=1.0"
-    id="rcfwc-js-js"></script>
-  <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?explicit&amp;hl=en_US&amp;ver=6.0.3"
-    id="recaptcha-js"></script>
+    id="rcfwc-js-js"></script> -->
+  <!-- <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?explicit&amp;hl=en_US&amp;ver=6.0.3"
+    id="recaptcha-js"></script> -->
   <link rel="https://api.w.org/" href="https://www.becomeshakespeare.com/wp-json/" />
   <link rel="alternate" type="application/json" href="https://www.becomeshakespeare.com/wp-json/wp/v2/product_cat/80" />
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.becomeshakespeare.com/xmlrpc.php?rsd" />
@@ -2692,13 +2692,13 @@
   <!-- <script type="modul" src="../../data/newupdatedata.js" ></script> -->
   <script type="module">
     import { getdata, setdata, } from '../../api/firebase.js'
-   
+
 
     $(document).ready(function () {
       getdatas()
-    //  setdatas2()
+      //  setdatas2()
       $(document).on('click', '.page-number', function (e) {
-        
+
         var itemsPerPage = 8;
         e.preventDefault();
         var page = parseInt($(this).text());
@@ -2731,7 +2731,7 @@
 
       const firebasedata = await getdata('Finction_update', 'products')
       var totalPages = Math.ceil(firebasedata.products.length / 8);
-      
+
 
       const mydata = firebasedata.products.slice(0, 8)
       const tempdata = {
@@ -2781,7 +2781,7 @@
         myhtml += '<div class="container"><nav class="woocommerce-pagination">'
         myhtml += '<ul class="page-numbers nav-pagination links text-center">'
         // myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
-        for (let i = 1; i <8; i++)
+        for (let i = 1; i < 8; i++)
           if (i == 1) {
             myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
           } else {
@@ -2797,7 +2797,7 @@
     }
     async function paginate(mydata, totalpage, page, type) {
       var outputElement = $('#mainId')
-    
+
       var myhtml = ''
       if (true) {
 
@@ -2817,19 +2817,19 @@
             const url = matches ? matches[0] : null;
 
             myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
-          myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
-          myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
-          myhtml += '<a href="../../product/?id=' + mydata[i]['ID'] + '" aria-label="&quot;' + mydata[i]['post_title'] + '">'
-          myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" /> </a>    </div>'
-          myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
-          myhtml += '    <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
-          myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
-          myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
-          myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="../../product/?id=' + mydata[i]['ID'] + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['post_title'] + '"</a></p>'
-          myhtml += '            </div>'
-          myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['regular_price'] + '</bdi></span>'
-          myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
-          myhtml += '</div></div></div></div></div>'
+            myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
+            myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
+            myhtml += '<a href="../../product/?id=' + mydata[i]['ID'] + '" aria-label="&quot;' + mydata[i]['post_title'] + '">'
+            myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" /> </a>    </div>'
+            myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
+            myhtml += '    <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
+            myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
+            myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
+            myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="../../product/?id=' + mydata[i]['ID'] + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['post_title'] + '"</a></p>'
+            myhtml += '            </div>'
+            myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['regular_price'] + '</bdi></span>'
+            myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
+            myhtml += '</div></div></div></div></div>'
           }
         } else {
           myhtml += '<h1 class="mycostumeclass">No data found</h1>'
@@ -2873,6 +2873,78 @@
     }
 
 
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script type="module">
+    import { getdata, setdata, } from '../../api/firebase.js'
+    $(document).ready(async function () {
+      const prevItem = await getdata('cart_items', 'cart');
+      appendCart(prevItem)
+
+    })
+
+    async function appendCart(cartItem) {
+      $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length - 1);
+
+      const idarr = cartItem.cart.map(item => item.id);
+      const data = await filteritems_id(idarr);
+
+      var outputelement = $('#cartitems');
+      var myhtml = '';
+      let price = 0;
+
+      if (data.length > 0) {
+        for (let i = 0; i < data.length; i++) {
+          const urlRegex = /(https?:\/\/[^\s]+)/;
+          const matches = data[i]['images'].match(urlRegex);
+          const url = matches ? matches[0] : null;
+          const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity;
+          price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity);
+          myhtml += '<li class="woocommerce-mini-cart-item mini_cart_item">';
+          myhtml += '<a href="#" class="remove remove_from_cart_button" aria-label="Remove ' + data[i]["post_title"] + ' from cart" data-product_id="' + data[i]['ID'] + '" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78" data-product_sku="' + data[i]["sku"] + '">&times;</a>';
+          myhtml += '<a href="#">';
+          myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="#' + data[i]["post_title"] + '" decoding="async" fetchpriority="high" />#' + data[i]["post_title"].substring(0, 15) + '.... </a>';
+          myhtml += '<span class="quantity">' + quantity + ' &times; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + data[i]["regular_price"] + '</bdi></span></span> </li>';
+        }
+
+        $('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
+      } else {
+        myhtml += '<h5>No Products into the cart</h5>'
+      }
+      outputelement.html(myhtml);
+
+      // Adding event listener to remove button
+      $('.remove').on('click', function (e) {
+        e.preventDefault();
+        const productId = $(this).data('product_id');
+        removeFromCart(productId)
+
+      });
+    }
+
+
+    async function filteritems_id(idarr) {
+      const firebasedata = await getdata('Finction_update', 'products');
+      const data = firebasedata.products.filter(item => {
+        return idarr.includes(item.ID.toString());
+      });
+      return data;
+    }
+
+
+    async function removeFromCart(id) {
+      const prevItem = await getdata('cart_items', 'cart');
+      let data = [...prevItem.cart]
+      const newdata = data.filter(item => item.id != id.toString())
+      await setdata('cart_items', 'cart', { cart: newdata })
+      Swal.fire({
+        icon: 'success',
+        title: 'Item removed',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      appendCart({ cart: newdata });
+    }
   </script>
 
 
@@ -2962,49 +3034,54 @@
                   <ul class="sub-menu nav-dropdown nav-dropdown-default">
                     <li id="menu-item-2179"
                       class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2179">
-                      <a href="https://www.becomeshakespeare.com/publishing-packages/">Publishing
+                      <a href="../../publishing-packages/">Publishing
                         Packages</a>
                     </li>
                     <li id="menu-item-381"
                       class="menu-item menu-item-type-custom menu-item-object-custom menu-item-381">
-                      <a href="../royalty-calculator/">Royalty
+                      <a href="../../royalty-calculator/">Royalty
                         Calculator</a>
                     </li>
                     <li id="menu-item-383"
                       class="menu-item menu-item-type-custom menu-item-object-custom menu-item-383">
-                      <a href="../book-editing-services/">Additional
+                      <a href="../../book-editing-services/">Additional
                         Services</a>
                     </li>
                     <li id="menu-item-3738"
                       class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3738">
-                      <a href="../waf/">Wordit Art Fund</a>
+                      <a href="../../waf/">Wordit Art Fund</a>
                     </li>
                     <li id="menu-item-382"
                       class="menu-item menu-item-type-custom menu-item-object-custom menu-item-382">
-                      <a href="../faq/">FAQs</a>
+                      <a href="../../faq/">FAQs</a>
                     </li>
                   </ul>
                 </li>
                 <li id="menu-item-271"
                   class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-271 active menu-item-design-default has-dropdown">
-                  <a href="../shop/" class="nav-top-link" aria-expanded="false" aria-haspopup="menu">Shop<i
+                  <a href="../../shop/" class="nav-top-link" aria-expanded="false" aria-haspopup="menu">Shop<i
                       class="icon-angle-down"></i></a>
                   <ul class="sub-menu nav-dropdown nav-dropdown-default">
                     <li id="menu-item-3964"
                       class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3964">
                       <a href="../../collection/">Collection</a>
                     </li>
+                    <script>
+                      function refresh() {
+                        window.location.reload()
+                      }
+                    </script>
                     <li id="menu-item-3911"
                       class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-3911 active">
-                      <a href="../product-category/fiction/" aria-current="page">Fiction</a>
+                      <a onclick="refresh()" aria-current="page">Fiction</a>
                     </li>
                     <li id="menu-item-3912"
                       class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3912">
-                      <a href="../product-category/non-fiction/">Non-Fiction</a>
+                      <a href="../non-fiction/">Non-Fiction</a>
                     </li>
                     <li id="menu-item-3910"
                       class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3910">
-                      <a href="../product-category/poetry/">Poetry</a>
+                      <a href="../poetry/">Poetry</a>
                     </li>
                   </ul>
                 </li>
@@ -3078,71 +3155,51 @@
                 <li class="header-divider"></li>
                 <li class="cart-item has-icon">
 
-                  <a href="https://wordpress.becomeshakespeare.com/cart/"
-                      class="header-cart-link off-canvas-toggle nav-top-link is-small"
-                      data-open="#cart-popup" data-class="off-canvas-cart" title="Cart"
-                      data-pos="right">
+                  <a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"
+                    data-class="off-canvas-cart" title="Cart" data-pos="right">
 
 
-                      <span class="image-icon header-cart-icon" data-icon-label="2">
-                          <img class="cart-img-icon" alt="Cart"
-                              src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
-                      </span>
+                    <span class="image-icon header-cart-icon" data-icon-label="0">
+                      <img class="cart-img-icon" alt="Cart"
+                        src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+                    </span>
                   </a>
 
 
 
                   <!-- Cart Sidebar Popup -->
                   <div id="cart-popup" class="mfp-hide widget_shopping_cart">
-                      <div class="cart-popup-inner inner-padding">
-                          <div class="cart-popup-title text-center">
-                              <h4 class="uppercase">Cart</h4>
-                              <div class="is-divider"></div>
-                          </div>
-                          <div class="widget_shopping_cart_content">
-
-
-                              <ul class="woocommerce-mini-cart cart_list product_list_widget ">
-                                  <li class="woocommerce-mini-cart-item mini_cart_item">
-                                      <a href="https://wordpress.becomeshakespeare.com/cart/?remove_item=c5b2cebf15b205503560c4e8e6d1ea78&#038;_wpnonce=b603651ca6"
-                                          class="remove remove_from_cart_button"
-                                          aria-label="Remove #GoodForNothingNalayak from cart"
-                                          data-product_id="1998"
-                                          data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78"
-                                          data-product_sku="8098f913b539">&times;</a> <a
-                                          href="https://wordpress.becomeshakespeare.com/product/goodfornothingnalayak/">
-                                          <img width="247" height="296"
-                                              src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/03/74A-247x296.jpg"
-                                              class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                              alt="#GoodForNothingNalayak" decoding="async"
-                                              fetchpriority="high" />#GoodForNothingNalayak </a>
-                                      <span class="quantity">3 &times; <span
-                                              class="woocommerce-Price-amount amount"><bdi><span
-                                                      class="woocommerce-Price-currencySymbol">&#8377;</span>150.00</bdi></span></span>
-                                  </li>
-                              </ul>
-
-                              <p class="woocommerce-mini-cart__total total">
-                                  <strong>Subtotal:</strong> <span
-                                      class="woocommerce-Price-amount amount"><bdi><span
-                                              class="woocommerce-Price-currencySymbol">&#8377;</span>450.00</bdi></span>
-                              </p>
-
-
-                              <p class="woocommerce-mini-cart__buttons buttons"><a
-                                      href="https://wordpress.becomeshakespeare.com/cart/"
-                                      class="button wc-forward">View cart</a><a
-                                      href="https://wordpress.becomeshakespeare.com/checkout/"
-                                      class="button checkout wc-forward">Checkout</a></p>
-
-
-
-                          </div>
-                          <div class="cart-sidebar-content relative"></div>
+                    <div class="cart-popup-inner inner-padding">
+                      <div class="cart-popup-title text-center">
+                        <h4 class="uppercase">Cart</h4>
+                        <div class="is-divider"></div>
                       </div>
+                      <div class="widget_shopping_cart_content">
+
+
+                        <ul class="woocommerce-mini-cart cart_list product_list_widget ">
+                          <div id="cartitems"></div>
+                        </ul>
+
+                        <p class="woocommerce-mini-cart__total total">
+                          <strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span
+                                class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
+                        </p>
+
+
+                        <p class="woocommerce-mini-cart__buttons buttons"><a
+                            href="https://wordpress.becomeshakespeare.com/cart/" class="button wc-forward">View
+                            cart</a><a href="https://wordpress.becomeshakespeare.com/checkout/"
+                            class="button checkout wc-forward">Checkout</a></p>
+
+
+
+                      </div>
+                      <div class="cart-sidebar-content relative"></div>
+                    </div>
                   </div>
 
-              </li>
+                </li>
               </ul>
             </div>
 
@@ -3772,29 +3829,29 @@
 
       };
     });
-  </scrip>
+  </scrip >
 
-  <script>
-    var accItem = document.getElementsByClassName('accordionItem');
-    var accHD = document.getElementsByClassName('accordionItemHeading');
-    for (i = 0; i < accHD.length; i++) {
-      accHD[i].addEventListener('click', toggleItem, false);
+      <script>
+        var accItem = document.getElementsByClassName('accordionItem');
+        var accHD = document.getElementsByClassName('accordionItemHeading');
+        for (i = 0; i < accHD.length; i++) {
+          accHD[i].addEventListener('click', toggleItem, false);
     }
-    function toggleItem() {
+        function toggleItem() {
       var itemClass = this.parentNode.className;
-      for (i = 0; i < accItem.length; i++) {
-        accItem[i].className = 'accordionItem close';
+        for (i = 0; i < accItem.length; i++) {
+          accItem[i].className = 'accordionItem close';
       }
-      if (itemClass == 'accordionItem close') {
-        this.parentNode.className = 'accordionItem open';
+        if (itemClass == 'accordionItem close') {
+          this.parentNode.className = 'accordionItem open';
       }
     }
   </script>
 
   <script>
-    setTimeout(function () {
-      document.getElementById('imageID').style.display = 'none'
-    }, 5 * 1000);
+      setTimeout(function () {
+        document.getElementById('imageID').style.display = 'none'
+      }, 5 * 1000);
   </script>
   <div id="login-form-popup" class="lightbox-content mfp-hide">
     <div class="woocommerce">
@@ -3910,7 +3967,7 @@
   <script
     type="application/ld+json">{"@context":"http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/schema.org\/","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"name":"Fiction","@id":"http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/product-category\/fiction\/"}}]}</script>
   <script type="text/javascript">
-    (function () {
+      (function () {
       var c = document.body.className;
       c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
       document.body.className = c;
@@ -4177,22 +4234,22 @@
     id="swv-js"></script>
   <script type="text/javascript" id="contact-form-7-js-extra">
     /* <![CDATA[ */
-    var wpcf7 = { "api": { "root": "http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/wp-json\/", "namespace": "contact-form-7\/v1" } };
-    /* ]]> */
+      var wpcf7 = {"api": {"root": "http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/wp-json\/", "namespace": "contact-form-7\/v1" } };
+      /* ]]> */
   </script>
   <script type="text/javascript"
     src="https://www.becomeshakespeare.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.6.4"
     id="contact-form-7-js"></script>
   <script type="text/javascript"
-    src="https://www.becomeshakespeare.com/wp-content/plugins/popup-anything-on-click/assets/js/popupaoc-public.js?ver=2.2"
+    src="../../webroot/js/popupaoc-public.js"
     id="popupaoc-public-js-js"></script>
   <script type="text/javascript"
     src="https://www.becomeshakespeare.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.7.1.0"
     id="jquery-blockui-js"></script>
   <script type="text/javascript" id="wc-add-to-cart-js-extra">
     /* <![CDATA[ */
-    var wc_add_to_cart_params = { "ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%", "i18n_view_cart": "View cart", "cart_url": "http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/cart\/", "is_cart": "", "cart_redirect_after_add": "no" };
-    /* ]]> */
+      var wc_add_to_cart_params = {"ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%", "i18n_view_cart": "View cart", "cart_url": "http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/cart\/", "is_cart": "", "cart_redirect_after_add": "no" };
+      /* ]]> */
   </script>
   <script type="text/javascript"
     src="https://www.becomeshakespeare.com/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=7.1.0"
@@ -4202,16 +4259,16 @@
     id="js-cookie-js"></script>
   <script type="text/javascript" id="woocommerce-js-extra">
     /* <![CDATA[ */
-    var woocommerce_params = { "ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%" };
-    /* ]]> */
+      var woocommerce_params = {"ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%" };
+      /* ]]> */
   </script>
   <script type="text/javascript"
-    src="https://www.becomeshakespeare.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=7.1.0"
+    src="../../webroot/js/woocommerce.min.js"
     id="woocommerce-js"></script>
   <script type="text/javascript" id="wc-cart-fragments-js-extra">
     /* <![CDATA[ */
-    var wc_cart_fragments_params = { "ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%", "cart_hash_key": "wc_cart_hash_41e3d0202048d4a5f22161a43369246f", "fragment_name": "wc_fragments_41e3d0202048d4a5f22161a43369246f", "request_timeout": "5000" };
-    /* ]]> */
+      var wc_cart_fragments_params = {"ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%", "cart_hash_key": "wc_cart_hash_41e3d0202048d4a5f22161a43369246f", "fragment_name": "wc_fragments_41e3d0202048d4a5f22161a43369246f", "request_timeout": "5000" };
+      /* ]]> */
   </script>
   <script type="text/javascript"
     src="https://www.becomeshakespeare.com/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=7.1.0"
@@ -4230,8 +4287,8 @@
     id="wp-polyfill-js"></script>
   <script type="text/javascript" id="wpcf7-recaptcha-js-extra">
     /* <![CDATA[ */
-    var wpcf7_recaptcha = { "sitekey": "6Ld_2fMUAAAAAP7jZhKbHLOqSZDlgwusJ3I8c51b", "actions": { "homepage": "homepage", "contactform": "contactform" } };
-    /* ]]> */
+      var wpcf7_recaptcha = {"sitekey": "6Ld_2fMUAAAAAP7jZhKbHLOqSZDlgwusJ3I8c51b", "actions": {"homepage": "homepage", "contactform": "contactform" } };
+      /* ]]> */
   </script>
   <script type="text/javascript"
     src="https://www.becomeshakespeare.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=5.6.4"
@@ -4240,14 +4297,14 @@
     id="hoverIntent-js"></script>
   <script type="text/javascript" id="flatsome-js-js-extra">
     /* <![CDATA[ */
-    var flatsomeVars = { "theme": { "version": "3.16.1" }, "ajaxurl": "http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "70", "assets_url": "http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/wp-content\/themes\/flatsome\/assets\/js\/", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false }, "i18n": { "mainMenu": "Main Menu", "toggleButton": "Toggle" }, "options": { "cookie_notice_version": "1", "swatches_layout": false, "swatches_box_select_event": false, "swatches_box_behavior_selected": false, "swatches_box_update_urls": "1", "swatches_box_reset": false, "swatches_box_reset_extent": false, "swatches_box_reset_time": 300, "search_result_latency": "0" }, "is_mini_cart_reveal": "1" };
-    /* ]]> */
+      var flatsomeVars = {"theme": {"version": "3.16.1" }, "ajaxurl": "http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "70", "assets_url": "http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/wp-content\/themes\/flatsome\/assets\/js\/", "lightbox": {"close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": {"can_edit_pages": false }, "i18n": {"mainMenu": "Main Menu", "toggleButton": "Toggle" }, "options": {"cookie_notice_version": "1", "swatches_layout": false, "swatches_box_select_event": false, "swatches_box_behavior_selected": false, "swatches_box_update_urls": "1", "swatches_box_reset": false, "swatches_box_reset_extent": false, "swatches_box_reset_time": 300, "search_result_latency": "0" }, "is_mini_cart_reveal": "1" };
+      /* ]]> */
   </script>
   <script type="text/javascript"
-    src="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/js/flatsome.js?ver=fcf0c1642621a86609ed4ca283f0db68"
+    src="../../webroot/js/flatsome.js"
     id="flatsome-js-js"></script>
   <script type="text/javascript"
-    src="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/js/woocommerce.js?ver=a0349779516f2e7c5703074420d5e855"
+    src="../../webroot/js/woocommerce.js"
     id="flatsome-theme-woocommerce-js-js"></script>
   <!--[if IE]>
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/intersection-observer-polyfill@0.1.0/dist/IntersectionObserver.js?ver=0.1.0' id='intersection-observer-polyfill-js'></script>
@@ -4256,23 +4313,23 @@
     id="underscore-js"></script>
   <script type="text/javascript" id="wp-util-js-extra">
     /* <![CDATA[ */
-    var _wpUtilSettings = { "ajax": { "url": "\/wp-admin\/admin-ajax.php" } };
-    /* ]]> */
+      var _wpUtilSettings = {"ajax": {"url": "\/wp-admin\/admin-ajax.php" } };
+      /* ]]> */
   </script>
   <script type="text/javascript" src="https://www.becomeshakespeare.com/wp-includes/js/wp-util.min.js?ver=6.0.3"
     id="wp-util-js"></script>
   <script type="text/javascript" id="wc-add-to-cart-variation-js-extra">
     /* <![CDATA[ */
-    var wc_add_to_cart_variation_params = { "wc_ajax_url": "\/?wc-ajax=%%endpoint%%", "i18n_no_matching_variations_text": "Sorry, no products matched your selection. Please choose a different combination.", "i18n_make_a_selection_text": "Please select some product options before adding this product to your cart.", "i18n_unavailable_text": "Sorry, this product is unavailable. Please choose a different combination." };
-    /* ]]> */
+      var wc_add_to_cart_variation_params = {"wc_ajax_url": "\/?wc-ajax=%%endpoint%%", "i18n_no_matching_variations_text": "Sorry, no products matched your selection. Please choose a different combination.", "i18n_make_a_selection_text": "Please select some product options before adding this product to your cart.", "i18n_unavailable_text": "Sorry, this product is unavailable. Please choose a different combination." };
+      /* ]]> */
   </script>
   <script type="text/javascript"
     src="https://www.becomeshakespeare.com/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart-variation.min.js?ver=7.1.0"
     id="wc-add-to-cart-variation-js"></script>
   <script type="text/javascript" id="zxcvbn-async-js-extra">
     /* <![CDATA[ */
-    var _zxcvbnSettings = { "src": "http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/wp-includes\/js\/zxcvbn.min.js" };
-    /* ]]> */
+      var _zxcvbnSettings = {"src": "http:\/\/web.archive.org\/web\/20230328020012\/https:\/\/www.becomeshakespeare.com\/wp-includes\/js\/zxcvbn.min.js" };
+      /* ]]> */
   </script>
   <script type="text/javascript" src="https://www.becomeshakespeare.com/wp-includes/js/zxcvbn-async.min.js?ver=1.0"
     id="zxcvbn-async-js"></script>
@@ -4283,21 +4340,17 @@
     src="https://www.becomeshakespeare.com/wp-includes/js/dist/i18n.min.js?ver=ebee46757c6a411e38fd079a7ac71d94"
     id="wp-i18n-js"></script>
   <script type="text/javascript" id="wp-i18n-js-after">
-    wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
+      wp.i18n.setLocaleData({'text direction\u0004ltr': ['ltr'] });
   </script>
   <script type="text/javascript" id="password-strength-meter-js-extra">
     /* <![CDATA[ */
-    var pwsL10n = { "unknown": "Password strength unknown", "short": "Very weak", "bad": "Weak", "good": "Medium", "strong": "Strong", "mismatch": "Mismatch" };
-    /* ]]> */
+      var pwsL10n = {"unknown": "Password strength unknown", "short": "Very weak", "bad": "Weak", "good": "Medium", "strong": "Strong", "mismatch": "Mismatch" };
+      /* ]]> */
   </script>
   <script type="text/javascript"
     src="https://www.becomeshakespeare.com/wp-admin/js/password-strength-meter.min.js?ver=6.0.3"
     id="password-strength-meter-js"></script>
-  <script type="text/javascript" id="wc-password-strength-meter-js-extra">
-    /* <![CDATA[ */
-    var wc_password_strength_meter_params = { "min_password_strength": "3", "stop_checkout": "", "i18n_password_error": "Please enter a stronger password.", "i18n_password_hint": "Hint: The password should be at least twelve characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! \" ? $ % ^ & )." };
-    /* ]]> */
-  </script>
+
   <script type="text/javascript"
     src="https://www.becomeshakespeare.com/wp-content/plugins/woocommerce/assets/js/frontend/password-strength-meter.min.js?ver=7.1.0"
     id="wc-password-strength-meter-js"></script>
@@ -4305,23 +4358,3 @@
 </body>
 
 </html>
-<!--
-     FILE ARCHIVED ON 02:00:12 Mar 28, 2023 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 16:19:19 Aug 15, 2023.
-     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
-
-     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
-     SECTION 108(a)(3)).
--->
-<!--
-playback timings (ms):
-  captures_list: 450.063 (11)
-  exclusion.robots: 0.186
-  exclusion.robots.policy: 0.177
-  cdx.remote: 0.063
-  esindex: 0.008
-  LoadShardBlock: 418.014 (3)
-  PetaboxLoader3.datanode: 121.093 (4)
-  load_resource: 161.444
-  PetaboxLoader3.resolve: 121.152
--->

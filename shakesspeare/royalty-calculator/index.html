@@ -2197,16 +2197,15 @@
 								<li class="header-divider"></li>
 								<li class="cart-item has-icon has-dropdown">
 
-									<a href="cart/" title="Cart" class="header-cart-link is-small">
-
-
-
-										<span class="image-icon header-cart-icon" data-icon-label="0">
-											<img class="cart-img-icon" alt="Cart"
-												src="../webroot/uploads/Shopping-Cart.png" />
-										</span>
-									</a>
-
+									<a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"
+									data-class="off-canvas-cart" title="Cart" data-pos="right">
+				
+				
+									<span class="image-icon header-cart-icon" data-icon-label="0">
+									  <img class="cart-img-icon" alt="Cart"
+										src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+									</span>
+								  </a>
 									<ul class="nav-dropdown nav-dropdown-default">
 										<li class="html widget_shopping_cart">
 											<div class="widget_shopping_cart_content">
@@ -2235,21 +2234,34 @@
 									<!-- Cart Sidebar Popup -->
 									<div id="cart-popup" class="mfp-hide widget_shopping_cart">
 										<div class="cart-popup-inner inner-padding">
-											<div class="cart-popup-title text-center">
-												<h4 class="uppercase">Cart</h4>
-												<div class="is-divider"></div>
-											</div>
-											<div class="widget_shopping_cart_content">
-
-
-												<p class="woocommerce-mini-cart__empty-message">No products in the cart.
-												</p>
-
-
-											</div>
-											<div class="cart-sidebar-content relative"></div>
+										  <div class="cart-popup-title text-center">
+											<h4 class="uppercase">Cart</h4>
+											<div class="is-divider"></div>
+										  </div>
+										  <div class="widget_shopping_cart_content">
+					
+					
+											<ul class="woocommerce-mini-cart cart_list product_list_widget ">
+											  <div id="cartitems"></div>
+											</ul>
+					
+											<p class="woocommerce-mini-cart__total total">
+											  <strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span
+													class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
+											</p>
+					
+					
+											<p class="woocommerce-mini-cart__buttons buttons"><a
+												href="https://wordpress.becomeshakespeare.com/cart/" class="button wc-forward">View
+												cart</a><a href="https://wordpress.becomeshakespeare.com/checkout/"
+												class="button checkout wc-forward">Checkout</a></p>
+					
+					
+					
+										  </div>
+										  <div class="cart-sidebar-content relative"></div>
 										</div>
-									</div>
+									  </div>
 
 								</li>
 							</ul>
@@ -2357,6 +2369,78 @@
 			}
 
 		</script>
+		 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		 <script type="module">
+		   import { getdata, setdata, } from '../api/firebase.js'
+		   $(document).ready(async function () {
+			 const prevItem = await getdata('cart_items', 'cart');
+			 appendCart(prevItem)
+	   
+		   })
+	   
+		   async function appendCart(cartItem) {
+			 $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length - 1);
+	   
+			 const idarr = cartItem.cart.map(item => item.id);
+			 const data = await filteritems_id(idarr);
+	   
+			 var outputelement = $('#cartitems');
+			 var myhtml = '';
+			 let price = 0;
+	   
+			 if (data.length > 0) {
+			   for (let i = 0; i < data.length; i++) {
+				 const urlRegex = /(https?:\/\/[^\s]+)/;
+				 const matches = data[i]['images'].match(urlRegex);
+				 const url = matches ? matches[0] : null;
+				 const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity;
+				 price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity);
+				 myhtml += '<li class="woocommerce-mini-cart-item mini_cart_item">';
+				 myhtml += '<a href="#" class="remove remove_from_cart_button" aria-label="Remove ' + data[i]["post_title"] + ' from cart" data-product_id="' + data[i]['ID'] + '" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78" data-product_sku="' + data[i]["sku"] + '">&times;</a>';
+				 myhtml += '<a href="#">';
+				 myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="#' + data[i]["post_title"] + '" decoding="async" fetchpriority="high" />#' + data[i]["post_title"].substring(0, 15) + '.... </a>';
+				 myhtml += '<span class="quantity">' + quantity + ' &times; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + data[i]["regular_price"] + '</bdi></span></span> </li>';
+			   }
+	   
+			   $('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
+			 } else {
+			   myhtml += '<h5>No Products into the cart</h5>'
+			 }
+			 outputelement.html(myhtml);
+	   
+			 // Adding event listener to remove button
+			 $('.remove').on('click', function (e) {
+			   e.preventDefault();
+			   const productId = $(this).data('product_id');
+			   removeFromCart(productId)
+	   
+			 });
+		   }
+	   
+	   
+		   async function filteritems_id(idarr) {
+			 const firebasedata = await getdata('Finction_update', 'products');
+			 const data = firebasedata.products.filter(item => {
+			   return idarr.includes(item.ID.toString());
+			 });
+			 return data;
+		   }
+	   
+	   
+		   async function removeFromCart(id) {
+			 const prevItem = await getdata('cart_items', 'cart');
+			 let data = [...prevItem.cart]
+			 const newdata = data.filter(item => item.id != id.toString())
+			 await setdata('cart_items', 'cart', { cart: newdata })
+			 Swal.fire({
+			   icon: 'success',
+			   title: 'Item removed',
+			   showConfirmButton: false,
+			   timer: 1500
+			 });
+			 appendCart({ cart: newdata });
+		   }
+		 </script>
 		<main id="main" class="">
 			<div id="content" role="main" class="content-area">
 

@@ -33,7 +33,7 @@ export const setdata = async (docname, docloc, data) => {
 
     const docRef = doc(db, docname, docloc)
     await setDoc(docRef, data)
-    alert('Your packege data insert successfully...')
+    // alert('Your packege data insert successfully...')
 
 }
 export const getdata2 = async (docname, docLoc) => {

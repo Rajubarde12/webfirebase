@@ -1573,7 +1573,7 @@
 
     <a class="skip-link screen-reader-text" href="#main">Skip to content</a>
     <div id="wrapper">
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script type="module" src="../../api/firebase.js"></script>
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -1754,7 +1754,7 @@
 
         <script type="module">
             import { getdata, setdata, } from '../api/firebase.js'
-            $(document).ready( async function () {
+            $(document).ready(async function () {
                 const prevItem = await getdata('cart_items', 'cart');
                 appendCart(prevItem)
                 $(".plus").click(function () {
@@ -1776,6 +1776,7 @@
                     await add_to_cart(id)
 
                 })
+
             });
             async function getId(name, url) {
                 if (!url) url = window.location.href;
@@ -1804,36 +1805,55 @@
                 }
 
                 await setdata('cart_items', 'cart', prevItem);
-                appendCart(prevItem); 
+             
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Item added to cart',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                appendCart(prevItem);
             }
 
             async function appendCart(cartItem) {
-                $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length-1);
+                $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length - 1);
 
                 const idarr = cartItem.cart.map(item => item.id);
-
                 const data = await filteritems_id(idarr);
 
                 var outputelement = $('#cartitems');
                 var myhtml = '';
+                let price = 0;
 
-                if (true) {
+                if (data.length>0) {
                     for (let i = 0; i < data.length; i++) {
                         const urlRegex = /(https?:\/\/[^\s]+)/;
                         const matches = data[i]['images'].match(urlRegex);
                         const url = matches ? matches[0] : null;
-                        const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity; // Get quantity from cartItem
+                        const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity;
+                        price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity); 
                         myhtml += '<li class="woocommerce-mini-cart-item mini_cart_item">';
-                        myhtml += '<a href="https://wordpress.becomeshakespeare.com/cart/?remove_item=c5b2cebf15b205503560c4e8e6d1ea78&#038;_wpnonce=b603651ca6"  class="remove remove_from_cart_button" aria-label="Remove #GoodForNothingNalayak from cart"  data-product_id="1998" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78"data-product_sku="8098f913b539">&times;</a>';
-                        myhtml += '<a href="https://wordpress.becomeshakespeare.com/product/goodfornothingnalayak/">';
-                        myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="#' + data[i]["post_title"] + '" decoding="async"  fetchpriority="high" />#' + data[i]["post_title"].substring(0, 15) + '.... </a>';
-                        myhtml += '<span class="quantity">' + quantity + ' &times; <span class="woocommerce-Price-amount amount"><bdi><span  class="woocommerce-Price-currencySymbol">&#8377;</span>' + data[i]["regular_price"] + '</bdi></span></span> </li>';
+                        myhtml += '<a href="#" class="remove remove_from_cart_button" aria-label="Remove ' + data[i]["post_title"] + ' from cart" data-product_id="' + data[i]['ID'] + '" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78" data-product_sku="' + data[i]["sku"] + '">&times;</a>';
+                        myhtml += '<a href="#">';
+                        myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="#' + data[i]["post_title"] + '" decoding="async" fetchpriority="high" />#' + data[i]["post_title"].substring(0, 15) + '.... </a>';
+                        myhtml += '<span class="quantity">' + quantity + ' &times; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + data[i]["regular_price"] + '</bdi></span></span> </li>';
                     }
 
-                    $('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + 500 + '</bdi></span>');
+                    $('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
+                }else{
+                    myhtml+='<h1>No Products into the cart</h1>'
                 }
                 outputelement.html(myhtml);
+
+                // Adding event listener to remove button
+                $('.remove').on('click', function (e) {
+                    e.preventDefault();
+                    const productId = $(this).data('product_id');
+                    removeFromCart(productId)
+
+                });
             }
+
 
             async function filteritems_id(idarr) {
                 const firebasedata = await getdata('Finction_update', 'products');
@@ -1843,6 +1863,20 @@
                 return data;
             }
 
+
+            async function removeFromCart(id) {
+                const prevItem = await getdata('cart_items', 'cart');
+                let data = [...prevItem.cart]
+                const newdata = data.filter(item => item.id != id.toString())
+                await setdata('cart_items', 'cart', { cart: newdata })
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Item removed',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                appendCart({ cart: newdata });
+            }
 
         </script>
 

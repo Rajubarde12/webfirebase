@@ -25,8 +25,8 @@
 	<link rel="stylesheet" id="flatsome-shop-css" href="../webroot/css/flatsome-shop.css?ver=3.16.1" type="text/css"
 		media="all" />
 
-	<script type="text/javascript" src="../webroot/js/jquery.min.js?ver=3.6.4" id="jquery-core-js"></script>
-	<script type="text/javascript" src="../webroot/js/jquery-migrate.min.js?ver=3.4.0" id="jquery-migrate-js"></script>
+	<script type="text/javascript" src="../webroot/js/jquery.min.js" id="jquery-core-js"></script>
+	<script type="text/javascript" src="../webroot/js/jquery-migrate.min.js" id="jquery-migrate-js"></script>
 	<link rel="stylesheet" id="sp-ea-font-awesome-css" href="../webroot/css/font-awesome.min.css" type="text/css"
 		media="all" />
 	<link rel="stylesheet" id="sp-ea-style-css" href="../webroot/css/ea-style.css?ver=2.1.19" type="text/css"
@@ -2182,16 +2182,15 @@
 								<li class="header-divider"></li>
 								<li class="cart-item has-icon has-dropdown">
 
-									<a href="cart/" title="Cart" class="header-cart-link is-small">
-
-
-
-										<span class="image-icon header-cart-icon" data-icon-label="0">
-											<img class="cart-img-icon" alt="Cart"
-												src="../webroot/uploads/Shopping-Cart.png" />
-										</span>
-									</a>
-
+									<a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"
+									data-class="off-canvas-cart" title="Cart" data-pos="right">
+				
+				
+									<span class="image-icon header-cart-icon" data-icon-label="0">
+									  <img class="cart-img-icon" alt="Cart"
+										src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+									</span>
+								  </a>
 									<ul class="nav-dropdown nav-dropdown-default">
 										<li class="html widget_shopping_cart">
 											<div class="widget_shopping_cart_content">
@@ -2220,21 +2219,34 @@
 									<!-- Cart Sidebar Popup -->
 									<div id="cart-popup" class="mfp-hide widget_shopping_cart">
 										<div class="cart-popup-inner inner-padding">
-											<div class="cart-popup-title text-center">
-												<h4 class="uppercase">Cart</h4>
-												<div class="is-divider"></div>
-											</div>
-											<div class="widget_shopping_cart_content">
-
-
-												<p class="woocommerce-mini-cart__empty-message">No products in the cart.
-												</p>
-
-
-											</div>
-											<div class="cart-sidebar-content relative"></div>
+										  <div class="cart-popup-title text-center">
+											<h4 class="uppercase">Cart</h4>
+											<div class="is-divider"></div>
+										  </div>
+										  <div class="widget_shopping_cart_content">
+					
+					
+											<ul class="woocommerce-mini-cart cart_list product_list_widget ">
+											  <div id="cartitems"></div>
+											</ul>
+					
+											<p class="woocommerce-mini-cart__total total">
+											  <strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span
+													class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
+											</p>
+					
+					
+											<p class="woocommerce-mini-cart__buttons buttons"><a
+												href="https://wordpress.becomeshakespeare.com/cart/" class="button wc-forward">View
+												cart</a><a href="https://wordpress.becomeshakespeare.com/checkout/"
+												class="button checkout wc-forward">Checkout</a></p>
+					
+					
+					
+										  </div>
+										  <div class="cart-sidebar-content relative"></div>
 										</div>
-									</div>
+									  </div>
 
 								</li>
 							</ul>
@@ -2378,6 +2390,78 @@
 			}
 
 		</script>
+		 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		 <script type="module">
+		   import { getdata, setdata, } from '../api/firebase.js'
+		   $(document).ready(async function () {
+			 const prevItem = await getdata('cart_items', 'cart');
+			 appendCart(prevItem)
+	   
+		   })
+	   
+		   async function appendCart(cartItem) {
+			 $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length - 1);
+	   
+			 const idarr = cartItem.cart.map(item => item.id);
+			 const data = await filteritems_id(idarr);
+	   
+			 var outputelement = $('#cartitems');
+			 var myhtml = '';
+			 let price = 0;
+	   
+			 if (data.length > 0) {
+			   for (let i = 0; i < data.length; i++) {
+				 const urlRegex = /(https?:\/\/[^\s]+)/;
+				 const matches = data[i]['images'].match(urlRegex);
+				 const url = matches ? matches[0] : null;
+				 const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity;
+				 price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity);
+				 myhtml += '<li class="woocommerce-mini-cart-item mini_cart_item">';
+				 myhtml += '<a href="#" class="remove remove_from_cart_button" aria-label="Remove ' + data[i]["post_title"] + ' from cart" data-product_id="' + data[i]['ID'] + '" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78" data-product_sku="' + data[i]["sku"] + '">&times;</a>';
+				 myhtml += '<a href="#">';
+				 myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="#' + data[i]["post_title"] + '" decoding="async" fetchpriority="high" />#' + data[i]["post_title"].substring(0, 15) + '.... </a>';
+				 myhtml += '<span class="quantity">' + quantity + ' &times; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + data[i]["regular_price"] + '</bdi></span></span> </li>';
+			   }
+	   
+			   $('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
+			 } else {
+			   myhtml += '<h5>No Products into the cart</h5>'
+			 }
+			 outputelement.html(myhtml);
+	   
+			 // Adding event listener to remove button
+			 $('.remove').on('click', function (e) {
+			   e.preventDefault();
+			   const productId = $(this).data('product_id');
+			   removeFromCart(productId)
+	   
+			 });
+		   }
+	   
+	   
+		   async function filteritems_id(idarr) {
+			 const firebasedata = await getdata('Finction_update', 'products');
+			 const data = firebasedata.products.filter(item => {
+			   return idarr.includes(item.ID.toString());
+			 });
+			 return data;
+		   }
+	   
+	   
+		   async function removeFromCart(id) {
+			 const prevItem = await getdata('cart_items', 'cart');
+			 let data = [...prevItem.cart]
+			 const newdata = data.filter(item => item.id != id.toString())
+			 await setdata('cart_items', 'cart', { cart: newdata })
+			 Swal.fire({
+			   icon: 'success',
+			   title: 'Item removed',
+			   showConfirmButton: false,
+			   timer: 1500
+			 });
+			 appendCart({ cart: newdata });
+		   }
+		 </script>
 		<main id="main" class="">
 			<div id="content" role="main" class="content-area">
 
@@ -3099,7 +3183,7 @@
 	</script>
 	<script type="text/javascript" id="flatsome-js-js-extra">
 		/* <![CDATA[ */
-		var flatsomeVars = { "theme": { "version": "3.16.1" }, "ajaxurl": "", "rtl": "", "sticky_height": "70", "assets_url": "http:\/\/localhost\/becomeshakespeare\/../webroot\/js\/", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false }, "i18n": { "mainMenu": "Main Menu", "toggleButton": "Toggle" }, "options": { "cookie_notice_version": "1", "swatches_layout": false, "swatches_box_select_event": false, "swatches_box_behavior_selected": false, "swatches_box_update_urls": "1", "swatches_box_reset": false, "swatches_box_reset_extent": false, "swatches_box_reset_time": 300, "search_result_latency": "0" }, "is_mini_cart_reveal": "1" };
+		var flatsomeVars = { "theme": { "version": "3.16.1" }, "ajaxurl": "https://becomeshakespeare-51d08.web.app/webroot/js/", "rtl": "", "sticky_height": "70", "assets_url": "https://becomeshakespeare-51d08.web.app/webroot/js/", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false }, "i18n": { "mainMenu": "Main Menu", "toggleButton": "Toggle" }, "options": { "cookie_notice_version": "1", "swatches_layout": false, "swatches_box_select_event": false, "swatches_box_behavior_selected": false, "swatches_box_update_urls": "1", "swatches_box_reset": false, "swatches_box_reset_extent": false, "swatches_box_reset_time": 300, "search_result_latency": "0" }, "is_mini_cart_reveal": "1" };
 		/* ]]> */
 	</script>
 
@@ -3111,9 +3195,9 @@
 	<link rel="stylesheet" id="ti-widget-css-google-css" href="../webroot/js/trustindex-google-widget.css?ver=1684251280"
 		type="text/css" media="all" />
 
-	<script type="text/javascript" src="../webroot/js/hoverIntent.min.js?ver=1.10.2" id="hoverIntent-js"></script>
+	<script type="text/javascript" src="../webroot/js/hoverIntent.min.js" id="hoverIntent-js"></script>
 
-	<script type="text/javascript" src="../webroot/js/flatsome.js?ver=fcf0c1642621a86609ed4ca283f0db68"
+	<script type="text/javascript" src="../webroot/js/flatsome.js"
 		id="flatsome-js-js"></script>
 	<script type="text/javascript" src="../webroot/js/wishlist.js?ver=3.10.2"
 		id="flatsome-woocommerce-wishlist-js"></script>

@@ -2671,223 +2671,261 @@
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script src="../api/firebase.js"></script>
 	<script type="module">
-		import { getdata, setdata } from '../api/firebase.js'
-
-
-
+		import { getdata, setdata, } from '../api/firebase.js'
+	
+	
 		$(document).ready(function () {
-			getdatas()
+		  getdatas()
+		  //  setdatas2()
+		  $(document).on('click', '.page-number', function (e) {
+	
+			var itemsPerPage = 8;
+			e.preventDefault();
+			var page = parseInt($(this).text());
+			displayPage(page, itemsPerPage, 'noraml', '')
+		  });
+		  $('#woocommerce-product-search-field-0').on('keyup', async function () {
+			var query = $(this).val();
+			// var searchResults = await searchProducts(query);
+			displayPage(1, 8, 'search', query);
+	
+		  });
 		});
-		async function getdatas() {
-			const data = {
-				status: true,
-				products: [
-					{
-						"Meta:_stock_status": 'first instock',
-						"ID": '7015',
-						"btn_link": 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/',
-						"Short description": 'The Million Dollar Powerful Personality : The First 360 Degree Book on Personality by a Cosmetic Surgeon in the World Today',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2019/12/The-Million-Dollar-Powerful-Personality-247x296.jpg',
-						"Meta:_price": '350.00',
-
-					},
-					{
-						"Meta:_stock_status": 'instock',
-						"ID": '1998',
-						"btn_link": 'https://www.becomeshakespeare.com/product/goodfornothingnalayak/',
-						"Short description": '#GoodForNothingNalayak',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2019/03/74A-247x296.jpg',
-						"Meta:_price": '150.00',
-
-					},
-					{
-						"Meta:_stock_status": 'instock',
-						"ID": '7230',
-						"btn_link": 'https://www.becomeshakespeare.com/product/100th-wish/',
-						"Short description": '100th Wish',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2020/02/100th-wish-247x296.png',
-						"Meta:_price": '399.00',
-
-					},
-					{
-						"Meta:_stock_status": 'last instock',
-						"ID": '4590',
-						"btn_link": 'https://www.becomeshakespeare.com/product/14000-and-above/',
-						"Short description": '14000 and Above',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2019/06/14000-and-above.front_-247x296.jpg',
-						"Meta:_price": '349.00',
-
-					},
-					{
-						"Meta:_stock_status": 'first instock',
-						"ID": '11614',
-						"btn_link": 'https://www.becomeshakespeare.com/product/17-divas-ek-dvandva/',
-						"Short description": '17 Divas : Ek Dvandva !',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2021/04/9789354388415_Front_COVER_1-247x296.jpg',
-						"Meta:_price": '149.00',
-
-					},
-					{
-						"Meta:_stock_status": 'instock',
-						"ID": '12833',
-						"btn_link": 'https://www.becomeshakespeare.com/product/2-minutes-daily-quote-book/',
-						"Short description": '2 Minutes Daily - Quote Book',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2022/06/front-1-scaled-247x296.jpg',
-						"Meta:_price": '250.00',
-
-					},
-					{
-						"Meta:_stock_status": 'instock',
-						"ID": '10326',
-						"btn_link": 'https://www.becomeshakespeare.com/product/50-secrets-of-success/',
-						"Short description": '50 Secrets Of Success',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2020/11/50-Secret-of-Sucess-Front-247x296.jpg',
-						"Meta:_price": '349.00',
-
-					},
-					{
-						"Meta:_stock_status": 'first instock',
-						"ID": '11444',
-						"btn_link": 'https://www.becomeshakespeare.com/product/a-beauty-by-its-blue-reflection/',
-						"Short description": 'A Beauty By Its Blue Reflection',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2021/03/A-beauty-by-its-blue-247x296.png',
-						"Meta:_price": '199.00',
-
-					},
-					{
-						"Meta:_stock_status": 'instock',
-						"ID": '9273',
-						"btn_link": 'https://www.becomeshakespeare.com/product/a-blue-moon-interlude-2/',
-						"Short description": 'A Blue Moon Interlude',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2020/09/Interlude-247x296.jpg',
-						"Meta:_price": '299.00',
-
-					},
-					{
-						"Meta:_stock_status": 'instock',
-						"ID": '9269',
-						"btn_link": 'https://www.becomeshakespeare.com/product/a-blue-moon-interlude/',
-						"Short description": 'A Blue Moon Interlude',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2020/09/9789390040858-Front-3-247x296.jpg',
-						"Meta:_price": '349.00',
-
-					},
-					{
-						"Meta:_stock_status": 'last instock',
-						"ID": '4386',
-						"btn_link": 'https://www.becomeshakespeare.com/product/a-bridge-with-three-spans/',
-						"Short description": 'A BRIDGE WITH THREE SPANS',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2019/05/A-Bright-With-3-Spans-FRONT-247x296.jpg',
-						"Meta:_price": '249.00',
-
-					},
-					{
-						"Meta:_stock_status": 'first instock',
-						"ID": '2003',
-						"btn_link": 'https://www.becomeshakespeare.com/product/a-chaotic-nri/',
-						"Short description": 'A chaotic NRI',
-						"Image": 'https://test.becomeshakespeare.com/uploads/2019/03/86A-247x296.jpg',
-						"Meta:_price": '399.00',
-
-					},
-					{
-						"Meta:_stock_status": 'instock',
-						"ID": '12551',
-						"btn_link": 'https://www.becomeshakespeare.com/product/a-colonels-crusades-with-destiny-an-autobiography/',
-						"Short description": "A Colonel's Crusades with Destiny An Autobiography",
-						"Image": 'https://test.becomeshakespeare.com/uploads/2021/11/9789390543090-Front-scaled-247x296.jpg',
-						"Meta:_price": '299.00',
-
-					},
-					{
-						"Meta:_stock_status": 'instock',
-						"ID": '12551',
-						"btn_link": 'https://www.becomeshakespeare.com/product/a-colonels-crusades-with-destiny-an-autobiography/',
-						"Short description": "A Colonel's Crusades with Destiny An Autobiography",
-						"Image": 'https://test.becomeshakespeare.com/uploads/2021/11/9789390543090-Front-scaled-247x296.jpg',
-						"Meta:_price": '299.00',
-
-					},
-					{
-						"Meta:_stock_status": 'instock',
-						"ID": '9055',
-						"btn_link": 'https://www.becomeshakespeare.com/product/a-destiny/',
-						"Short description": "A DESTINY",
-						"Image": 'https://test.becomeshakespeare.com/uploads/2020/08/9789390040773-2_Front_Cover-247x296.jpg',
-						"Meta:_price": '299.00',
-
-					},
-				]
+		async function searchProducts(query, products) {
+	
+		  var results = [];
+	
+		  products.forEach(function (product) {
+			if (product["post_name"].toLowerCase().includes(query.toLowerCase()) || product["post_content"].toLowerCase().includes(query.toLowerCase())) {
+			  results.push(product);
 			}
-
-
-
-			const firebasedata = await getdata('Collection', 'products')
-			// await setdata('Collection', 'products', data)
-			console.log('thisis', firebasedata);
-			const mydata = firebasedata.products
-			const tempdata = {
-				instock: 'first instock',
-				post: 'post-7015',
-				"btn_link": 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/',
-				desc: 'The Million Dollar Powerful Personality : The First 360 Degree Book on Personality by a Cosmetic Surgeon in the World Today',
-				img_link: 'https://www.becomeshakespeare.com/wp-content/uploads/2019/12/The-Million-Dollar-Powerful-Personality-247x296.jpg',
-				price: '350.00',
-
-			}
-
-			var outputElement = $('#mainId')
-			var myhtml = ''
-			if (true) {
-
-				myhtml += '<div  class="row category-page-row"><div style="flex-direction: row;"  class="col  large-3 hide-for-medium" ><div id="shop-sidebar"   class="sidebar-inner col-inner"><aside id="search-5" class="widget widget_search">'
-				myhtml += '<form method="get" class="searchform" action="https://www.becomeshakespeare.com/" role="search"><div class="flex-row relative">'
-				myhtml += '<div class="flex-col flex-grow">'
-				myhtml += '<input type="search" class="search-field mb-0" name="s" value="" id="s" placeholder="Search…" /></div>'
-				myhtml += '<div class="flex-col"><button type="submit" class="ux-search-submit submit-button secondary button icon mb-0"aria-label="Submit"><i class="icon-search"></i> </button>'
-				myhtml += '</div></div><div class="live-search-results text-left z-top"></div>'
-				myhtml += '</form>'
-				myhtml += ' </aside></div></div>'
-				myhtml += '<div class="col large-9"><div class="shop-container"><div class="woocommerce-notices-wrapper"></div><div class="products row row-small large-columns-4 medium-columns-3 small-columns-2">'
-				for (let i = 0; i < mydata.length; i++) {
-
-					myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['Meta:_stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
-					myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
-					myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
-					myhtml += '<a href="' + mydata[i]['btn_link'] + '" aria-label="&quot;' + mydata[i]['Short description'] + '">'
-					myhtml += '<img width="247" height="296" src="' + mydata[i]['Image'] + '"	class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"alt="" loading="lazy" /> </a>	</div>'
-					myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
-					myhtml += '	<div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
-					myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
-					myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
-					myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="' + 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/' + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' +mydata[i]['Short description']+ '</a></p>'
-					myhtml += '			</div>'
-					myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['Meta:_price'] + '</bdi></span>'
-					myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
-					myhtml += '</div></div></div></div></div>'
-				}
-				myhtml += '</div>'
-				myhtml += '<div class="container"><nav class="woocommerce-pagination">'
-				myhtml += '<ul class="page-numbers nav-pagination links text-center">'
-				myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
-				myhtml += '<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/">2</a></li>'
-				myhtml += '<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/3/">3</a></li>'
-				myhtml += '<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/4/">4</a></li>'
-				myhtml += '<li><span class="page-number dots">&hellip;</span></li>'
-				myhtml += '<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/16/">16</a></li>'
-				myhtml += '<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/17/">17</a></li>'
-				myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">18</a></li>'
-				myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
-				myhtml += '	</nav></div></div></div></div>'
-
-
-			}
-			outputElement.append(myhtml)
-
-
+		  });
+	
+		  return results
 		}
-
-	</script>
+	
+		async function getdatas() {
+	
+	
+	
+	
+		  const firebasedata = await getdata('Finction_update', 'products')
+		  var totalPages = Math.ceil(firebasedata.products.length / 8);
+	
+	
+		  const mydata = firebasedata.products.slice(0, 8)
+		  const tempdata = {
+			instock: 'first instock',
+			post: 'post-7015',
+			btn_link: 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/',
+			desc: 'The Million Dollar Powerful Personality : The First 360 Degree Book on Personality by a Cosmetic Surgeon in the World Today',
+			img_link: 'https://www.becomeshakespeare.com/wp-content/uploads/2019/12/The-Million-Dollar-Powerful-Personality-247x296.jpg',
+			price: '350.00',
+	
+		  }
+	
+		  var outputElement = $('#mainId')
+		  var myhtml = ''
+		  if (true) {
+	
+			myhtml += '<div  class="row category-page-row"><div style="flex-direction: row;"  class="col  large-3 hide-for-medium" ><div id="shop-sidebar"   class="sidebar-inner col-inner"><aside id="search-5" class="widget widget_search">'
+			myhtml += '<form method="get" class="searchform" action="https://www.becomeshakespeare.com/" role="search"><div class="flex-row relative">'
+			myhtml += '<div class="flex-col flex-grow">'
+			myhtml += '<input type="search" class="search-field mb-0" name="s" value="" id="s" placeholder="Search…" /></div>'
+			myhtml += '<div class="flex-col"><button type="submit" class="ux-search-submit submit-button secondary button icon mb-0"aria-label="Submit"><i class="icon-search"></i> </button>'
+			myhtml += '</div></div><div class="live-search-results text-left z-top"></div>'
+			myhtml += '</form>'
+			myhtml += ' </aside></div></div>'
+			myhtml += '<div class="col large-9"><div class="shop-container"><div class="woocommerce-notices-wrapper"></div><div class="products row row-small large-columns-4 medium-columns-3 small-columns-2">'
+			for (let i = 0; i < mydata.length; i++) {
+			  const urlRegex = /(https?:\/\/[^\s]+)/;
+			  const matches = mydata[i]['images'].match(urlRegex);
+			  const url = matches ? matches[0] : null;
+	
+			  myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
+			  myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
+			  myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
+			  myhtml += '<a href="../../product/?id=' + mydata[i]['ID'] + '" aria-label="&quot;' + mydata[i]['post_title'] + '">'
+			  myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" /> </a>    </div>'
+			  myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
+			  myhtml += '    <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
+			  myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
+			  myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
+			  myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="../../product/?id=' + mydata[i]['ID'] + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['post_title'] + '"</a></p>'
+			  myhtml += '</div>'
+			  myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['regular_price'] + '</bdi></span>'
+			  myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
+			  myhtml += '</div></div></div></div></div>'
+			}
+			myhtml += '</div>'
+			myhtml += '<div class="container"><nav class="woocommerce-pagination">'
+			myhtml += '<ul class="page-numbers nav-pagination links text-center">'
+			// myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
+			for (let i = 1; i < 8; i++)
+			  if (i == 1) {
+				myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
+			  } else {
+				myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
+			  }
+			myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
+			myhtml += '	</nav></div></div></div></div>'
+		  }
+		  outputElement.append(myhtml)
+	
+	
+	
+		}
+		async function paginate(mydata, totalpage, page, type) {
+		  var outputElement = $('#mainId')
+	
+		  var myhtml = ''
+		  if (true) {
+	
+			myhtml += '<div  class="row category-page-row"><div style="flex-direction: row;"  class="col  large-3 hide-for-medium" ><div id="shop-sidebar"   class="sidebar-inner col-inner"><aside id="search-5" class="widget widget_search">'
+			myhtml += '<form method="get" class="searchform" action="https://www.becomeshakespeare.com/" role="search"><div class="flex-row relative">'
+			myhtml += '<div class="flex-col flex-grow">'
+			myhtml += '<input type="search" class="search-field mb-0" name="s" value="" id="s" placeholder="Search…" /></div>'
+			myhtml += '<div class="flex-col"><button type="submit" class="ux-search-submit submit-button secondary button icon mb-0"aria-label="Submit"><i class="icon-search"></i> </button>'
+			myhtml += '</div></div><div class="live-search-results text-left z-top"></div>'
+			myhtml += '</form>'
+			myhtml += ' </aside></div></div>'
+			myhtml += '<div class="col large-9"><div class="shop-container"><div class="woocommerce-notices-wrapper"></div><div class="products row row-small large-columns-4 medium-columns-3 small-columns-2">'
+			if (mydata.length > 0) {
+			  for (let i = 0; i < mydata.length; i++) {
+				const urlRegex = /(https?:\/\/[^\s]+)/;
+				const matches = mydata[i]['images'].match(urlRegex);
+				const url = matches ? matches[0] : null;
+	
+				myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
+				myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
+				myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
+				myhtml += '<a href="../../product/?id=' + mydata[i]['ID'] + '" aria-label="&quot;' + mydata[i]['post_title'] + '">'
+				myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" /> </a>    </div>'
+				myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
+				myhtml += '    <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
+				myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
+				myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
+				myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="../../product/?id=' + mydata[i]['ID'] + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['post_title'] + '"</a></p>'
+				myhtml += '            </div>'
+				myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['regular_price'] + '</bdi></span>'
+				myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
+				myhtml += '</div></div></div></div></div>'
+			  }
+			} else {
+			  myhtml += '<h1 class="mycostumeclass">No data found</h1>'
+			}
+			myhtml += '</div>'
+			myhtml += '<div class="container"><nav class="woocommerce-pagination">'
+			myhtml += '<ul class="page-numbers nav-pagination links text-center">'
+			// myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
+			if (mydata.length >= 8) {
+			  for (let i = 1; i <= 12; i++)
+				if (i == page) {
+				  myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
+				} else {
+				  myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
+				}
+			  myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
+			  myhtml += '	</nav></div></div></div></div>'
+			}
+		  }
+	
+	
+	
+		  outputElement.html(myhtml);
+	
+		}
+		async function displayPage(page, itemsPerPage, type, querry) {
+		  const firebasedata = await getdata('Finction_update', 'products')
+		  const productsArr = firebasedata.products
+		  let mydata = []
+		  if (type == 'normal') {
+			mydata = productsArr
+		  }
+		  else {
+			mydata = await searchProducts(querry, [...productsArr])
+		  }
+		  var startIndex = (page - 1) * itemsPerPage;
+		  var endIndex = Math.min(startIndex + itemsPerPage, mydata.length);
+		  var currentPageData = mydata.slice(startIndex, endIndex);
+		  var totalPages = Math.ceil(mydata.length / itemsPerPage);
+		  paginate(currentPageData, totalPages, page);
+		}
+	
+	
+	  </script>
+	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	  <script type="module">
+		import { getdata, setdata, } from '../api/firebase.js'
+		$(document).ready(async function () {
+		  const prevItem = await getdata('cart_items', 'cart');
+		  appendCart(prevItem)
+	
+		})
+	
+		async function appendCart(cartItem) {
+		  $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length - 1);
+	
+		  const idarr = cartItem.cart.map(item => item.id);
+		  const data = await filteritems_id(idarr);
+	
+		  var outputelement = $('#cartitems');
+		  var myhtml = '';
+		  let price = 0;
+	
+		  if (data.length > 0) {
+			for (let i = 0; i < data.length; i++) {
+			  const urlRegex = /(https?:\/\/[^\s]+)/;
+			  const matches = data[i]['images'].match(urlRegex);
+			  const url = matches ? matches[0] : null;
+			  const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity;
+			  price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity);
+			  myhtml += '<li class="woocommerce-mini-cart-item mini_cart_item">';
+			  myhtml += '<a href="#" class="remove remove_from_cart_button" aria-label="Remove ' + data[i]["post_title"] + ' from cart" data-product_id="' + data[i]['ID'] + '" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78" data-product_sku="' + data[i]["sku"] + '">&times;</a>';
+			  myhtml += '<a href="#">';
+			  myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="#' + data[i]["post_title"] + '" decoding="async" fetchpriority="high" />#' + data[i]["post_title"].substring(0, 15) + '.... </a>';
+			  myhtml += '<span class="quantity">' + quantity + ' &times; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + data[i]["regular_price"] + '</bdi></span></span> </li>';
+			}
+	
+			$('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
+		  } else {
+			myhtml += '<h5>No Products into the cart</h5>'
+		  }
+		  outputelement.html(myhtml);
+	
+		  // Adding event listener to remove button
+		  $('.remove').on('click', function (e) {
+			e.preventDefault();
+			const productId = $(this).data('product_id');
+			removeFromCart(productId)
+	
+		  });
+		}
+	
+	
+		async function filteritems_id(idarr) {
+		  const firebasedata = await getdata('Finction_update', 'products');
+		  const data = firebasedata.products.filter(item => {
+			return idarr.includes(item.ID.toString());
+		  });
+		  return data;
+		}
+	
+	
+		async function removeFromCart(id) {
+		  const prevItem = await getdata('cart_items', 'cart');
+		  let data = [...prevItem.cart]
+		  const newdata = data.filter(item => item.id != id.toString())
+		  await setdata('cart_items', 'cart', { cart: newdata })
+		  Swal.fire({
+			icon: 'success',
+			title: 'Item removed',
+			showConfirmButton: false,
+			timer: 1500
+		  });
+		  appendCart({ cart: newdata });
+		}
+	  </script>
 
 	<div id="wrapper">
 
@@ -3103,16 +3141,15 @@
 								<li class="header-divider"></li>
 								<li class="cart-item has-icon has-dropdown">
 
-									<a href="https://www.becomeshakespeare.com/cart/" title="Cart"
-										class="header-cart-link is-small">
-
-
-
-										<span class="image-icon header-cart-icon" data-icon-label="0">
-											<img class="cart-img-icon" alt="Cart"
-												src="https://www.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
-										</span>
-									</a>
+									<a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"
+									data-class="off-canvas-cart" title="Cart" data-pos="right">
+				
+				
+									<span class="image-icon header-cart-icon" data-icon-label="0">
+									  <img class="cart-img-icon" alt="Cart"
+										src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+									</span>
+								  </a>
 
 									<ul class="nav-dropdown nav-dropdown-default">
 										<li class="html widget_shopping_cart">
@@ -3136,36 +3173,48 @@
 							<ul class="mobile-nav nav nav-right ">
 								<li class="cart-item has-icon">
 
-									<a href="https://www.becomeshakespeare.com/cart/"
-										class="header-cart-link off-canvas-toggle nav-top-link is-small"
-										data-open="#cart-popup" data-class="off-canvas-cart" title="Cart"
-										data-pos="right">
-
-										<span class="image-icon header-cart-icon" data-icon-label="0">
-											<img class="cart-img-icon" alt="Cart"
-												src="https://www.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
-										</span>
-									</a>
+									<a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"
+									data-class="off-canvas-cart" title="Cart" data-pos="right">
+				
+				
+									<span class="image-icon header-cart-icon" data-icon-label="0">
+									  <img class="cart-img-icon" alt="Cart"
+										src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+									</span>
+								  </a>
 
 
 									<!-- Cart Sidebar Popup -->
 									<div id="cart-popup" class="mfp-hide widget_shopping_cart">
 										<div class="cart-popup-inner inner-padding">
-											<div class="cart-popup-title text-center">
-												<h4 class="uppercase">Cart</h4>
-												<div class="is-divider"></div>
-											</div>
-											<div class="widget_shopping_cart_content">
-
-
-												<p class="woocommerce-mini-cart__empty-message">No products in the cart.
-												</p>
-
-
-											</div>
-											<div class="cart-sidebar-content relative"></div>
+										  <div class="cart-popup-title text-center">
+											<h4 class="uppercase">Cart</h4>
+											<div class="is-divider"></div>
+										  </div>
+										  <div class="widget_shopping_cart_content">
+					
+					
+											<ul class="woocommerce-mini-cart cart_list product_list_widget ">
+											  <div id="cartitems"></div>
+											</ul>
+					
+											<p class="woocommerce-mini-cart__total total">
+											  <strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span
+													class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
+											</p>
+					
+					
+											<p class="woocommerce-mini-cart__buttons buttons"><a
+												href="https://wordpress.becomeshakespeare.com/cart/" class="button wc-forward">View
+												cart</a><a href="https://wordpress.becomeshakespeare.com/checkout/"
+												class="button checkout wc-forward">Checkout</a></p>
+					
+					
+					
+										  </div>
+										  <div class="cart-sidebar-content relative"></div>
 										</div>
-									</div>
+									  </div>
 
 								</li>
 							</ul>
