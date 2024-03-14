@@ -1,0 +1,1690 @@
+
+<style>
+    .vcard-background-preset {
+    width: 100%;
+    height: 7rem;
+    /* border-radius: var(--border-radius); */
+    opacity: .75;
+    transition: .3s opacity;
+    border-radius: 5px;
+}
+
+.changetheme {
+    visibility: hidden;
+}
+
+input.changetheme:checked + label {
+    background: lightgrey;
+}
+input[type="radio"]:checked ~ .vcard-background-preset {
+    opacity: 1;
+    border: 2px solid var(--primary);
+}
+.active{
+    background-color: #4b5563 !important;
+    color: #fff !important;
+}
+
+.active:hover{
+    background-color: #4b5563 !important;
+    color: #fff !important;
+}
+
+svg{
+    height:18px;
+    width:18px;
+}
+</style>
+<link href="https://bluestonecard.com/themes/altum/assets/css/bootstrap.min.css?v=1600" id="css_theme_style"
+        rel="stylesheet" media="screen,print">
+    <link href="https://bluestonecard.com/themes/altum/assets/css/custom.css?v=1600" rel="stylesheet"
+        media="screen,print">
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">
+
+    <title>Digital Card</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/superuser/img/favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="https://cards.forebearpro.co.in/public/assets/css/adminltev3.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    <link href="https://cards.forebearpro.co.in/public/assets/css/custom.css" rel="stylesheet" />
+    </head>
+
+<body class="sidebar-mini layout-fixed" style="height: auto;">
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            
+        </nav>
+
+        <aside class="main-sidebar sidebar-primary elevation-4" style="min-height: 917px; overflow-y: clip;">
+
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+        <span class="brand-text font-weight-light">Digital Card</span>
+    </a> 
+    <!-- Sidebar --> 
+    <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2" style="position: relative;">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item active btnclick">
+                    <a class="nav-link " href="https://cards.forebearpro.co.in/user">
+                        <i class="fa fa-fw fa-sm fa-th mr-2" style="margin-right: 10px;">
+                        </i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                                    <li class="nav-item btnclick">
+                        <a href="https://cards.forebearpro.co.in/user/vcards" class="nav-link ">
+                            <i class="fa fa-address-card" aria-hidden="true" style="margin-right: 10px;"></i>                            
+                            <p>
+                                Vcards
+                            </p>
+                        </a>
+                    </li>
+                                
+                                    <li class="nav-item btnclick">
+                        <a href="https://cards.forebearpro.co.in/user/create-projects" class="nav-link ">
+                            <!-- <i class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 10px;"></i> -->
+                            <i class="fa fa-fw fa-sm fa-project-diagram mr-2" aria-hidden="true" style="margin-right: 10px;"></i>
+
+                            <p>
+                                Create Project
+                            </p>
+                        </a>
+                    </li>
+                                                    <li class="nav-item btnclick">
+                        <a href="https://cards.forebearpro.co.in/user/pixels" class="nav-link ">
+                        <i class="fa fa-adjust" aria-hidden="true" style="margin-right: 10px;"></i>
+
+                        
+                            <p>
+                                Pixel
+                            </p>
+                        </a>
+                    </li>
+                                                    <li class="nav-item btnclick">
+                        <a href="https://cards.forebearpro.co.in/user/connect-custom-domains" class="nav-link ">
+                            <i class="fa fa-globe" aria-hidden="true" style="margin-right: 10px;">
+                                
+                            </i>
+                            <p>
+                                Connect Custom Domain
+                            </p>
+                        </a>
+                    </li>
+                                                    <li class="nav-item has-treeview   ">
+                        <a class="nav-link nav-dropdown-toggle   " href="#">
+                            <i class="fa-fw nav-icon fas fa-users">
+
+                            </i>
+                            <p>
+                                User management
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                                                            <li class="nav-item btnclick">
+                                    <a href="https://cards.forebearpro.co.in/user/permissions" class="nav-link ">
+                                        <i class="fa-fw nav-icon fas fa-unlock-alt">
+
+                                        </i>
+                                        <p>
+                                            Permissions
+                                        </p>
+                                    </a>
+                                </li>
+                                                                                        <li class="nav-item btnclick">
+                                    <a href="https://cards.forebearpro.co.in/user/roles" class="nav-link ">
+                                        <i class="fa-fw nav-icon fas fa-briefcase">
+
+                                        </i>
+                                        <p>
+                                            Roles
+                                        </p>
+                                    </a>
+                                </li>
+                                                                                        <li class="nav-item btnclick">
+                                    <a href="https://cards.forebearpro.co.in/user/users" class="nav-link ">
+                                        <i class="fa-fw nav-icon fas fa-user">
+
+                                        </i>
+                                        <p>
+                                            Users
+                                        </p>
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </li>
+                                <!--                                      -->
+                <!-- <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                        <p>
+                            <i class="fas fa-fw fa-sign-out-alt nav-icon">
+
+                            </i>
+                            <p>Logout</p>
+                        </p>
+                    </a>
+                </li> -->
+            </ul>
+        </nav>
+
+        <div class="app-sidebar-footer dropdown" style="position: absolute; bottom: 0;">
+            <a href="#" class="dropdown-toggle dropdown-toggle-simple" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="d-flex align-items-center app-sidebar-footer">
+                    <img src="https://www.gravatar.com/avatar/ede02f7da02091501d71333b36cd6f88?s=80&d=identicon&r=g" class="app-sidebar-avatar mr-3" loading="lazy" />
+
+                    <div class="app-sidebar-footer-text d-flex flex-column text-truncate">
+                                                <span class="text-truncate">Admin</span>
+                        <small class="text-truncate">admin@admin.com</small>
+                    </div>
+                </div>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" style="will-change: transform; position: absolute; transform: translate3d(100px, -148px, 0px); top: 0px; left: 0px; background-color: #fff" x-placement="top-end">
+                <a class="dropdown-item" href="https://cards.forebearpro.co.in/account"><i class="fa fa-fw fa-sm fa-wrench mr-2"></i> Account</a>
+                <a class="dropdown-item" href="https://cards.forebearpro.co.in/account-plan"><i class="fa fa-fw fa-sm fa-box-open mr-2"></i> Plan</a>
+                <a class="dropdown-item" href="https://cards.forebearpro.co.in/account-api"><i class="fa fa-fw fa-sm fa-code mr-2"></i> API</a>
+                <!-- <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"> -->
+                <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"><i class="fa fa-fw fa-sm fa-sign-out-alt mr-2"></i> Logout</a>
+            </div>
+        </div>
+
+        <!-- <div class="user-panel  d-flex" style="position: absolute; bottom: 0;">
+            <div class="image">
+                <img src="https://www.gravatar.com/avatar/ede02f7da02091501d71333b36cd6f88?s=80&d=identicon&r=g" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block" id="userLink">Alexander Pierce</a>
+            </div>
+        </div>
+
+        <div class="overflow-auto flex-grow-1" id="linksSection" style="display: none;">
+            <ul class="app-sidebar-links">
+                <li class="active">
+                    <a href="https://bluestonecard.com/dashboard"><i class="fa fa-fw fa-sm fa-th mr-2"></i> Acount</a>
+                </li> 
+                <li class="active">
+                    <a href="https://bluestonecard.com/dashboard"><i class="fa fa-fw fa-sm fa-th mr-2"></i> Dashboard</a>
+                </li> 
+                <li class="active">
+                    <a href="https://bluestonecard.com/dashboard"><i class="fa fa-fw fa-sm fa-th mr-2"></i> Dashboard</a>
+                </li> 
+                <li class="active">
+                    <a href="https://bluestonecard.com/dashboard"><i class="fa fa-fw fa-sm fa-th mr-2"></i> Dashboard</a>
+                </li> 
+            </ul>
+        </div>
+        <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="https://bluestonecard.com/account"><i class="fa fa-fw fa-sm fa-wrench mr-2"></i> Account</a>
+
+            <a class="dropdown-item" href="https://bluestonecard.com/account-plan"><i class="fa fa-fw fa-sm fa-box-open mr-2"></i> Plan</a>
+
+                    
+            <a class="dropdown-item" href="https://bluestonecard.com/account-api"><i class="fa fa-fw fa-sm fa-code mr-2"></i> API</a>
+                    
+                                    
+            <a class="dropdown-item" href="https://bluestonecard.com/logout"><i class="fa fa-fw fa-sm fa-sign-out-alt mr-2"></i> Logout</a>
+            </div>
+
+         -->
+        <!-- /.sidebar-menu -->
+    </div>   
+    <!-- /.sidebar -->
+</aside>
+
+<style>
+    .app-sidebar-footer > a {
+        width: 100%;
+        padding: 0.75rem 1.75rem;
+        border-top: 1px solid var(--gray-100);
+        display: flex;
+        align-items: center;
+        color: var(--gray-500);
+        font-size: .9rem;
+        font-weight: 500;
+        transition: background .3s;
+    }
+
+    .app-sidebar-footer > a:hover {
+        /* text-decoration: none;
+        background: var(--gray-200);
+        color: var(--gray-600); */
+    }
+
+    .app-sidebar-avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const appSidebarFooter = document.querySelector('.app-sidebar-footer');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    appSidebarFooter.addEventListener('click', function(event) {
+        dropdownMenu.classList.toggle('show');
+        event.stopPropagation();
+    });
+
+    document.addEventListener('click', function(event) {
+        const isClickInside = appSidebarFooter.contains(event.target);
+        if (!isClickInside) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+});
+
+</script>        <div class="content-wrapper" style="min-height: 650px;">
+            <!-- Main content -->
+            <section class="content" style="padding-top: 20px">
+                <!--                  -->
+                  
+
+                                 
+    <div class="py-3 p-lg-5">
+        <main class="altum-animate altum-animate-fill-none altum-animate-fade-in">
+            <div class="container">
+                <nav aria-label="breadcrumb">
+                    <ol class="custom-breadcrumbs small">
+                        <li>
+                            <a href="https://cards.forebearpro.co.in">Vcards</a><i
+                                class="fa fa-fw fa-angle-right"></i>
+                        </li>
+                        <li class="active" aria-current="page">Vcard Edit</li>
+                    </ol>
+                </nav>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h1 class="h4 text-truncate mb-0"> Tester 1 vcard QR code</h1>
+
+                    <div class="d-flex align-items-center col-auto p-0">
+                        <div>
+                            <button id="url_copy" type="button" class="btn btn-link text-secondary"
+                                data-toggle="tooltip" title="Copy to clipboard" aria-label="Copy to clipboard"
+                                data-copy="Copy to clipboard" data-copied="Copied!"
+                                data-clipboard-text="https://bluestonecard.com/testing2/">
+                                <i class="fa fa-fw fa-sm fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton53" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton53">
+                                <a class="dropdown-item" href="https://cards.forebearpro.co.in/cards/Test1"><i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>Views</a>
+                                <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcard-qrcode/53"><i class="fa fa-qrcode fa-w-14 fa-fw fa-sm text-muted mr-1"></i>QR Code</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-chart-bar fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Statistics</a><hr>
+                                <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/block-edit/53"><i class="fa fa-bars fa-w-14 fa-fw fa-sm text-muted mr-1"></i>VCard Blocks</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-clone fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Duplicate</a>
+                                <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcards/53/edit"><i class="fa fa-pencil-alt fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Edit</a>
+                                    <form action="https://cards.forebearpro.co.in/user/vcards/53" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">
+                                    <a class="dropdown-item" href="#"> <i class="fa fa-trash-alt fa-w-14 fa-fw fa-sm text-muted mr-1"></i>
+                                        <!-- <input class="dtl" type="submit" value="Delete"> -->
+                                        <button class="dtl" type="submit" value="Delete">Delete </button>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-truncate">
+                    <a target="_blank" href="https://cards.forebearpro.co.in/cards/Test1" data-vcardactive="1" data-leaplink="" id="url_alias_id" onclick="urlAlias(this)" style="color:#1034a6;"><i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i> https://cards.forebearpro.co.in/cards/Test1</a> 
+                </p>
+                <div class="col-12 col-lg-12 mb-4 mb-lg-0 d-print-none">
+                    <div class="card">
+                        <!-- <div class="card-header">
+                            Edit Vcard
+                        </div> -->
+                        <div class="row p-2">
+                            <div class="col-12">
+                                <div class="btn-group col-12" role="group"  aria-label="Basic example">
+                                        <button onclick="showCard('card_setting', $(this))" class="btn col-6 btn-accordian btn-default" id="myButton1" type="button" >Setting</button>
+                                        <button onclick="showCard('card_block', $(this))" class="btn col-6 btn-accordian btn-default" id="myButton2" type="button" >Blocks </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapse" id="card_setting" style="display: block;">
+                            <div class="card-body">
+                                <form method="POST" action="https://cards.forebearpro.co.in/user/vcards/53" enctype="multipart/form-data" autocomplete="off">
+                                    <input type="hidden" name="_method" value="PUT">                                    <input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ" autocomplete="off">                                    <div class="form-group"> 
+                                        <!-- <label class="required" for="url_alias">Url Alias</label> -->
+                                        <label for="url"><i class="fa fa-fw fa-sm fa-bolt text-muted mr-1"></i> URL Alias</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">cards.forebearpro.co.in/</span>
+                                            </div>
+                                            <input class="form-control " type="text" name="url_alias" id="url_alias" value="Test1" required> 
+                                        </div>
+                                                                                <span class="help-block"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- <label class="required" for="name">Name</label> -->
+                                        <label for="name"><i class="fa fa-fw fa-sm fa-signature text-muted mr-1"></i> Name</label>
+                                        <input class="form-control " type="text" name="name" id="name" value="Tester 1" required>
+                                                                                <span class="help-block"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- <label class="required" for="description">Description</label> -->
+                                        <label for="description"><i class="fa fa-fw fa-sm fa-pen text-muted mr-1"></i> Description</label>
+                                        <input class="form-control " type="text" name="description" id="description" value="ds sdhfjvk"  required>
+                                        <small class="form-text text-muted">Short description of your vcard.</small>
+                                                                                <span class="help-block"> </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="form-check ">
+                                            <input type="hidden" name="display_share_button" value="0">
+
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" name="display_share_button" id="display_share_button" value="1" checked>
+                                                <label class="custom-control-label" for="display_share_button">
+                                                Display share button
+                                                </label>
+                                            </div>
+                                            
+                                        </div>
+                                                                                <span class="help-block"> </span>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <div class="form-check ">
+                                            <input type="hidden" name="display_vcard_download_button" value="0">
+
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" name="display_vcard_download_button" id="display_vcard_download_button" value="1" checked>
+                                                <label class="custom-control-label" for="display_vcard_download_button">
+                                                    Display Vcard Download Button
+                                                </label>
+                                            </div> 
+
+                                        </div> 
+                                                                                <span class="help-block"> </span>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="form-check ">
+                                            <input type="hidden" name="vcard_is_active" value="0">
+
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" name="vcard_is_active" id="vcard_is_active" value="1" checked>
+                                                <label class="custom-control-label" for="vcard_is_active">
+                                                    Vcard Is Active
+                                                </label>
+                                            </div> 
+
+                                        </div>
+                                                                                <span class="help-block"> </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!-- <span><i class="fa-sharp fa-solid fa-address-card fa-fw"></i></span> -->
+                                        <button class="btn btn-block btn-gray-200 my-4 collapsed" type="button" style="background-color: #d0d7e5;" ><i class="fa fa-address-card" aria-hidden="true"></i> Vcard details</button>
+                                    </div>
+
+                                    <div class="collapse" id="card_container">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group col-md-6" style="float: left;> 
+                                                        <label for="first_name"><i class="fa fa-fw fa-signature fa-sm mr-1"></i> First Name</label>
+                                                        <input class="form-control " type="text" name="first_name" id="first_name" value="Tester">
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group col-md-6" style="float: left;>
+                                                        <label for="last_name"><i class="fa fa-fw fa-signature fa-sm mr-1"></i>Last Name</label>
+                                                        <input class="form-control " type="text" name="last_name" id="last_name" value="1">
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group col-md-12" style="float: left;>
+                                                        <label for="company"><i class="fa fa-fw fa-building fa-sm mr-1"></i>Company</label>
+                                                        <input class="form-control " type="text" name="company" id="company" value="ABCD">
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group col-md-12" style="float: left;>
+                                                        <label for="job_title"><i class="fa fa-fw fa-user-tie fa-sm mr-1"></i>Job Title</label>
+                                                        <input class="form-control " type="text" name="job_title" id="job_title" value="Employee">
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group col-md-12" style="float: left;>
+                                                        <label for="birthday"><i class="fa fa-fw fa-birthday-cake fa-sm mr-1"></i>Birthday</label>
+
+                                                        <input class="form-control date " type="date" id="birthday" name="birthday"  value="2024-03-13" style="margin: 0.4rem 0;">
+
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group"> 
+                                        <button class="btn btn-block btn-gray-201 my-4 collapsed" type="button" style="background-color: #d0d7e5;" > <i class="fa fa-paint-brush" aria-hidden="true"></i> Customizations</button>
+                                    </div>
+
+                                    <div class="collapse" id="customizations_container">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label><i class="fa fa-fw fa-paint-roller fa-sm mr-1"></i>Theme</label>
+                                                        <div class="row btn-group-toggle">
+                                                                                                                            <div class="form-check col-4 ">
+                                                                    <input class="form-check-input changetheme" type="radio" id="theme_1" name="theme" value="1" >
+                                                                    <label class="btn btn-light btn-block" for="theme_1">New York</label>
+                                                                </div>
+                                                                                                                            <div class="form-check col-4 ">
+                                                                    <input class="form-check-input changetheme" type="radio" id="theme_2" name="theme" value="2" checked>
+                                                                    <label class="btn btn-light btn-block" for="theme_2">San Francisco</label>
+                                                                </div>
+                                                                                                                            <div class="form-check col-4 ">
+                                                                    <input class="form-check-input changetheme" type="radio" id="theme_3" name="theme" value="3" >
+                                                                    <label class="btn btn-light btn-block" for="theme_3">Los Angeles</label>
+                                                                </div>
+                                                                                                                            <div class="form-check col-4 ">
+                                                                    <input class="form-check-input changetheme" type="radio" id="theme_4" name="theme" value="4" >
+                                                                    <label class="btn btn-light btn-block" for="theme_4">Chicago</label>
+                                                                </div>
+                                                                                                                                                                                    <span class="help-block"> </span>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="form-group">
+                                                        <label for="logo"><i class="fa fa-fw fa-sm fa-image text-muted mr-1"></i>Logo</label>
+                                                        <div class="needsclick dropzone " id="logo-dropzone">
+                                                        </div>
+                                                        <small class="form-text text-muted">Your vcard logo, recommended 1:1 ratio for the logo. .jpg, .jpeg, .png, .svg, .gif, .webp allowed. 2 MB maximum.</small>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="favicon"><i class="fa fa-fw fa-sm fa-image text-muted mr-1"></i>Favicon</label>
+                                                        <div class="needsclick dropzone " id="favicon-dropzone">
+                                                        </div>
+                                                        <small class="form-text text-muted">Your vcard favicon, recommended 1:1 ratio for the favicon. .jpg, .jpeg, .png, .ico, .svg, .gif, .webp allowed. 2 MB maximum.</small>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><i class="fa fa-fw fa-sm fa-images text-muted mr-1"></i>Background</label>
+                                                        <select class="form-control " name="background" id="background">
+                                                            <option value disabled selected>Please select</option>
+                                                                                                                                                                                            <option value="pregradient" >Gradient preset</option>
+                                                                                                                                                                                            <option value="color" >Color</option>
+                                                                                                                                                                                            <option value="gradient" >Gradient</option>
+                                                                                                                                                                                            <option value="image" selected>Custome image</option>
+                                                                                                                    </select>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group" id="background_presets" style="display: none;">
+                                                        <div data-background-type="preset">
+                                                            <div class="row">
+                                                                <style>
+                                                                    /* Additional CSS if needed */
+                                                                        .vcard-background-preset {
+                                                                            position: relative;
+                                                                            overflow: hidden;
+                                                                        }
+                                                                </style>
+                                                                                                                                <label class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E)" id="bg_preset_one" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <div class="vcard-background-preset" for="bg_preset_one" style="background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E); position: relative; display: block; cursor: pointer;">
+                                                                    </div>
+                                                                    </label>
+                                                                                                                                <label class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to right, #3a7bd5, #3a6073)" id="bg_preset_two" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <div class="vcard-background-preset" for="bg_preset_two" style="background: linear-gradient(to right, #3a7bd5, #3a6073); position: relative; display: block; cursor: pointer;">
+                                                                    </div>
+                                                                    </label>
+                                                                                                                                <label class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to right, #FFC371, #FF5F6D)" id="bg_preset_three" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <div class="vcard-background-preset" for="bg_preset_three" style="background: linear-gradient(to right, #FFC371, #FF5F6D); position: relative; display: block; cursor: pointer;">
+                                                                    </div>
+                                                                    </label>
+                                                                                                                                <label class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to right, #16bffd, #cb3066)" id="bg_preset_four" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <div class="vcard-background-preset" for="bg_preset_four" style="background: linear-gradient(to right, #16bffd, #cb3066); position: relative; display: block; cursor: pointer;">
+                                                                    </div>
+                                                                    </label>
+                                                                                                                                <label class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to left, #eecda3, #ef629f)" id="bg_preset_five" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <div class="vcard-background-preset" for="bg_preset_five" style="background: linear-gradient(to left, #eecda3, #ef629f); position: relative; display: block; cursor: pointer;">
+                                                                    </div>
+                                                                    </label>
+                                                                                                                                <label class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to left, #000000, #434343)" id="bg_preset_six" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <div class="vcard-background-preset" for="bg_preset_six" style="background: linear-gradient(to left, #000000, #434343); position: relative; display: block; cursor: pointer;">
+                                                                    </div>
+                                                                    </label>
+                                                                                                                                <label class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to left, #b24592, #f15f79)" id="bg_preset_seven" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <div class="vcard-background-preset" for="bg_preset_seven" style="background: linear-gradient(to left, #b24592, #f15f79); position: relative; display: block; cursor: pointer;">
+                                                                    </div>
+                                                                    </label>
+                                                                                                                                <label class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to left, #c2e59c, #64b3f4)" id="bg_preset_eight" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <div class="vcard-background-preset" for="bg_preset_eight" style="background: linear-gradient(to left, #c2e59c, #64b3f4); position: relative; display: block; cursor: pointer;">
+                                                                    </div>
+                                                                    </label>
+                                                                                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="form-group" id="background_presets" style="display: none;">
+                                                        <div data-background-type="preset">
+                                                            <div class="row">
+                                                                <style>
+                                                                    /* Additional CSS if needed */
+                                                                        .vcard-background-preset {
+                                                                            position: relative;
+                                                                            overflow: hidden;
+                                                                        }
+                                                                </style>
+                                                                                                                                <div class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E)" id="bg_preset_one" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <label class="vcard-background-preset" for="bg_preset_one" style="background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E); position: relative; display: block; cursor: pointer;">
+                                                                        </label>
+                                                                    </div>
+                                                                                                                                <div class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to right, #3a7bd5, #3a6073)" id="bg_preset_two" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <label class="vcard-background-preset" for="bg_preset_two" style="background: linear-gradient(to right, #3a7bd5, #3a6073); position: relative; display: block; cursor: pointer;">
+                                                                        </label>
+                                                                    </div>
+                                                                                                                                <div class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to right, #FFC371, #FF5F6D)" id="bg_preset_three" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <label class="vcard-background-preset" for="bg_preset_three" style="background: linear-gradient(to right, #FFC371, #FF5F6D); position: relative; display: block; cursor: pointer;">
+                                                                        </label>
+                                                                    </div>
+                                                                                                                                <div class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to right, #16bffd, #cb3066)" id="bg_preset_four" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <label class="vcard-background-preset" for="bg_preset_four" style="background: linear-gradient(to right, #16bffd, #cb3066); position: relative; display: block; cursor: pointer;">
+                                                                        </label>
+                                                                    </div>
+                                                                                                                                <div class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to left, #eecda3, #ef629f)" id="bg_preset_five" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <label class="vcard-background-preset" for="bg_preset_five" style="background: linear-gradient(to left, #eecda3, #ef629f); position: relative; display: block; cursor: pointer;">
+                                                                        </label>
+                                                                    </div>
+                                                                                                                                <div class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to left, #000000, #434343)" id="bg_preset_six" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <label class="vcard-background-preset" for="bg_preset_six" style="background: linear-gradient(to left, #000000, #434343); position: relative; display: block; cursor: pointer;">
+                                                                        </label>
+                                                                    </div>
+                                                                                                                                <div class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to left, #b24592, #f15f79)" id="bg_preset_seven" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <label class="vcard-background-preset" for="bg_preset_seven" style="background: linear-gradient(to left, #b24592, #f15f79); position: relative; display: block; cursor: pointer;">
+                                                                        </label>
+                                                                    </div>
+                                                                                                                                <div class="form-check m-0 col-4 col-xl-3 mb-3 preset-box">
+                                                                        <input type="radio" name="background_preset" value="linear-gradient(to left, #c2e59c, #64b3f4)" id="bg_preset_eight" class="form-check-input preset-input" style="position: absolute; z-index: -1; opacity: 0;">
+                                                                        <label class="vcard-background-preset" for="bg_preset_eight" style="background: linear-gradient(to left, #c2e59c, #64b3f4); position: relative; display: block; cursor: pointer;">
+                                                                        </label>
+                                                                    </div>
+                                                                                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="form-group" id="colorinput" style="display: none;">
+                                                        <label for="color"><i class="fa fa-fw fa-palette fa-sm text-muted mr-1"></i>Color</label> 
+                                                        <input class="form-control " type="color" name="color" id="color" value="#000000">
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div id="firstsecondcolor" style="display: none;">
+                                                        <div class="form-group" >
+                                                            <div class="form-check ">
+                                                                <label class="form-check-label" for="first_color"><i class="fa fa-fw fa-palette fa-sm text-muted mr-1"></i>First Color</label>
+                                                                <input class="form-control " type="color" name="first_color" id="first_color" value="#000000">
+                                                            </div>
+                                                                                                                        <span class="help-block"> </span>
+                                                            <div class="form-check ">
+                                                                <label class="form-check-label" for="second_color"><i class="fa fa-fw fa-palette fa-sm text-muted mr-1"></i>Second Color</label>
+                                                                <input class="form-control " type="color" name="second_color" id="second_color" value="#000000">
+                                                            </div>
+                                                                                                                        <span class="help-block"> </span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="form-group" id="secondcolor">
+                                                        <div class="form-check ">
+                                                            <input type="hidden" name="second_color" value="0">
+                                                            <input class="form-check-input" type="checkbox" name="second_color" id="second_color" value="1" checked>
+                                                            <label class="form-check-label" for="second_color">Second Color</label>
+                                                        </div>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div> -->
+                                                    <div class="form-group" id="custimage" style="display: ;">
+                                                        <label for="custom_image"><i class="fa fa-fw fa-sm fa-image text-muted mr-1"></i>Custom Image</label>
+                                                        <div class="needsclick dropzone " id="custom_image-dropzone">
+                                                        </div>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label><i class="fa fa-fw fa-pen-nib fa-sm mr-1"></i>Font Family</label>
+                                                        <select class="form-control " name="font_family" id="font_family">
+                                                            <option value disabled selected>Please select</option>
+                                                                                                                            <option value="default" >Default</option>
+                                                                                                                            <option value="arial" >Arial</option>
+                                                                                                                            <option value="verdana" >Verdana</option>
+                                                                                                                            <option value="helvetica" >Helvetica</option>
+                                                                                                                            <option value="times_new_roman" selected>Times New Roman</option>
+                                                                                                                            <option value="inter" >Inter</option>
+                                                                                                                            <option value="lato" >Lato</option>
+                                                                                                                            <option value="open-sans" >Open Sans</option>
+                                                                                                                            <option value="montserrat" >Montserrat</option>
+                                                                                                                            <option value="karla" >Karla</option>
+                                                                                                                            <option value="inconsolata" >Inconsolata</option>
+                                                                                                                    </select>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="font_size"><i class="fa fa-fw fa-font fa-sm mr-1"></i>Font Size</label>
+                                                        <div class="input-group">
+                                                            <input class="form-control " type="number" name="font_size" id="font_size" value="16" step="1">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">px</span>
+                                                            </div>
+                                                        </div>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <div class="form-group"> 
+                                        <button class="btn btn-block btn-gray-202 my-4 collapsed" type="button" style="background-color: #d0d7e5;" > <i class="fa fa-adjust" aria-hidden="true"></i> Pixels</button>
+                                    </div>
+
+                                    <div class="collapse" id="pixels_container">
+                                        <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                            <label><i class="fa fa-fw fa-sm fa-adjust text-muted mr-1"></i> Pixels</label>
+                                            <a href="https://cards.forebearpro.co.in/user/pixels/create" target="_blank" class="small mb-2"><i class="fa fa-fw fa-sm fa-plus mr-1"></i> Create pixel</a>
+                                        </div>
+                                        <div class="card-body">
+                                                                                        <div class="row"> 
+                                                                                                    <div class="col-sm-6">
+                                                        <div class="form-group"> 
+                                                            <div class="form-check">
+                                                                <!-- <input type="hidden" name="pixels[]" value="" > -->
+                                                                                                                                <input class="form-check-input" type="checkbox" name="pixels[]" id="pixels" value="37"  >
+                                                                <span>link</span>
+                                                                <small class="badge badge-light badge-pill">linkedin</small> 
+                                                            </div>
+                                                                                                                        <span class="help-block"> </span>
+                                                        </div>
+                                                    </div>
+                                                                                                    <div class="col-sm-6">
+                                                        <div class="form-group"> 
+                                                            <div class="form-check">
+                                                                <!-- <input type="hidden" name="pixels[]" value="" > -->
+                                                                                                                                <input class="form-check-input" type="checkbox" name="pixels[]" id="pixels" value="40"  >
+                                                                <span>fgdd</span>
+                                                                <small class="badge badge-light badge-pill">google_analytics</small> 
+                                                            </div>
+                                                                                                                        <span class="help-block"> </span>
+                                                        </div>
+                                                    </div>
+                                                                                            </div>
+                                                                                </div>
+                                    </div>
+                                    <!-- <div class="collapse" id="pixels_container">
+                                        <div class="card-body">
+                                            <div class="row">
+                                    
+                                                <div class="form-group">
+                                                    <div class="form-check ">
+                                                        <input type="hidden" name="pixels" value="0">
+                                                        <input class="form-check-input" type="checkbox" name="pixels" id="pixels" value="1" checked>
+                                                        <label class="form-check-label" for="pixels">Pixels</label>
+                                                    </div>
+                                                                                                        <span class="help-block"> </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="form-group"> 
+                                        <button class="btn btn-block btn-gray-203 my-4 collapsed" type="button" style="background-color: #d0d7e5;" > <i class="fa fa-search-plus" aria-hidden="true"></i> Seo</button>
+                                    </div>
+
+                                    <div class="collapse" id="seo_container">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <div class="form-check ">
+                                                            <input type="hidden" name="search_engine_visibility" value="0">
+
+                                                            <div class="custom-control custom-switch">
+                                                                <input type="checkbox" class="custom-control-input"name="search_engine_visibility" id="search_engine_visibility" value="1" >
+                                                                <label class="custom-control-label" for="search_engine_visibility">
+                                                                    Search Engine Visibility
+                                                                </label>
+                                                            </div> 
+
+
+                                                            <!-- <input class="form-check-input" type="checkbox" name="search_engine_visibility" id="search_engine_visibility" value="1" >
+                                                            <label class="form-check-label" for="search_engine_visibility">Search Engine Visibility</label> -->
+                                                        </div>
+                                                        <small class="form-text text-muted">If disabled, the vcard will not be indexed by search engines, such as Google or Bing.</small>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="page_title"><i class="fa fa-fw fa-heading fa-sm text-muted mr-1"></i>Page Title</label>
+                                                        <input class="form-control " type="text" name="page_title" id="page_title" value="">
+                                                        <small class="form-text text-muted">Completely change the page title to a custom one that you are setting here.</small>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="meta_description"><i class="fa fa-fw fa-paragraph fa-sm text-muted mr-1"></i>Meta Description</label>
+                                                        <input class="form-control " type="text" name="meta_description" id="meta_description" value="">
+                                                        <small class="form-text text-muted">Set a custom meta description to rank better in search engines.</small>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="meta_keywords"><i class="fa fa-fw fa-file-word fa-sm text-muted mr-1"></i>Meta Keywords</label>
+                                                        <input class="form-control " type="text" name="meta_keywords" id="meta_keywords" value="">
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="opengraph_image"><i class="fa fa-fw fa-sm fa-image text-muted mr-1"></i>Opengraph Image</label>
+                                                        <div class="needsclick dropzone " id="opengraph_image-dropzone">
+                                                        </div>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <div class="form-group"> 
+                                        <button class="btn btn-block btn-gray-204 my-4 collapsed" type="button" style="background-color: #d0d7e5;" > <i class="fa fa-user" aria-hidden="true"></i> Advanced</button>
+                                    </div>
+
+                                    <div class="collapse" id="advanced_container">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group"> 
+                                                        <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                                            <i class="fa fa-share-alt" aria-hidden="true">
+                                                                <label for="project">Project</label>
+                                                            </i>
+                                                            <a href=" https://cards.forebearpro.co.in/user/create-projects/create" target="_blank" class="small mb-2"><i class="fa fa-fw fa-sm fa-plus mr-1"></i> Create Project</a>
+                                                        </div>
+                                                        <select name="project" id="project" class="form-control ">
+                                                            <option value="">Select a project</option>
+                                                                                                                            <option value="18" >
+                                                                    abhi
+                                                                </option>
+                                                                                                                            <option value="20" selected>
+                                                                    Test254
+                                                                </option>
+                                                                                                                    </select>
+                                                        <small class="form-text text-muted">A project will help you categorize your resources.</small>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <i class="fa fa-forward" aria-hidden="true">
+                                                            <label for="leap_link_url">Leap Link Url</label>
+                                                        </i>
+                                                        <input class="form-control " type="text" name="leap_link_url" id="leap_link_url" value="">
+                                                        <small class="form-text text-muted">Fully redirect all users that access the vcard page to this URL. Leave empty to disable the feature.</small>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <i class="fa fa-lock" aria-hidden="true">
+                                                            <label for="password">Password</label>
+                                                        </i>
+                                                        <input class="form-control " value="" type="password" name="password" id="password">
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-check ">
+                                                            <input type="hidden" name="remove_branding" value="0">
+
+                                                            <div class="custom-control custom-switch">
+                                                                <input type="checkbox" class="custom-control-input" name="remove_branding" id="remove_branding" value="1" >
+                                                            
+                                                                <label class="custom-control-label" for="remove_branding">
+                                                                Remove Branding
+                                                                </label>
+                                                                <small class="form-text text-muted">If enabled, the vcard won't show the branding of our website.</small>
+                                                            </div>
+
+                                    
+                                                            <!-- <input class="form-check-input" type="checkbox" name="remove_branding" id="remove_branding" value="1" >
+                                                            <label class="form-check-label" for="remove_branding">Remove Branding</label> -->
+                                                        </div>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="custom_css"><i class="fab fa-fw fa-sm fa-css3 text-muted mr-1"></i>Custom Css</label>
+                                                        <textarea class="form-control
+                                                        " name="custom_css" id="custom_css"></textarea>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="custom_js"><i class="fab fa-fw fa-sm fa-js-square text-muted mr-1"></i>Custom Js</label>
+                                                        <textarea class="form-control " name="custom_js" id="custom_js"></textarea>
+                                                                                                                <span class="help-block"> </span>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-block btn-primary mt-4" type="submit">
+                                            Update
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="collapse" id="card_block">              
+                            <div class="card-body">
+                                <form method="post" action="https://cards.forebearpro.co.in/admin/addblock" id="addBlockForm" enctype="multipart/form-data"> 
+                                    <input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ" autocomplete="off">                                    <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addBlock"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add Block</button>
+                                    <div class="modal" id="addBlock">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Modal Heading</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="btnarea">
+                                                    <p>Choose an option:</p>
+                                                    <div class="row">
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('link', '','Link','fa fa-link')" ><i class="fa fa-link fa-fw fa-sm mr-1"></i> Link</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('email', 'mailto:','Email','fa fa-envelope')" ><i class="fa fa-envelope fa-fw fa-sm mr-1"></i> Email</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('phone', 'tel:','Phone','fa fa-phone-square-alt')" ><i class="fa fa-phone-square-alt fa-fw fa-sm mr-1"></i> Phone</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('address', '','Address','fa fa-map-marker-alt')" ><i class="fa fa-map-marker-alt fa-fw fa-sm mr-1"></i> Address</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('facebook', 'https://facebook.com/','Facebook','fab fa-facebook')" ><i class="fab fa-facebook fa-fw fa-sm mr-1"></i> Facebook</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('twitter', 'https://twitter.com/','Twitter','fab fa-twitter')" ><i class="fab fa-twitter fa-fw fa-sm mr-1"></i> Twitter</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('instagram', 'https://instagram.com/','Instagram','fab fa-instagram')" ><i class="fab fa-instagram fa-fw fa-sm mr-1"></i> Instagram</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('youtube', 'https://youtube.com/','YouTube','fab fa-youtube')" ><i class="fab fa-youtube fa-fw fa-sm mr-1"></i> YouTube</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('whatsapp', 'https://web.whatsapp.com/','Whatsapp','fab fa-whatsapp')" ><i class="fab fa-whatsapp fa-fw fa-sm mr-1"></i> Whatsapp</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('tiktok', 'https://www.tiktok.com/','TikTok','fab fa-tiktok')" ><i class="fab fa-tiktok fa-fw fa-sm mr-1"></i> TikTok</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('telegram', 'https://web.telegram.org/k/','Telegram','fab fa-telegram')" ><i class="fab fa-telegram fa-fw fa-sm mr-1"></i> Telegram</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('spotify', 'https://open.spotify.com/','Spotify','fab fa-spotify')" ><i class="fab fa-spotify fa-fw fa-sm mr-1"></i> Spotify</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('pinterest', 'https://in.pinterest.com/','Pinterest','fab fa-pinterest')" ><i class="fab fa-pinterest fa-fw fa-sm mr-1"></i> Pinterest</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('linkedin', 'https://in.linkedin.com/','LinkedIn','fab fa-linkedin')" ><i class="fab fa-linkedin fa-fw fa-sm mr-1"></i> LinkedIn</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('snapchat', 'https://www.snapchat.com/','Snapchat','fab fa-snapchat')" ><i class="fab fa-snapchat fa-fw fa-sm mr-1"></i> Snapchat</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('twitch', 'https://www.twitch.tv/','Twitch','fab fa-twitch')" ><i class="fab fa-twitch fa-fw fa-sm mr-1"></i> Twitch</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('discord', 'https://discord.com/','Discord','fab fa-discord')" ><i class="fab fa-discord fa-fw fa-sm mr-1"></i> Discord</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('github', 'https://github.com/','Github','fab fa-github')" ><i class="fab fa-github fa-fw fa-sm mr-1"></i> Github</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('facebook-messenger', '','facebook-messenger','fab fa-facebook-messenger')" ><i class="fab fa-facebook-messenger fa-fw fa-sm mr-1"></i> facebook-messenger</button>
+                                                            </div>
+                                                                                                                    <div class="col-12">
+                                                                <button type="button" class="btn btn-light btn-block btn-lg mb-3" onclick="showInputFields('reddit', 'https://www.reddit.com/','reddit','fab fa-reddit')" ><i class="fab fa-reddit fa-fw fa-sm mr-1"></i> reddit</button>
+                                                            </div>
+                                                                                                            </div>
+                                                </div>
+
+                                                                                                <div class="inputarea" id="fieldsArea" style="display: none;">
+                                                    <input type="hidden" id="blockType" name="type" value="">
+                                                    <input type="hidden" name="vcard_id" value="53">
+                                                    <div class="form-group"><i class="fa fa-fw fa-sm fa-signature text-muted mr-1"></i>
+                                                        <label for="generic_name" > Name</label>
+                                                        <input type="text" id="blockName" name="name" class="form-control" maxlength="128" required="required">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div id="iconblock"></div>
+                                                        <label for="generic_value" id="labinfo"></label>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="preURL">@</span>
+                                                            </div>
+                                                            <input type="text" name="value" id="blockValue" class="form-control mt-2" required>
+                                                        </div> 
+                                                    </div>
+                                                </div> 
+                                            <div class="modal-footer"> 
+                                                <button type="button" class="btn btn-danger backBlock" style="display: none;">Back</button>
+                                                <button type="submit" class="btn btn-primary submitBlock" style="display: none;">Submit</button>
+                                            </div>
+                                        </div>
+                                      
+                                        </div>
+                                    </div>  
+                                </form>
+                            </div>
+                            <div class="card-body">
+                            <!-- <div class="container"> -->
+                                                               
+                            <!-- </div> -->
+
+
+
+                                <!-- <div class="table-responsive">
+                                    <table class=" table table-bordered ">
+                                        <thead>
+                                            <tr> 
+                                                <th>
+                                                    Name
+                                                </th> 
+                                                <th>
+                                                  
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                                                    </tbody>
+                                    </table>
+                                </div> --> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+                
+              </section>
+            <!-- /.content -->
+        </div>
+
+        <!-- <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.0.0-alpha
+            </div>
+            <strong> &copy;</strong> All rights reserved.
+        </footer> -->
+        <form id="logoutform" action="https://cards.forebearpro.co.in/logout" method="POST" style="display: none;">
+            <input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ" autocomplete="off">
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/main.js"></script>
+
+    <!-- CDN Links for Popper.js and Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/jquery.slim.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/popper.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".btnclick").click(function(){
+                $(this).removeClass("active");
+                // Remove active class from all buttons
+                $(".btnclick").removeClass("active");
+                // Add active class to the clicked button
+                $(this).addClass("active");
+            });
+        });
+    </script>
+  <script>
+    $(document).ready(function(){
+        // Remove success alert after 20 seconds
+        setTimeout(function(){
+            $('#success-alert').fadeOut('slow');
+        }, 2000); // 20 seconds
+
+        // Remove error alert after 20 seconds
+        setTimeout(function(){
+            $('#error-alert').fadeOut('slow');
+        }, 2000); // 20 seconds
+    });
+  </script>
+    <script>
+        $(function() {
+  let copyButtonTrans = 'Copy'
+  let csvButtonTrans = 'CSV'
+  let excelButtonTrans = 'Excel'
+  let pdfButtonTrans = 'PDF'
+  let printButtonTrans = 'Print'
+  let colvisButtonTrans = 'Columns'
+  let selectAllButtonTrans = 'Select all'
+  let selectNoneButtonTrans = 'Deselect all'
+
+  let languages = {
+    'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
+  };
+
+  $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, { className: 'btn' })
+  $.extend(true, $.fn.dataTable.defaults, {
+    language: {
+      url: languages['en']
+    },
+    columnDefs: [{
+        orderable: false,
+        className: 'select-checkbox',
+        targets: 0
+    }, {
+        orderable: false,
+        searchable: false,
+        targets: -1
+    }],
+    select: {
+      style:    'multi+shift',
+      selector: 'td:first-child'
+    },
+    order: [],
+    scrollX: true,
+    pageLength: 100,
+    dom: 'lBfrtip<"actions">',
+    buttons: [
+      {
+        extend: 'selectAll',
+        className: 'btn-primary',
+        text: selectAllButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        },
+        action: function(e, dt) {
+          e.preventDefault()
+          dt.rows().deselect();
+          dt.rows({ search: 'applied' }).select();
+        }
+      },
+      {
+        extend: 'selectNone',
+        className: 'btn-primary',
+        text: selectNoneButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'copy',
+        className: 'btn-default',
+        text: copyButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'csv',
+        className: 'btn-default',
+        text: csvButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'excel',
+        className: 'btn-default',
+        text: excelButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'pdf',
+        className: 'btn-default',
+        text: pdfButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'print',
+        className: 'btn-default',
+        text: printButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'colvis',
+        className: 'btn-default',
+        text: colvisButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      }
+    ]
+  });
+
+  $.fn.dataTable.ext.classes.sPageButton = '';
+});
+
+    </script>
+    <script>
+        /*!
+     * AdminLTE v3.0.0-alpha.2 (https://adminlte.io)
+     * Copyright 2014-2018 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
+     * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
+     */
+    !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(exports):"function"==typeof define&&define.amd?define(["exports"],t):t(e.adminlte={})}(this,function(e){"use strict";var i,t,o,n,r,a,s,c,f,l,u,d,h,p,_,g,y,m,v,C,D,E,A,O,w,b,L,S,j,T,I,Q,R,P,x,B,M,k,H,N,Y,U,V,G,W,X,z,F,q,J,K,Z,$,ee,te,ne="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},ie=function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")},oe=(i=jQuery,t="ControlSidebar",o="lte.control.sidebar",n=i.fn[t],r=".control-sidebar",a='[data-widget="control-sidebar"]',s=".main-header",c="control-sidebar-open",f="control-sidebar-slide-open",l={slide:!0},u=function(){function n(e,t){ie(this,n),this._element=e,this._config=this._getConfig(t)}return n.prototype.show=function(){this._config.slide?i("body").removeClass(f):i("body").removeClass(c)},n.prototype.collapse=function(){this._config.slide?i("body").addClass(f):i("body").addClass(c)},n.prototype.toggle=function(){this._setMargin(),i("body").hasClass(c)||i("body").hasClass(f)?this.show():this.collapse()},n.prototype._getConfig=function(e){return i.extend({},l,e)},n.prototype._setMargin=function(){i(r).css({top:i(s).outerHeight()})},n._jQueryInterface=function(t){return this.each(function(){var e=i(this).data(o);if(e||(e=new n(this,i(this).data()),i(this).data(o,e)),"undefined"===e[t])throw new Error(t+" is not a function");e[t]()})},n}(),i(document).on("click",a,function(e){e.preventDefault(),u._jQueryInterface.call(i(this),"toggle")}),i.fn[t]=u._jQueryInterface,i.fn[t].Constructor=u,i.fn[t].noConflict=function(){return i.fn[t]=n,u._jQueryInterface},u),re=(d=jQuery,h="Layout",p="lte.layout",_=d.fn[h],g=".main-sidebar",y=".main-header",m=".content-wrapper",v=".main-footer",C="hold-transition",D=function(){function n(e){ie(this,n),this._element=e,this._init()}return n.prototype.fixLayoutHeight=function(){var e={window:d(window).height(),header:d(y).outerHeight(),footer:d(v).outerHeight(),sidebar:d(g).height()},t=this._max(e);d(m).css("min-height",e.window-e.header-e.footer),d(g).css("min-height",e.window-e.header)},n.prototype._init=function(){var e=this;d("body").removeClass(C),this.fixLayoutHeight(),d(g).on("collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu",function(){e.fixLayoutHeight()}),d(window).resize(function(){e.fixLayoutHeight()}),d("body, html").css("height","auto")},n.prototype._max=function(t){var n=0;return Object.keys(t).forEach(function(e){t[e]>n&&(n=t[e])}),n},n._jQueryInterface=function(t){return this.each(function(){var e=d(this).data(p);e||(e=new n(this),d(this).data(p,e)),t&&e[t]()})},n}(),d(window).on("load",function(){D._jQueryInterface.call(d("body"))}),d.fn[h]=D._jQueryInterface,d.fn[h].Constructor=D,d.fn[h].noConflict=function(){return d.fn[h]=_,D._jQueryInterface},D),ae=(E=jQuery,A="PushMenu",w="."+(O="lte.pushmenu"),b=E.fn[A],L={COLLAPSED:"collapsed"+w,SHOWN:"shown"+w},S={screenCollapseSize:768},j={TOGGLE_BUTTON:'[data-widget="pushmenu"]',SIDEBAR_MINI:".sidebar-mini",SIDEBAR_COLLAPSED:".sidebar-collapse",BODY:"body",OVERLAY:"#sidebar-overlay",WRAPPER:".wrapper"},T="sidebar-collapse",I="sidebar-open",Q=function(){function n(e,t){ie(this,n),this._element=e,this._options=E.extend({},S,t),E(j.OVERLAY).length||this._addOverlay()}return n.prototype.show=function(){E(j.BODY).addClass(I).removeClass(T);var e=E.Event(L.SHOWN);E(this._element).trigger(e)},n.prototype.collapse=function(){E(j.BODY).removeClass(I).addClass(T);var e=E.Event(L.COLLAPSED);E(this._element).trigger(e)},n.prototype.toggle=function(){(E(window).width()>=this._options.screenCollapseSize?!E(j.BODY).hasClass(T):E(j.BODY).hasClass(I))?this.collapse():this.show()},n.prototype._addOverlay=function(){var e=this,t=E("<div />",{id:"sidebar-overlay"});t.on("click",function(){e.collapse()}),E(j.WRAPPER).append(t)},n._jQueryInterface=function(t){return this.each(function(){var e=E(this).data(O);e||(e=new n(this),E(this).data(O,e)),t&&e[t]()})},n}(),E(document).on("click",j.TOGGLE_BUTTON,function(e){e.preventDefault();var t=e.currentTarget;"pushmenu"!==E(t).data("widget")&&(t=E(t).closest(j.TOGGLE_BUTTON)),Q._jQueryInterface.call(E(t),"toggle")}),E.fn[A]=Q._jQueryInterface,E.fn[A].Constructor=Q,E.fn[A].noConflict=function(){return E.fn[A]=b,Q._jQueryInterface},Q),se=(R=jQuery,P="Treeview",B="."+(x="lte.treeview"),M=R.fn[P],k={SELECTED:"selected"+B,EXPANDED:"expanded"+B,COLLAPSED:"collapsed"+B,LOAD_DATA_API:"load"+B},H=".nav-item",N=".nav-treeview",Y=".menu-open",V="menu-open",G={trigger:(U='[data-widget="treeview"]')+" "+".nav-link",animationSpeed:300,accordion:!0},W=function(){function i(e,t){ie(this,i),this._config=t,this._element=e}return i.prototype.init=function(){this._setupListeners()},i.prototype.expand=function(e,t){var n=this,i=R.Event(k.EXPANDED);if(this._config.accordion){var o=t.siblings(Y).first(),r=o.find(N).first();this.collapse(r,o)}e.slideDown(this._config.animationSpeed,function(){t.addClass(V),R(n._element).trigger(i)})},i.prototype.collapse=function(e,t){var n=this,i=R.Event(k.COLLAPSED);e.slideUp(this._config.animationSpeed,function(){t.removeClass(V),R(n._element).trigger(i),e.find(Y+" > "+N).slideUp(),e.find(Y).removeClass(V)})},i.prototype.toggle=function(e){var t=R(e.currentTarget),n=t.next();if(n.is(N)){e.preventDefault();var i=t.parents(H).first();i.hasClass(V)?this.collapse(R(n),i):this.expand(R(n),i)}},i.prototype._setupListeners=function(){var t=this;R(document).on("click",this._config.trigger,function(e){t.toggle(e)})},i._jQueryInterface=function(n){return this.each(function(){var e=R(this).data(x),t=R.extend({},G,R(this).data());e||(e=new i(R(this),t),R(this).data(x,e)),"init"===n&&e[n]()})},i}(),R(window).on(k.LOAD_DATA_API,function(){R(U).each(function(){W._jQueryInterface.call(R(this),"init")})}),R.fn[P]=W._jQueryInterface,R.fn[P].Constructor=W,R.fn[P].noConflict=function(){return R.fn[P]=M,W._jQueryInterface},W),ce=(X=jQuery,z="Widget",q="."+(F="lte.widget"),J=X.fn[z],K={EXPANDED:"expanded"+q,COLLAPSED:"collapsed"+q,REMOVED:"removed"+q},$="collapsed-card",ee={animationSpeed:"normal",collapseTrigger:(Z={DATA_REMOVE:'[data-widget="remove"]',DATA_COLLAPSE:'[data-widget="collapse"]',CARD:".card",CARD_HEADER:".card-header",CARD_BODY:".card-body",CARD_FOOTER:".card-footer",COLLAPSED:".collapsed-card"}).DATA_COLLAPSE,removeTrigger:Z.DATA_REMOVE},te=function(){function n(e,t){ie(this,n),this._element=e,this._parent=e.parents(Z.CARD).first(),this._settings=X.extend({},ee,t)}return n.prototype.collapse=function(){var e=this;this._parent.children(Z.CARD_BODY+", "+Z.CARD_FOOTER).slideUp(this._settings.animationSpeed,function(){e._parent.addClass($)});var t=X.Event(K.COLLAPSED);this._element.trigger(t,this._parent)},n.prototype.expand=function(){var e=this;this._parent.children(Z.CARD_BODY+", "+Z.CARD_FOOTER).slideDown(this._settings.animationSpeed,function(){e._parent.removeClass($)});var t=X.Event(K.EXPANDED);this._element.trigger(t,this._parent)},n.prototype.remove=function(){this._parent.slideUp();var e=X.Event(K.REMOVED);this._element.trigger(e,this._parent)},n.prototype.toggle=function(){this._parent.hasClass($)?this.expand():this.collapse()},n.prototype._init=function(e){var t=this;this._parent=e,X(this).find(this._settings.collapseTrigger).click(function(){t.toggle()}),X(this).find(this._settings.removeTrigger).click(function(){t.remove()})},n._jQueryInterface=function(t){return this.each(function(){var e=X(this).data(F);e||(e=new n(X(this),e),X(this).data(F,"string"==typeof t?e:t)),"string"==typeof t&&t.match(/remove|toggle/)?e[t]():"object"===("undefined"==typeof t?"undefined":ne(t))&&e._init(X(this))})},n}(),X(document).on("click",Z.DATA_COLLAPSE,function(e){e&&e.preventDefault(),te._jQueryInterface.call(X(this),"toggle")}),X(document).on("click",Z.DATA_REMOVE,function(e){e&&e.preventDefault(),te._jQueryInterface.call(X(this),"remove")}),X.fn[z]=te._jQueryInterface,X.fn[z].Constructor=te,X.fn[z].noConflict=function(){return X.fn[z]=J,te._jQueryInterface},te);e.ControlSidebar=oe,e.Layout=re,e.PushMenu=ae,e.Treeview=se,e.Widget=ce,Object.defineProperty(e,"__esModule",{value:!0})});
+    //# sourceMappingURL=adminlte.min.js.map
+
+    </script>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<script>
+    $(document).ready(function() {
+  $('.collapse').on('shown.bs.collapse', function() {
+    $(this).parent().find(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
+  }).on('hidden.bs.collapse', function() {
+    $(this).parent().find(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
+  });
+});
+   function urlAlias(element) {
+        var vcardActive = element.getAttribute('data-vcardactive');
+        var leaplink = element.getAttribute('data-leaplink');
+        if (vcardActive == 0) {
+            var newURL = "https://cards.forebearpro.co.in/user";
+            window.location.href = newURL;
+        }else {
+            if(leaplink != ""){
+            window.location.href = leaplink;
+            }
+        }
+    }
+
+
+    $( document ).ready(function() {
+                const button = document.getElementById('myButton1');
+        if (button) {
+          button.click();
+        }
+        
+    });
+
+    $( document ).ready( function () {
+         var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
+          return $(entry).data('entry-id')
+        });
+        if (confirm('Are you sure?')) {
+            $.ajax({
+            headers: {'x-csrf-token': _token},
+            method: 'POST',
+            url: "https://cards.forebearpro.co.in/user/block-destroy",
+            data: { ids: ids, _method: 'DELETE' }})
+            .done(function () { location.reload() })
+        }
+    });
+
+    function showCard(cardId, th) {
+        const settingCard   = document.getElementById('card_setting');
+        const blockCard     = document.getElementById('card_block');
+        $(".btn-accordian").removeClass('active');
+        th.addClass('active');
+        th.blur();
+
+        if (cardId === 'card_setting') {
+            settingCard.style.display = 'block';
+            blockCard.style.display = 'none';
+        } else if (cardId === 'card_block') {
+            settingCard.style.display = 'none';
+            blockCard.style.display = 'block';
+        }
+    }
+</script>
+
+
+<script> 
+$(document).ready(function() {
+    $('#background').change(function() {
+        var selectedValue = $(this).val();
+        if (selectedValue === 'pregradient') {
+            $('#background_presets').show();  
+        } else { 
+            $('#background_presets').hide();  
+        }
+        if (selectedValue === 'color') {
+            $('#colorinput').show();  
+        } else { 
+            $('#colorinput').hide();  
+        }
+        if (selectedValue === 'gradient') {
+            $('#firstsecondcolor').show();  
+        } else { 
+            $('#firstsecondcolor').hide();  
+        }
+        if (selectedValue === 'image') {
+            $('#custimage').show();  
+        } else { 
+            $('#custimage').hide();  
+        }
+    });
+}); 
+</script>
+
+
+<script>
+    function redirectSamePage() { 
+        window.location.href = window.location.href;
+    } 
+</script>
+
+<script>
+    $(document).ready(function() { 
+        $('#card_container').hide();  
+        $('.btn-gray-200').click(function() { 
+            $('#card_container').slideToggle(); 
+        });
+    });
+    $(document).ready(function() {  
+        $('#customizations_container').hide(); 
+        $('.btn-gray-201').click(function() {  
+            $('#customizations_container').slideToggle();
+        });
+    });
+    $(document).ready(function() {  
+        $('#pixels_container').hide(); 
+        $('.btn-gray-202').click(function() {  
+            $('#pixels_container').slideToggle();
+        });
+    });
+    $(document).ready(function() {  
+        $('#seo_container').hide(); 
+        $('.btn-gray-203').click(function() {  
+            $('#seo_container').slideToggle();
+        });
+    });
+    $(document).ready(function() {  
+        $('#advanced_container').hide(); 
+        $('.btn-gray-204').click(function() {  
+            $('#advanced_container').slideToggle();
+        });
+    });
+</script>
+
+<script>
+    /* function showInputFields(service) {
+        var services = ['Facebook', 'Google', 'Instagram', 'Email'];
+        services.forEach(function (item) {
+            var serviceFields = document.getElementById(item.toLowerCase() + 'Fields');
+            // console.log(serviceFields);
+            if (item.toLowerCase() === service) {
+                serviceFields.style.display = 'block';
+            } else {
+                serviceFields.style.display = 'none';
+            }
+        });
+    } */
+    $(".backBlock").on("click", function(){
+        $("#btnarea").css('display', 'block');
+        $(".inputarea").css('display', 'none');
+        $(".backBlock").css('display', 'none');
+        $(".submitBlock").css('display', 'none');
+    });
+    /* function showInputFields(service) {
+        $("#btnarea").css('display', 'none');
+        $(".inputarea").css('display', 'none');
+        $("#"+service+"Area").css('display', 'block');
+        $(".backBlock").css('display', 'block');
+    } */
+    function showInputFields(service,url,text,icon) {
+        url = url.length <= 0 ? '@' : url;
+        $("#preURL").html(url);
+        $("#blockType").val(service);
+        $("#labinfo").html(text);
+        var faicon = '<i class="'+icon+' fa-fw fa-sm mr-1"></i>';
+        $("#iconblock").html(faicon);
+        $("#btnarea").css('display', 'none');
+        $("#fieldsArea").css('display', 'block');
+        $(".backBlock").css('display', 'block');
+        $(".submitBlock").css('display', 'block');
+    }
+</script>
+
+<script>
+    Dropzone.options.logoDropzone = {
+    url: 'https://cards.forebearpro.co.in/user/vcards/media',
+    maxFilesize: 2, // MB
+    acceptedFiles: '.jpeg,.jpg,.png,.gif',
+    maxFiles: 1,
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ"
+    },
+    params: {
+      size: 2,
+      width: 4096,
+      height: 4096
+    },
+    success: function (file, response) {
+      $('form').find('input[name="logo"]').remove()
+      $('form').append('<input type="hidden" name="logo" value="' + response.name + '">')
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      if (file.status !== 'error') {
+        $('form').find('input[name="logo"]').remove()
+        this.options.maxFiles = this.options.maxFiles + 1
+      }
+    },
+    init: function () {
+      var file = {"id":42,"model_type":"App\\Models\\Vcards","model_id":53,"uuid":"51bd3c51-1c6d-4213-b558-cd73b4999f48","collection_name":"logo","name":"65e9783756de4_Screenshot_1","file_name":"65e9783756de4_Screenshot_1.png","mime_type":"image\/png","disk":"public","conversions_disk":"public","size":95708,"manipulations":[],"custom_properties":[],"generated_conversions":{"thumb":true,"preview":true},"responsive_images":[],"order_column":1,"created_at":"2024-03-07T08:18:43.000000Z","updated_at":"2024-03-07T08:18:43.000000Z","url":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/42\/65e9783756de4_Screenshot_1.png","thumbnail":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/42\/conversions\/65e9783756de4_Screenshot_1-thumb.jpg","preview":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/42\/conversions\/65e9783756de4_Screenshot_1-preview.jpg","original_url":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/42\/65e9783756de4_Screenshot_1.png","preview_url":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/42\/conversions\/65e9783756de4_Screenshot_1-preview.jpg"}
+          this.options.addedfile.call(this, file)
+      this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
+      file.previewElement.classList.add('dz-complete')
+      $('form').append('<input type="hidden" name="logo" value="' + file.file_name + '">')
+      this.options.maxFiles = this.options.maxFiles - 1
+    },
+    error: function (file, response) {
+        if ($.type(response) === 'string') {
+            var message = response //dropzone sends it's own error messages in string
+        } else {
+            var message = response.errors.file
+        }
+        file.previewElement.classList.add('dz-error')
+        _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+        _results = []
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i]
+            _results.push(node.textContent = message)
+        }
+
+        return _results
+    }
+}
+
+</script>
+<script>
+    Dropzone.options.faviconDropzone = {
+    url: 'https://cards.forebearpro.co.in/user/vcards/media',
+    maxFilesize: 2, // MB
+    acceptedFiles: '.jpeg,.jpg,.png,.gif',
+    maxFiles: 1,
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ"
+    },
+    params: {
+      size: 2,
+      width: 4096,
+      height: 4096
+    },
+    success: function (file, response) {
+      $('form').find('input[name="favicon"]').remove()
+      $('form').append('<input type="hidden" name="favicon" value="' + response.name + '">')
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      if (file.status !== 'error') {
+        $('form').find('input[name="favicon"]').remove()
+        this.options.maxFiles = this.options.maxFiles + 1
+      }
+    },
+    init: function () {
+      var file = {"id":43,"model_type":"App\\Models\\Vcards","model_id":53,"uuid":"96916a78-e904-4803-8116-851a8b0fb839","collection_name":"favicon","name":"65e9784a50fd3_1","file_name":"65e9784a50fd3_1.png","mime_type":"image\/png","disk":"public","conversions_disk":"public","size":116662,"manipulations":[],"custom_properties":[],"generated_conversions":{"thumb":true,"preview":true},"responsive_images":[],"order_column":2,"created_at":"2024-03-07T08:18:43.000000Z","updated_at":"2024-03-07T08:18:43.000000Z","url":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/43\/65e9784a50fd3_1.png","thumbnail":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/43\/conversions\/65e9784a50fd3_1-thumb.jpg","preview":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/43\/conversions\/65e9784a50fd3_1-preview.jpg","original_url":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/43\/65e9784a50fd3_1.png","preview_url":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/43\/conversions\/65e9784a50fd3_1-preview.jpg"}
+          this.options.addedfile.call(this, file)
+      this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
+      file.previewElement.classList.add('dz-complete')
+      $('form').append('<input type="hidden" name="favicon" value="' + file.file_name + '">')
+      this.options.maxFiles = this.options.maxFiles - 1
+    },
+    error: function (file, response) {
+        if ($.type(response) === 'string') {
+            var message = response //dropzone sends it's own error messages in string
+        } else {
+            var message = response.errors.file
+        }
+        file.previewElement.classList.add('dz-error')
+        _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+        _results = []
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i]
+            _results.push(node.textContent = message)
+        }
+
+        return _results
+    }
+}
+
+</script>
+<script>
+    Dropzone.options.customImageDropzone = {
+    url: 'https://cards.forebearpro.co.in/user/vcards/media',
+    maxFilesize: 2, // MB
+    acceptedFiles: '.jpeg,.jpg,.png,.gif',
+    maxFiles: 1,
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ"
+    },
+    params: {
+      size: 2,
+      width: 4096,
+      height: 4096
+    },
+    success: function (file, response) {
+      $('form').find('input[name="custom_image"]').remove()
+      $('form').append('<input type="hidden" name="custom_image" value="' + response.name + '">')
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      if (file.status !== 'error') {
+        $('form').find('input[name="custom_image"]').remove()
+        this.options.maxFiles = this.options.maxFiles + 1
+      }
+    },
+    init: function () {
+      var file = {"id":45,"model_type":"App\\Models\\Vcards","model_id":53,"uuid":"bc306963-027c-417f-a570-511e7c042f3e","collection_name":"custom_image","name":"65e9789206524_1. Home page image","file_name":"65e9789206524_1.-Home-page-image.png","mime_type":"image\/png","disk":"public","conversions_disk":"public","size":846550,"manipulations":[],"custom_properties":[],"generated_conversions":{"thumb":true,"preview":true},"responsive_images":[],"order_column":3,"created_at":"2024-03-07T08:19:34.000000Z","updated_at":"2024-03-07T08:19:35.000000Z","url":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/45\/65e9789206524_1.-Home-page-image.png","thumbnail":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/45\/conversions\/65e9789206524_1.-Home-page-image-thumb.jpg","preview":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/45\/conversions\/65e9789206524_1.-Home-page-image-preview.jpg","original_url":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/45\/65e9789206524_1.-Home-page-image.png","preview_url":"https:\/\/cards.forebearpro.co.in\/storage\/app\/public\/45\/conversions\/65e9789206524_1.-Home-page-image-preview.jpg"}
+          this.options.addedfile.call(this, file)
+      this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
+      file.previewElement.classList.add('dz-complete')
+      $('form').append('<input type="hidden" name="custom_image" value="' + file.file_name + '">')
+      this.options.maxFiles = this.options.maxFiles - 1
+    },
+    error: function (file, response) {
+        if ($.type(response) === 'string') {
+            var message = response //dropzone sends it's own error messages in string
+        } else {
+            var message = response.errors.file
+        }
+        file.previewElement.classList.add('dz-error')
+        _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+        _results = []
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i]
+            _results.push(node.textContent = message)
+        }
+
+        return _results
+    }
+}
+
+</script>
+<script>
+    Dropzone.options.opengraphImageDropzone = {
+    url: 'https://cards.forebearpro.co.in/user/vcards/media',
+    maxFilesize: 2, // MB
+    acceptedFiles: '.jpeg,.jpg,.png,.gif',
+    maxFiles: 1,
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ"
+    },
+    params: {
+      size: 2,
+      width: 4096,
+      height: 4096
+    },
+    success: function (file, response) {
+      $('form').find('input[name="opengraph_image"]').remove()
+      $('form').append('<input type="hidden" name="opengraph_image" value="' + response.name + '">')
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      if (file.status !== 'error') {
+        $('form').find('input[name="opengraph_image"]').remove()
+        this.options.maxFiles = this.options.maxFiles + 1
+      }
+    },
+    init: function () {
+    },
+    error: function (file, response) {
+        if ($.type(response) === 'string') {
+            var message = response //dropzone sends it's own error messages in string
+        } else {
+            var message = response.errors.file
+        }
+        file.previewElement.classList.add('dz-error')
+        _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+        _results = []
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i]
+            _results.push(node.textContent = message)
+        }
+
+        return _results
+    }
+}
+
+</script>
+<script>
+    $(document).ready(function () {
+  function SimpleUploadAdapter(vcardor) {
+    vcardor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
+      return {
+        upload: function() {
+          return loader.file
+            .then(function (file) {
+              return new Promise(function(resolve, reject) {
+                // Init request
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://cards.forebearpro.co.in/user/vcards/ckmedia', true);
+                xhr.setRequestHeader('x-csrf-token', window._token);
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.responseType = 'json';
+
+                // Init listeners
+                var genericErrorText = `Couldn't upload file: ${ file.name }.`;
+                xhr.addEventListener('error', function() { reject(genericErrorText) });
+                xhr.addEventListener('abort', function() { reject() });
+                xhr.addEventListener('load', function() {
+                  var response = xhr.response;
+
+                  if (!response || xhr.status !== 201) {
+                    return reject(response && response.message ? `${genericErrorText}\n${xhr.status} ${response.message}` : `${genericErrorText}\n ${xhr.status} ${xhr.statusText}`);
+                  }
+
+                  $('form').append('<input type="hidden" name="ck-media[]" value="' + response.id + '">');
+
+                  resolve({ default: response.url });
+                });
+
+                if (xhr.upload) {
+                  xhr.upload.addEventListener('progress', function(e) {
+                    if (e.lengthComputable) {
+                      loader.uploadTotal = e.total;
+                      loader.uploaded = e.loaded;
+                    }
+                  });
+                }
+
+                // Send request
+                var data = new FormData();
+                data.append('upload', file);
+                data.append('crud_id', '53');
+                xhr.send(data);
+              });
+            })
+        }
+      };
+    }
+  }
+
+  var allvcardors = document.querySelectorAll('.ckvcardor');
+  for (var i = 0; i < allvcardors.length; ++i) {
+    Classicvcardor.create(
+      allvcardors[i], {
+        extraPlugins: [SimpleUploadAdapter]
+      }
+    );
+  }
+});
+</script>
+
+</body>
+
+</html>

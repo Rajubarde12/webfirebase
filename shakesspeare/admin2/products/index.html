@@ -1,0 +1,929 @@
+
+<!-- <div class="row">
+        <div class="col-lg-12">
+            <div class="card"> -->
+            
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <link href="https://cards.forebearpro.co.in/public/assets/css/custom.css" rel="stylesheet" />
+                <!DOCTYPE html>
+    <html>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="csrf-token" content="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+    
+        <title>Digital Card</title>
+        <link rel="shortcut icon" href="http://cdn.sstatic.net/superuser/img/favicon.ico">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+        <link href="https://cards.forebearpro.co.in/public/assets/css/adminltev3.css" rel="stylesheet" />
+        <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+        <link href="https://cards.forebearpro.co.in/public/assets/css/custom.css" rel="stylesheet" />
+        </head>
+    
+    <body class="sidebar-mini layout-fixed" style="height: auto;">
+        <div class="wrapper">
+            <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                    </li>
+                </ul>
+    
+                <!-- Right navbar links -->
+                
+            </nav>
+    
+            <aside class="main-sidebar sidebar-primary elevation-4" style="min-height: 917px; overflow-y: clip;">
+    
+        <!-- Brand Logo -->
+        <a href="#" class="brand-link">
+            <span class="brand-text font-weight-light">Digital Card</span>
+        </a> 
+        <!-- Sidebar --> 
+        <div class="sidebar">
+            <!-- Sidebar user (optional) -->
+    
+            <!-- Sidebar Menu -->
+            <nav class="mt-2" style="position: relative;">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item active btnclick">
+                        <a class="nav-link " href="https://cards.forebearpro.co.in/user">
+                            <i class="fa fa-fw fa-sm fa-th mr-2" style="margin-right: 10px;">
+                            </i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                                        <li class="nav-item btnclick">
+                            <a href="https://cards.forebearpro.co.in/user/vcards" class="nav-link ">
+                                <i class="fa fa-address-card" aria-hidden="true" style="margin-right: 10px;"></i>                            
+                                <p>
+                                    Vcards
+                                </p>
+                            </a>
+                        </li>
+                                    
+                                        <li class="nav-item btnclick">
+                            <a href="https://cards.forebearpro.co.in/user/create-projects" class="nav-link ">
+                                <!-- <i class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 10px;"></i> -->
+                                <i class="fa fa-fw fa-sm fa-project-diagram mr-2" aria-hidden="true" style="margin-right: 10px;"></i>
+    
+                                <p>
+                                    Create Project
+                                </p>
+                            </a>
+                        </li>
+                                                        <li class="nav-item btnclick">
+                            <a href="https://cards.forebearpro.co.in/user/pixels" class="nav-link ">
+                            <i class="fa fa-adjust" aria-hidden="true" style="margin-right: 10px;"></i>
+    
+                            
+                                <p>
+                                    Pixel
+                                </p>
+                            </a>
+                        </li>
+                                                        <li class="nav-item btnclick">
+                            <a href="https://cards.forebearpro.co.in/user/connect-custom-domains" class="nav-link ">
+                                <i class="fa fa-globe" aria-hidden="true" style="margin-right: 10px;">
+                                    
+                                </i>
+                                <p>
+                                    Connect Custom Domain
+                                </p>
+                            </a>
+                        </li>
+                                                        <li class="nav-item has-treeview   ">
+                            <a class="nav-link nav-dropdown-toggle   " href="#">
+                                <i class="fa-fw nav-icon fas fa-users">
+    
+                                </i>
+                                <p>
+                                    User management
+                                    <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                                                <li class="nav-item btnclick">
+                                        <a href="https://cards.forebearpro.co.in/user/permissions" class="nav-link ">
+                                            <i class="fa-fw nav-icon fas fa-unlock-alt">
+    
+                                            </i>
+                                            <p>
+                                                Permissions
+                                            </p>
+                                        </a>
+                                    </li>
+                                                                                            <li class="nav-item btnclick">
+                                        <a href="https://cards.forebearpro.co.in/user/roles" class="nav-link ">
+                                            <i class="fa-fw nav-icon fas fa-briefcase">
+    
+                                            </i>
+                                            <p>
+                                                Roles
+                                            </p>
+                                        </a>
+                                    </li>
+                                                                                            <li class="nav-item btnclick">
+                                        <a href="https://cards.forebearpro.co.in/user/users" class="nav-link ">
+                                            <i class="fa-fw nav-icon fas fa-user">
+    
+                                            </i>
+                                            <p>
+                                                Users
+                                            </p>
+                                        </a>
+                                    </li>
+                                                        </ul>
+                        </li>
+                                    <!--                                      -->
+                    <!-- <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                            <p>
+                                <i class="fas fa-fw fa-sign-out-alt nav-icon">
+    
+                                </i>
+                                <p>Logout</p>
+                            </p>
+                        </a>
+                    </li> -->
+                </ul>
+            </nav>
+    
+            <div class="app-sidebar-footer dropdown" style="position: absolute; bottom: 0;">
+                <a href="#" class="dropdown-toggle dropdown-toggle-simple" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="d-flex align-items-center app-sidebar-footer">
+                        <img src="https://www.gravatar.com/avatar/ede02f7da02091501d71333b36cd6f88?s=80&d=identicon&r=g" class="app-sidebar-avatar mr-3" loading="lazy" />
+    
+                        <div class="app-sidebar-footer-text d-flex flex-column text-truncate">
+                                                    <span class="text-truncate">Admin</span>
+                            <small class="text-truncate">admin@admin.com</small>
+                        </div>
+                    </div>
+                </a>
+    
+                <div class="dropdown-menu dropdown-menu-right" style="will-change: transform; position: absolute; transform: translate3d(100px, -148px, 0px); top: 0px; left: 0px; background-color: #fff" x-placement="top-end">
+                    <a class="dropdown-item" href="https://cards.forebearpro.co.in/account"><i class="fa fa-fw fa-sm fa-wrench mr-2"></i> Account</a>
+                    <a class="dropdown-item" href="https://cards.forebearpro.co.in/account-plan"><i class="fa fa-fw fa-sm fa-box-open mr-2"></i> Plan</a>
+                    <a class="dropdown-item" href="https://cards.forebearpro.co.in/account-api"><i class="fa fa-fw fa-sm fa-code mr-2"></i> API</a>
+                    <!-- <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"> -->
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"><i class="fa fa-fw fa-sm fa-sign-out-alt mr-2"></i> Logout</a>
+                </div>
+            </div>
+    
+            <!-- <div class="user-panel  d-flex" style="position: absolute; bottom: 0;">
+                <div class="image">
+                    <img src="https://www.gravatar.com/avatar/ede02f7da02091501d71333b36cd6f88?s=80&d=identicon&r=g" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block" id="userLink">Alexander Pierce</a>
+                </div>
+            </div>
+    
+            <div class="overflow-auto flex-grow-1" id="linksSection" style="display: none;">
+                <ul class="app-sidebar-links">
+                    <li class="active">
+                        <a href="https://bluestonecard.com/dashboard"><i class="fa fa-fw fa-sm fa-th mr-2"></i> Acount</a>
+                    </li> 
+                    <li class="active">
+                        <a href="https://bluestonecard.com/dashboard"><i class="fa fa-fw fa-sm fa-th mr-2"></i> Dashboard</a>
+                    </li> 
+                    <li class="active">
+                        <a href="https://bluestonecard.com/dashboard"><i class="fa fa-fw fa-sm fa-th mr-2"></i> Dashboard</a>
+                    </li> 
+                    <li class="active">
+                        <a href="https://bluestonecard.com/dashboard"><i class="fa fa-fw fa-sm fa-th mr-2"></i> Dashboard</a>
+                    </li> 
+                </ul>
+            </div>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="https://bluestonecard.com/account"><i class="fa fa-fw fa-sm fa-wrench mr-2"></i> Account</a>
+    
+                <a class="dropdown-item" href="https://bluestonecard.com/account-plan"><i class="fa fa-fw fa-sm fa-box-open mr-2"></i> Plan</a>
+    
+                        
+                <a class="dropdown-item" href="https://bluestonecard.com/account-api"><i class="fa fa-fw fa-sm fa-code mr-2"></i> API</a>
+                        
+                                        
+                <a class="dropdown-item" href="https://bluestonecard.com/logout"><i class="fa fa-fw fa-sm fa-sign-out-alt mr-2"></i> Logout</a>
+                </div>
+    
+             -->
+            <!-- /.sidebar-menu -->
+        </div>   
+        <!-- /.sidebar -->
+    </aside>
+    
+    <style>
+        .app-sidebar-footer > a {
+            width: 100%;
+            padding: 0.75rem 1.75rem;
+            border-top: 1px solid var(--gray-100);
+            display: flex;
+            align-items: center;
+            color: var(--gray-500);
+            font-size: .9rem;
+            font-weight: 500;
+            transition: background .3s;
+        }
+    
+        .app-sidebar-footer > a:hover {
+            /* text-decoration: none;
+            background: var(--gray-200);
+            color: var(--gray-600); */
+        }
+    
+        .app-sidebar-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+    </style>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const appSidebarFooter = document.querySelector('.app-sidebar-footer');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+        appSidebarFooter.addEventListener('click', function(event) {
+            dropdownMenu.classList.toggle('show');
+            event.stopPropagation();
+        });
+    
+        document.addEventListener('click', function(event) {
+            const isClickInside = appSidebarFooter.contains(event.target);
+            if (!isClickInside) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    });
+    
+    </script>        <div class="content-wrapper" style="min-height: 650px;">
+                <!-- Main content -->
+                <section class="content" style="padding-top: 20px">
+                    <!--                  -->
+                      
+    
+                                                    <div class="app-container">
+                        <section class="app-content"> 
+                            <div class="py-3 p-lg-5">
+                                <main class="altum-animate altum-animate-fill-none altum-animate-fade-in">
+                                    <div class="container">
+                                        <div class="mb-3 d-flex justify-content-between">
+                                            <div>
+                                            <h1 class="h4 mb-0 text-truncate">Dashboard</h1>
+                                            </div>
+                                        </div>
+                                        <div class="my-4">
+                                            <div class="row" style="align-items: center;">
+                                                <div class="col-12 col-sm-6 col-xl mb-4 position-relative text-truncate">
+                                                    <a href="https://cards.forebearpro.co.in/user/vcards">
+                                                        <div class="card d-flex flex-row h-100 overflow-hidden">
+                                                            <div class="border-right border-gray-100 px-3 d-flex flex-column justify-content-center"> 
+                                                                <i class="fa fa-fw fa-id-card text-primary-600"></i>
+                                                            </div>
+                                                            <div class="card-body text-truncate">
+                                                                <span class="h6">5 </span> 
+                                                                vcards
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="col-12 col-sm-6 col-xl mb-4 position-relative text-truncate">
+                                                    <a href="https://cards.forebearpro.co.in/user/create-projects" class="stretched-link">  
+                                                        <div class="card d-flex flex-row h-100 overflow-hidden">
+                                                            <div class="border-right border-gray-100 px-3 d-flex flex-column justify-content-center"> 
+                                                                <i class="fa fa-fw fa-project-diagram text-primary-600"></i>
+                                                            </div>
+                                                            <div class="card-body text-truncate">
+                                                                <span class="h6"> 2</span>
+                                                                projects            
+                                                            </div>
+                                                        </div>
+                                                    </a>  
+                                                </div>
+                                                <div class="col-12 col-sm-6 col-xl mb-4 position-relative text-truncate">
+                                                    <a href="https://cards.forebearpro.co.in/user/pixels" class="stretched-link">
+                                                        <div class="card d-flex flex-row h-100 overflow-hidden">
+                                                            <div class="border-right border-gray-100 px-3 d-flex flex-column justify-content-center">
+                                                                <i class="fa fa-fw fa-adjust text-primary-600"></i>
+                                                            </div>
+                                                            <div class="card-body text-truncate">
+                                                                <span class="h6"> 2 </span> 
+                                                                    pixels    
+                                                            </div>
+                                                        </div>
+                                                    </a> 
+                                                </div>
+                                                <div class="col-12 col-sm-6 col-xl mb-4 position-relative text-truncate">
+                                                    <a href="https://cards.forebearpro.co.in/user/connect-custom-domains" class="stretched-link">
+                                                        <div class="card d-flex flex-row h-100 overflow-hidden">
+                                                            <div class="border-right border-gray-100 px-3 d-flex flex-column justify-content-center">
+                                                                <i class="fa fa-fw fa-globe text-primary-600"></i>
+                                                            </div>
+                                                            <div class="card-body text-truncate">
+                                                                <span class="h6"> 1 </span>
+                                                                    domains      
+                                                            </div>
+                                                        </div>
+                                                    </a>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="my-4">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <h2 class="small font-weight-bold text-uppercase text-muted mb-0 mr-3"><i class="fa fa-fw fa-sm fa-id-card mr-1"></i> Latest vcards</h2>
+    
+                                                <div class="flex-fill">
+                                                    <hr class="border-gray-100" />
+                                                </div>
+    
+                                                <div class="ml-3">
+                                                <a href="https://cards.forebearpro.co.in/user/vcards/create" class="btn btn-sm btn-outline-primary"><i class="fa fa-fw fa-sm fa-plus-circle"></i> Create vcard</a>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                       
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Name
+                                                        </th> 
+                                                        <th></th>
+                                                        <th>Stats</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th>
+                                                            Action
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                        <tr data-entry-id="53" >
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex align-items-center">
+                                                                                                                                                                                                                                                                                                                                                                <img src="https://cards.forebearpro.co.in/storage/app/public/42/65e9783756de4_Screenshot_1.png" alt="Avatar" class="vcard-table-logo rounded-circle mr-3 img-fluid my-1" loading="lazy"  style="width:50px;height:50px;"/></br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="d-flex flex-column">
+                                                                        <div>
+                                                                            <a href="https://cards.forebearpro.co.in/user/vcards/53/edit">Tester 1</a>
+                                                                        </div>
+                                                                        <div class="small">
+                                                                            <i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>
+                                                                            <a target="_blank" href="https://cards.forebearpro.co.in/cards/Test1" data-vcardactive="1" data-leaplink="" id="url_alias_id" onclick="urlAlias(this)" style="color: #4b5563 !important;" target="_blank" rel="referrer">https://cards.forebearpro.co.in/cards/Test1</a> 
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                                                                        <a href="https://cards.forebearpro.co.in/user/vcards/53/edit" class="small text-decoration-none">
+                                                                                                                                        <span class="py-1 px-2 border rounded text-muted small" style="border-color: #85c4ff !important;">
+                                                                            Test254
+                                                                        </span>
+                                                                                                                                </a>
+                                                                                                                    </td>
+                                                            <td>
+                                                                <a href="https://cards.forebearpro.co.in/user/vcard-visit/53" class="btn btn-link text-decoration-none" data-toggle="tooltip" title="" data-original-title="Pageviews">
+                                                                 <i class="fa fa-fw fa-chart-bar mr-1"></i> 24 </a>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Created on 2024-03-07 08:16:59"><i class="fa fa-calendar fa-w-14 fa-fw text-muted"></i></button>
+                                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Updated on 2024-03-11 09:33:25"><i class="fa fa-history fa-w-16 fa-fw text-muted"></i></button>
+                                                            </td>
+                                                            <td></td>
+                                                            <td>
+                                                                <div class="dropdown">
+                                                                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton53" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fa fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton53">
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/cards/Test1"><i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>Views</a>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcard-qrcode/53"><i class="fa fa-qrcode fa-w-14 fa-fw fa-sm text-muted mr-1"></i>QR Code</a>
+                                                                        <a class="dropdown-item" href="#"><i class="fa fa-chart-bar fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Statistics</a><hr>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/block-edit/53"><i class="fa fa-bars fa-w-14 fa-fw fa-sm text-muted mr-1"></i>VCard Blocks</a>
+                                                                        <a class="dropdown-item" href="#"><i class="fa fa-clone fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Duplicate</a>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcards/53/edit"><i class="fa fa-pencil-alt fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Edit</a>
+                                                                            <form action="https://cards.forebearpro.co.in/user/vcards/53" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                                                            <input type="hidden" name="_method" value="DELETE">
+                                                                            <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+                                                                            <a class="dropdown-item" href="#"> <i class="fa fa-trash-alt fa-w-14 fa-fw fa-sm text-muted mr-1"></i>
+                                                                             <!-- <input class="dtl" type="submit" value="Delete"> -->
+                                                                             <button class="dtl" type="submit" value="Delete">Delete </button>
+                                                                            </a>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                                <!--                                                                 <a class="btn btn-xs btn-primary" href="https://cards.forebearpro.co.in/user/vcards/53">
+                                                                        View
+                                                                    </a>
+                                                                
+                                                                                                                                <a class="btn btn-xs btn-info" href="https://cards.forebearpro.co.in/user/vcards/53/edit">
+                                                                        Edit
+                                                                    </a>
+                                                                
+                                                                                                                                <form action="https://cards.forebearpro.co.in/user/vcards/53" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+                                                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                                                    </form>
+                                                                  -->
+                                                            </td> 
+                                                        </tr>
+                                                                                                        <tr data-entry-id="51" >
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex align-items-center">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <img src="https://cards.forebearpro.co.in/storage/app/public/41/65e7172d514d3_Screenshot_3.png" alt="Avatar" class="vcard-table-logo rounded-circle mr-3 img-fluid my-1" loading="lazy"  style="width:50px;height:50px;"/></br>
+                                                                                                                                                                                                                                                                                                                                                            <div class="d-flex flex-column">
+                                                                        <div>
+                                                                            <a href="https://cards.forebearpro.co.in/user/vcards/51/edit">check-it</a>
+                                                                        </div>
+                                                                        <div class="small">
+                                                                            <i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>
+                                                                            <a target="_blank" href="https://cards.forebearpro.co.in/cards/check-top" data-vcardactive="1" data-leaplink="" id="url_alias_id" onclick="urlAlias(this)" style="color: #4b5563 !important;" target="_blank" rel="referrer">https://cards.forebearpro.co.in/cards/check-top</a> 
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                                                                        <a href="https://cards.forebearpro.co.in/user/vcards/51/edit" class="small text-decoration-none">
+                                                                                                                                        <span class="py-1 px-2 border rounded text-muted small" style="border-color: #a04b27 !important;">
+                                                                            abhi
+                                                                        </span>
+                                                                                                                                </a>
+                                                                                                                    </td>
+                                                            <td>
+                                                                <a href="https://cards.forebearpro.co.in/user/vcard-visit/51" class="btn btn-link text-decoration-none" data-toggle="tooltip" title="" data-original-title="Pageviews">
+                                                                 <i class="fa fa-fw fa-chart-bar mr-1"></i> 75 </a>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Created on 2024-03-05 10:55:40"><i class="fa fa-calendar fa-w-14 fa-fw text-muted"></i></button>
+                                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Updated on 2024-03-07 08:15:44"><i class="fa fa-history fa-w-16 fa-fw text-muted"></i></button>
+                                                            </td>
+                                                            <td></td>
+                                                            <td>
+                                                                <div class="dropdown">
+                                                                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton51" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fa fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton51">
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/cards/check-top"><i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>Views</a>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcard-qrcode/51"><i class="fa fa-qrcode fa-w-14 fa-fw fa-sm text-muted mr-1"></i>QR Code</a>
+                                                                        <a class="dropdown-item" href="#"><i class="fa fa-chart-bar fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Statistics</a><hr>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/block-edit/51"><i class="fa fa-bars fa-w-14 fa-fw fa-sm text-muted mr-1"></i>VCard Blocks</a>
+                                                                        <a class="dropdown-item" href="#"><i class="fa fa-clone fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Duplicate</a>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcards/51/edit"><i class="fa fa-pencil-alt fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Edit</a>
+                                                                            <form action="https://cards.forebearpro.co.in/user/vcards/51" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                                                            <input type="hidden" name="_method" value="DELETE">
+                                                                            <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+                                                                            <a class="dropdown-item" href="#"> <i class="fa fa-trash-alt fa-w-14 fa-fw fa-sm text-muted mr-1"></i>
+                                                                             <!-- <input class="dtl" type="submit" value="Delete"> -->
+                                                                             <button class="dtl" type="submit" value="Delete">Delete </button>
+                                                                            </a>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                                <!--                                                                 <a class="btn btn-xs btn-primary" href="https://cards.forebearpro.co.in/user/vcards/51">
+                                                                        View
+                                                                    </a>
+                                                                
+                                                                                                                                <a class="btn btn-xs btn-info" href="https://cards.forebearpro.co.in/user/vcards/51/edit">
+                                                                        Edit
+                                                                    </a>
+                                                                
+                                                                                                                                <form action="https://cards.forebearpro.co.in/user/vcards/51" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+                                                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                                                    </form>
+                                                                  -->
+                                                            </td> 
+                                                        </tr>
+                                                                                                        <tr data-entry-id="50" >
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex align-items-center">
+                                                                                                                                                                                                                                                                                                                                                                <img src="https://cards.forebearpro.co.in/storage/app/public/34/65e6f02d8bb33_download2.jpg" alt="Avatar" class="vcard-table-logo rounded-circle mr-3 img-fluid my-1" loading="lazy"  style="width:50px;height:50px;"/></br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="d-flex flex-column">
+                                                                        <div>
+                                                                            <a href="https://cards.forebearpro.co.in/user/vcards/50/edit">Testing</a>
+                                                                        </div>
+                                                                        <div class="small">
+                                                                            <i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>
+                                                                            <a target="_blank" href="https://cards.forebearpro.co.in/cards/Testing" data-vcardactive="1" data-leaplink="" id="url_alias_id" onclick="urlAlias(this)" style="color: #4b5563 !important;" target="_blank" rel="referrer">https://cards.forebearpro.co.in/cards/Testing</a> 
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                                                                    </td>
+                                                            <td>
+                                                                <a href="https://cards.forebearpro.co.in/user/vcard-visit/50" class="btn btn-link text-decoration-none" data-toggle="tooltip" title="" data-original-title="Pageviews">
+                                                                 <i class="fa fa-fw fa-chart-bar mr-1"></i> 18 </a>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Created on 2024-03-05 10:04:43"><i class="fa fa-calendar fa-w-14 fa-fw text-muted"></i></button>
+                                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Updated on 2024-03-08 05:21:27"><i class="fa fa-history fa-w-16 fa-fw text-muted"></i></button>
+                                                            </td>
+                                                            <td></td>
+                                                            <td>
+                                                                <div class="dropdown">
+                                                                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton50" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fa fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton50">
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/cards/Testing"><i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>Views</a>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcard-qrcode/50"><i class="fa fa-qrcode fa-w-14 fa-fw fa-sm text-muted mr-1"></i>QR Code</a>
+                                                                        <a class="dropdown-item" href="#"><i class="fa fa-chart-bar fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Statistics</a><hr>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/block-edit/50"><i class="fa fa-bars fa-w-14 fa-fw fa-sm text-muted mr-1"></i>VCard Blocks</a>
+                                                                        <a class="dropdown-item" href="#"><i class="fa fa-clone fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Duplicate</a>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcards/50/edit"><i class="fa fa-pencil-alt fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Edit</a>
+                                                                            <form action="https://cards.forebearpro.co.in/user/vcards/50" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                                                            <input type="hidden" name="_method" value="DELETE">
+                                                                            <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+                                                                            <a class="dropdown-item" href="#"> <i class="fa fa-trash-alt fa-w-14 fa-fw fa-sm text-muted mr-1"></i>
+                                                                             <!-- <input class="dtl" type="submit" value="Delete"> -->
+                                                                             <button class="dtl" type="submit" value="Delete">Delete </button>
+                                                                            </a>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                                <!--                                                                 <a class="btn btn-xs btn-primary" href="https://cards.forebearpro.co.in/user/vcards/50">
+                                                                        View
+                                                                    </a>
+                                                                
+                                                                                                                                <a class="btn btn-xs btn-info" href="https://cards.forebearpro.co.in/user/vcards/50/edit">
+                                                                        Edit
+                                                                    </a>
+                                                                
+                                                                                                                                <form action="https://cards.forebearpro.co.in/user/vcards/50" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+                                                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                                                    </form>
+                                                                  -->
+                                                            </td> 
+                                                        </tr>
+                                                                                                        <tr data-entry-id="10" >
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex align-items-center">
+                                                                                                                                                                                                                                                                                                                                                <div class="d-flex flex-column">
+                                                                        <div>
+                                                                            <a href="https://cards.forebearpro.co.in/user/vcards/10/edit">testingtest</a>
+                                                                        </div>
+                                                                        <div class="small">
+                                                                            <i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>
+                                                                            <a target="_blank" href="https://cards.forebearpro.co.in/cards/testingtest" data-vcardactive="1" data-leaplink="" id="url_alias_id" onclick="urlAlias(this)" style="color: #4b5563 !important;" target="_blank" rel="referrer">https://cards.forebearpro.co.in/cards/testingtest</a> 
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                                                                    </td>
+                                                            <td>
+                                                                <a href="https://cards.forebearpro.co.in/user/vcard-visit/10" class="btn btn-link text-decoration-none" data-toggle="tooltip" title="" data-original-title="Pageviews">
+                                                                 <i class="fa fa-fw fa-chart-bar mr-1"></i> 0 </a>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Created on 2024-02-21 07:34:07"><i class="fa fa-calendar fa-w-14 fa-fw text-muted"></i></button>
+                                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Updated on 2024-02-21 07:34:07"><i class="fa fa-history fa-w-16 fa-fw text-muted"></i></button>
+                                                            </td>
+                                                            <td></td>
+                                                            <td>
+                                                                <div class="dropdown">
+                                                                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fa fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton10">
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/cards/testingtest"><i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>Views</a>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcard-qrcode/10"><i class="fa fa-qrcode fa-w-14 fa-fw fa-sm text-muted mr-1"></i>QR Code</a>
+                                                                        <a class="dropdown-item" href="#"><i class="fa fa-chart-bar fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Statistics</a><hr>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/block-edit/10"><i class="fa fa-bars fa-w-14 fa-fw fa-sm text-muted mr-1"></i>VCard Blocks</a>
+                                                                        <a class="dropdown-item" href="#"><i class="fa fa-clone fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Duplicate</a>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcards/10/edit"><i class="fa fa-pencil-alt fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Edit</a>
+                                                                            <form action="https://cards.forebearpro.co.in/user/vcards/10" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                                                            <input type="hidden" name="_method" value="DELETE">
+                                                                            <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+                                                                            <a class="dropdown-item" href="#"> <i class="fa fa-trash-alt fa-w-14 fa-fw fa-sm text-muted mr-1"></i>
+                                                                             <!-- <input class="dtl" type="submit" value="Delete"> -->
+                                                                             <button class="dtl" type="submit" value="Delete">Delete </button>
+                                                                            </a>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                                <!--                                                                 <a class="btn btn-xs btn-primary" href="https://cards.forebearpro.co.in/user/vcards/10">
+                                                                        View
+                                                                    </a>
+                                                                
+                                                                                                                                <a class="btn btn-xs btn-info" href="https://cards.forebearpro.co.in/user/vcards/10/edit">
+                                                                        Edit
+                                                                    </a>
+                                                                
+                                                                                                                                <form action="https://cards.forebearpro.co.in/user/vcards/10" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+                                                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                                                    </form>
+                                                                  -->
+                                                            </td> 
+                                                        </tr>
+                                                                                                        <tr data-entry-id="7" >
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex align-items-center">
+                                                                                                                                                                                                                                                                                                                                                                <img src="https://cards.forebearpro.co.in/storage/app/public/16/65cf1a67d328d_77878107.jpg" alt="Avatar" class="vcard-table-logo rounded-circle mr-3 img-fluid my-1" loading="lazy"  style="width:50px;height:50px;"/></br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="d-flex flex-column">
+                                                                        <div>
+                                                                            <a href="https://cards.forebearpro.co.in/user/vcards/7/edit">Tester 6</a>
+                                                                        </div>
+                                                                        <div class="small">
+                                                                            <i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>
+                                                                            <a target="_blank" href="https://cards.forebearpro.co.in/cards/testerhifi" data-vcardactive="1" data-leaplink="" id="url_alias_id" onclick="urlAlias(this)" style="color: #4b5563 !important;" target="_blank" rel="referrer">https://cards.forebearpro.co.in/cards/testerhifi</a> 
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                                                                    </td>
+                                                            <td>
+                                                                <a href="https://cards.forebearpro.co.in/user/vcard-visit/7" class="btn btn-link text-decoration-none" data-toggle="tooltip" title="" data-original-title="Pageviews">
+                                                                 <i class="fa fa-fw fa-chart-bar mr-1"></i> 0 </a>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Created on 2024-02-16 08:14:40"><i class="fa fa-calendar fa-w-14 fa-fw text-muted"></i></button>
+                                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Updated on 2024-02-16 08:19:25"><i class="fa fa-history fa-w-16 fa-fw text-muted"></i></button>
+                                                            </td>
+                                                            <td></td>
+                                                            <td>
+                                                                <div class="dropdown">
+                                                                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fa fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton7">
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/cards/testerhifi"><i class="fa fa-fw fa-sm fa-external-link-alt text-muted mr-1"></i>Views</a>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcard-qrcode/7"><i class="fa fa-qrcode fa-w-14 fa-fw fa-sm text-muted mr-1"></i>QR Code</a>
+                                                                        <a class="dropdown-item" href="#"><i class="fa fa-chart-bar fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Statistics</a><hr>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/block-edit/7"><i class="fa fa-bars fa-w-14 fa-fw fa-sm text-muted mr-1"></i>VCard Blocks</a>
+                                                                        <a class="dropdown-item" href="#"><i class="fa fa-clone fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Duplicate</a>
+                                                                        <a class="dropdown-item" href="https://cards.forebearpro.co.in/user/vcards/7/edit"><i class="fa fa-pencil-alt fa-w-16 fa-fw fa-sm text-muted mr-1"></i>Edit</a>
+                                                                            <form action="https://cards.forebearpro.co.in/user/vcards/7" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                                                            <input type="hidden" name="_method" value="DELETE">
+                                                                            <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+                                                                            <a class="dropdown-item" href="#"> <i class="fa fa-trash-alt fa-w-14 fa-fw fa-sm text-muted mr-1"></i>
+                                                                             <!-- <input class="dtl" type="submit" value="Delete"> -->
+                                                                             <button class="dtl" type="submit" value="Delete">Delete </button>
+                                                                            </a>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                                <!--                                                                 <a class="btn btn-xs btn-primary" href="https://cards.forebearpro.co.in/user/vcards/7">
+                                                                        View
+                                                                    </a>
+                                                                
+                                                                                                                                <a class="btn btn-xs btn-info" href="https://cards.forebearpro.co.in/user/vcards/7/edit">
+                                                                        Edit
+                                                                    </a>
+                                                                
+                                                                                                                                <form action="https://cards.forebearpro.co.in/user/vcards/7" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline-block;">
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG">
+                                                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                                                    </form>
+                                                                  -->
+                                                            </td> 
+                                                        </tr>
+                                                                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </main>
+                            </div>
+                        </section>
+                    </div>
+                <!-- </div>
+            </div>
+        </div> -->
+                    
+                  </section>
+                <!-- /.content -->
+            </div>
+    
+            <!-- <footer class="main-footer">
+                <div class="float-right d-none d-sm-block">
+                    <b>Version</b> 3.0.0-alpha
+                </div>
+                <strong> &copy;</strong> All rights reserved.
+            </footer> -->
+            <form id="logoutform" action="https://cards.forebearpro.co.in/logout" method="POST" style="display: none;">
+                <input type="hidden" name="_token" value="wK4eliYtVINzXYksyd5Q3ESk3snpSgDsmGRLyqlG" autocomplete="off">
+            </form>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+        <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
+        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+        <script src="https://cards.forebearpro.co.in/public/assets/js/main.js"></script>
+    
+        <!-- CDN Links for Popper.js and Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+        <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/jquery.slim.min.js"></script>
+        <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/popper.min.js"></script>
+        <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(".btnclick").click(function(){
+                    $(this).removeClass("active");
+                    // Remove active class from all buttons
+                    $(".btnclick").removeClass("active");
+                    // Add active class to the clicked button
+                    $(this).addClass("active");
+                });
+            });
+        </script>
+      <script>
+        $(document).ready(function(){
+            // Remove success alert after 20 seconds
+            setTimeout(function(){
+                $('#success-alert').fadeOut('slow');
+            }, 2000); // 20 seconds
+    
+            // Remove error alert after 20 seconds
+            setTimeout(function(){
+                $('#error-alert').fadeOut('slow');
+            }, 2000); // 20 seconds
+        });
+      </script>
+        <script>
+            $(function() {
+      let copyButtonTrans = 'Copy'
+      let csvButtonTrans = 'CSV'
+      let excelButtonTrans = 'Excel'
+      let pdfButtonTrans = 'PDF'
+      let printButtonTrans = 'Print'
+      let colvisButtonTrans = 'Columns'
+      let selectAllButtonTrans = 'Select all'
+      let selectNoneButtonTrans = 'Deselect all'
+    
+      let languages = {
+        'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
+      };
+    
+      $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, { className: 'btn' })
+      $.extend(true, $.fn.dataTable.defaults, {
+        language: {
+          url: languages['en']
+        },
+        columnDefs: [{
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0
+        }, {
+            orderable: false,
+            searchable: false,
+            targets: -1
+        }],
+        select: {
+          style:    'multi+shift',
+          selector: 'td:first-child'
+        },
+        order: [],
+        scrollX: true,
+        pageLength: 100,
+        dom: 'lBfrtip<"actions">',
+        buttons: [
+          {
+            extend: 'selectAll',
+            className: 'btn-primary',
+            text: selectAllButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            },
+            action: function(e, dt) {
+              e.preventDefault()
+              dt.rows().deselect();
+              dt.rows({ search: 'applied' }).select();
+            }
+          },
+          {
+            extend: 'selectNone',
+            className: 'btn-primary',
+            text: selectNoneButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          },
+          {
+            extend: 'copy',
+            className: 'btn-default',
+            text: copyButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          },
+          {
+            extend: 'csv',
+            className: 'btn-default',
+            text: csvButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          },
+          {
+            extend: 'excel',
+            className: 'btn-default',
+            text: excelButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          },
+          {
+            extend: 'pdf',
+            className: 'btn-default',
+            text: pdfButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          },
+          {
+            extend: 'print',
+            className: 'btn-default',
+            text: printButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          },
+          {
+            extend: 'colvis',
+            className: 'btn-default',
+            text: colvisButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          }
+        ]
+      });
+    
+      $.fn.dataTable.ext.classes.sPageButton = '';
+    });
+    
+        </script>
+        <script>
+            /*!
+         * AdminLTE v3.0.0-alpha.2 (https://adminlte.io)
+         * Copyright 2014-2018 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
+         * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
+         */
+        !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(exports):"function"==typeof define&&define.amd?define(["exports"],t):t(e.adminlte={})}(this,function(e){"use strict";var i,t,o,n,r,a,s,c,f,l,u,d,h,p,_,g,y,m,v,C,D,E,A,O,w,b,L,S,j,T,I,Q,R,P,x,B,M,k,H,N,Y,U,V,G,W,X,z,F,q,J,K,Z,$,ee,te,ne="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},ie=function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")},oe=(i=jQuery,t="ControlSidebar",o="lte.control.sidebar",n=i.fn[t],r=".control-sidebar",a='[data-widget="control-sidebar"]',s=".main-header",c="control-sidebar-open",f="control-sidebar-slide-open",l={slide:!0},u=function(){function n(e,t){ie(this,n),this._element=e,this._config=this._getConfig(t)}return n.prototype.show=function(){this._config.slide?i("body").removeClass(f):i("body").removeClass(c)},n.prototype.collapse=function(){this._config.slide?i("body").addClass(f):i("body").addClass(c)},n.prototype.toggle=function(){this._setMargin(),i("body").hasClass(c)||i("body").hasClass(f)?this.show():this.collapse()},n.prototype._getConfig=function(e){return i.extend({},l,e)},n.prototype._setMargin=function(){i(r).css({top:i(s).outerHeight()})},n._jQueryInterface=function(t){return this.each(function(){var e=i(this).data(o);if(e||(e=new n(this,i(this).data()),i(this).data(o,e)),"undefined"===e[t])throw new Error(t+" is not a function");e[t]()})},n}(),i(document).on("click",a,function(e){e.preventDefault(),u._jQueryInterface.call(i(this),"toggle")}),i.fn[t]=u._jQueryInterface,i.fn[t].Constructor=u,i.fn[t].noConflict=function(){return i.fn[t]=n,u._jQueryInterface},u),re=(d=jQuery,h="Layout",p="lte.layout",_=d.fn[h],g=".main-sidebar",y=".main-header",m=".content-wrapper",v=".main-footer",C="hold-transition",D=function(){function n(e){ie(this,n),this._element=e,this._init()}return n.prototype.fixLayoutHeight=function(){var e={window:d(window).height(),header:d(y).outerHeight(),footer:d(v).outerHeight(),sidebar:d(g).height()},t=this._max(e);d(m).css("min-height",e.window-e.header-e.footer),d(g).css("min-height",e.window-e.header)},n.prototype._init=function(){var e=this;d("body").removeClass(C),this.fixLayoutHeight(),d(g).on("collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu",function(){e.fixLayoutHeight()}),d(window).resize(function(){e.fixLayoutHeight()}),d("body, html").css("height","auto")},n.prototype._max=function(t){var n=0;return Object.keys(t).forEach(function(e){t[e]>n&&(n=t[e])}),n},n._jQueryInterface=function(t){return this.each(function(){var e=d(this).data(p);e||(e=new n(this),d(this).data(p,e)),t&&e[t]()})},n}(),d(window).on("load",function(){D._jQueryInterface.call(d("body"))}),d.fn[h]=D._jQueryInterface,d.fn[h].Constructor=D,d.fn[h].noConflict=function(){return d.fn[h]=_,D._jQueryInterface},D),ae=(E=jQuery,A="PushMenu",w="."+(O="lte.pushmenu"),b=E.fn[A],L={COLLAPSED:"collapsed"+w,SHOWN:"shown"+w},S={screenCollapseSize:768},j={TOGGLE_BUTTON:'[data-widget="pushmenu"]',SIDEBAR_MINI:".sidebar-mini",SIDEBAR_COLLAPSED:".sidebar-collapse",BODY:"body",OVERLAY:"#sidebar-overlay",WRAPPER:".wrapper"},T="sidebar-collapse",I="sidebar-open",Q=function(){function n(e,t){ie(this,n),this._element=e,this._options=E.extend({},S,t),E(j.OVERLAY).length||this._addOverlay()}return n.prototype.show=function(){E(j.BODY).addClass(I).removeClass(T);var e=E.Event(L.SHOWN);E(this._element).trigger(e)},n.prototype.collapse=function(){E(j.BODY).removeClass(I).addClass(T);var e=E.Event(L.COLLAPSED);E(this._element).trigger(e)},n.prototype.toggle=function(){(E(window).width()>=this._options.screenCollapseSize?!E(j.BODY).hasClass(T):E(j.BODY).hasClass(I))?this.collapse():this.show()},n.prototype._addOverlay=function(){var e=this,t=E("<div />",{id:"sidebar-overlay"});t.on("click",function(){e.collapse()}),E(j.WRAPPER).append(t)},n._jQueryInterface=function(t){return this.each(function(){var e=E(this).data(O);e||(e=new n(this),E(this).data(O,e)),t&&e[t]()})},n}(),E(document).on("click",j.TOGGLE_BUTTON,function(e){e.preventDefault();var t=e.currentTarget;"pushmenu"!==E(t).data("widget")&&(t=E(t).closest(j.TOGGLE_BUTTON)),Q._jQueryInterface.call(E(t),"toggle")}),E.fn[A]=Q._jQueryInterface,E.fn[A].Constructor=Q,E.fn[A].noConflict=function(){return E.fn[A]=b,Q._jQueryInterface},Q),se=(R=jQuery,P="Treeview",B="."+(x="lte.treeview"),M=R.fn[P],k={SELECTED:"selected"+B,EXPANDED:"expanded"+B,COLLAPSED:"collapsed"+B,LOAD_DATA_API:"load"+B},H=".nav-item",N=".nav-treeview",Y=".menu-open",V="menu-open",G={trigger:(U='[data-widget="treeview"]')+" "+".nav-link",animationSpeed:300,accordion:!0},W=function(){function i(e,t){ie(this,i),this._config=t,this._element=e}return i.prototype.init=function(){this._setupListeners()},i.prototype.expand=function(e,t){var n=this,i=R.Event(k.EXPANDED);if(this._config.accordion){var o=t.siblings(Y).first(),r=o.find(N).first();this.collapse(r,o)}e.slideDown(this._config.animationSpeed,function(){t.addClass(V),R(n._element).trigger(i)})},i.prototype.collapse=function(e,t){var n=this,i=R.Event(k.COLLAPSED);e.slideUp(this._config.animationSpeed,function(){t.removeClass(V),R(n._element).trigger(i),e.find(Y+" > "+N).slideUp(),e.find(Y).removeClass(V)})},i.prototype.toggle=function(e){var t=R(e.currentTarget),n=t.next();if(n.is(N)){e.preventDefault();var i=t.parents(H).first();i.hasClass(V)?this.collapse(R(n),i):this.expand(R(n),i)}},i.prototype._setupListeners=function(){var t=this;R(document).on("click",this._config.trigger,function(e){t.toggle(e)})},i._jQueryInterface=function(n){return this.each(function(){var e=R(this).data(x),t=R.extend({},G,R(this).data());e||(e=new i(R(this),t),R(this).data(x,e)),"init"===n&&e[n]()})},i}(),R(window).on(k.LOAD_DATA_API,function(){R(U).each(function(){W._jQueryInterface.call(R(this),"init")})}),R.fn[P]=W._jQueryInterface,R.fn[P].Constructor=W,R.fn[P].noConflict=function(){return R.fn[P]=M,W._jQueryInterface},W),ce=(X=jQuery,z="Widget",q="."+(F="lte.widget"),J=X.fn[z],K={EXPANDED:"expanded"+q,COLLAPSED:"collapsed"+q,REMOVED:"removed"+q},$="collapsed-card",ee={animationSpeed:"normal",collapseTrigger:(Z={DATA_REMOVE:'[data-widget="remove"]',DATA_COLLAPSE:'[data-widget="collapse"]',CARD:".card",CARD_HEADER:".card-header",CARD_BODY:".card-body",CARD_FOOTER:".card-footer",COLLAPSED:".collapsed-card"}).DATA_COLLAPSE,removeTrigger:Z.DATA_REMOVE},te=function(){function n(e,t){ie(this,n),this._element=e,this._parent=e.parents(Z.CARD).first(),this._settings=X.extend({},ee,t)}return n.prototype.collapse=function(){var e=this;this._parent.children(Z.CARD_BODY+", "+Z.CARD_FOOTER).slideUp(this._settings.animationSpeed,function(){e._parent.addClass($)});var t=X.Event(K.COLLAPSED);this._element.trigger(t,this._parent)},n.prototype.expand=function(){var e=this;this._parent.children(Z.CARD_BODY+", "+Z.CARD_FOOTER).slideDown(this._settings.animationSpeed,function(){e._parent.removeClass($)});var t=X.Event(K.EXPANDED);this._element.trigger(t,this._parent)},n.prototype.remove=function(){this._parent.slideUp();var e=X.Event(K.REMOVED);this._element.trigger(e,this._parent)},n.prototype.toggle=function(){this._parent.hasClass($)?this.expand():this.collapse()},n.prototype._init=function(e){var t=this;this._parent=e,X(this).find(this._settings.collapseTrigger).click(function(){t.toggle()}),X(this).find(this._settings.removeTrigger).click(function(){t.remove()})},n._jQueryInterface=function(t){return this.each(function(){var e=X(this).data(F);e||(e=new n(X(this),e),X(this).data(F,"string"==typeof t?e:t)),"string"==typeof t&&t.match(/remove|toggle/)?e[t]():"object"===("undefined"==typeof t?"undefined":ne(t))&&e._init(X(this))})},n}(),X(document).on("click",Z.DATA_COLLAPSE,function(e){e&&e.preventDefault(),te._jQueryInterface.call(X(this),"toggle")}),X(document).on("click",Z.DATA_REMOVE,function(e){e&&e.preventDefault(),te._jQueryInterface.call(X(this),"remove")}),X.fn[z]=te._jQueryInterface,X.fn[z].Constructor=te,X.fn[z].noConflict=function(){return X.fn[z]=J,te._jQueryInterface},te);e.ControlSidebar=oe,e.Layout=re,e.PushMenu=ae,e.Treeview=se,e.Widget=ce,Object.defineProperty(e,"__esModule",{value:!0})});
+        //# sourceMappingURL=adminlte.min.js.map
+    
+        </script>
+        <script>
+         function urlAlias(element) {
+            var vcardActive = element.getAttribute('data-vcardactive');
+            var leaplink = element.getAttribute('data-leaplink');
+            if (vcardActive == 0) {
+                var newURL = "https://cards.forebearpro.co.in/user";
+                window.location.href = newURL;
+            }else {
+                if(leaplink != ""){
+                window.location.href = leaplink;
+                }
+            }
+        }
+    </script>
+    </body>
+    
+    </html>
