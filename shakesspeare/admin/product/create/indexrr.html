@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">
+    <title>BecomeShakespeare</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/superuser/img/favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="https://cards.forebearpro.co.in/public/assets/css/adminltev3.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    <link href="https://cards.forebearpro.co.in/public/assets/css/custom.css" rel="stylesheet" />
+    <style>
+        .app-sidebar-footer>a {
+          width: 100%;
+          padding: 0.75rem 1.75rem;
+          border-top: 1px solid var(--gray-100);
+          display: flex;
+          align-items: center;
+          color: var(--gray-500);
+          font-size: .9rem;
+          font-weight: 500;
+          transition: background .3s;
+        }
+    
+        .app-sidebar-avatar {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+        }
+      </style>
+  </head>
+  <body class="sidebar-mini layout-fixed" style="height: auto;">
+    <div class="wrapper">
+      <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#">
+              <i class="fa fa-bars"></i>
+            </a>
+          </li>
+        </ul>
+        <!-- Right navbar links -->
+      </nav>
+      <aside class="main-sidebar sidebar-primary elevation-4" style="min-height: 917px; overflow-y: clip;">
+        <!-- Brand Logo -->
+        <a href="#" class="brand-link" style="background-color: #fff;">
+          <span class="brand-text font-weight-light">
+            <image src="https://becomeshakespeare.com/webroot/uploads/Become-Shakespeare-Final-Logo.png" height="60px" width="200px">
+          </span>
+        </a>
+        <!-- Brand Logo -->
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar user (optional) -->
+          <!-- Sidebar Menu -->
+          <nav class="mt-2" style="position: relative;">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <li class="nav-item active btnclick">
+                <a class="nav-link active" href="../../dashboard/index.html">
+                  <i class="fa fa-fw fa-sm fa-th mr-2" style="margin-right: 10px;"></i>
+                  <p> Dashboard </p>
+                </a>
+              </li>
+              <li class="nav-item btnclick">
+                <a href="../../product/list/index.html" class="nav-link ">
+                  <i class="fa fa-address-card" aria-hidden="true" style="margin-right: 10px;"></i>
+                  <p> Products </p>
+                </a>
+              </li>
+              <li class="nav-item has-treeview">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                  <i class="fa-fw nav-icon fas fa-users"></i>
+                  <p> User management <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item btnclick">
+                    <a href="javascript:void(0)" class="nav-link ">
+                      <i class="fa-fw nav-icon fas fa-user"></i>
+                      <p> Users </p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const appSidebarFooter = document.querySelector('.app-sidebar-footer');
+          const dropdownMenu = document.querySelector('.dropdown-menu');
+          appSidebarFooter.addEventListener('click', function(event) {
+            dropdownMenu.classList.toggle('show');
+            event.stopPropagation();
+          });
+          document.addEventListener('click', function(event) {
+            const isClickInside = appSidebarFooter.contains(event.target);
+            if (!isClickInside) {
+              dropdownMenu.classList.remove('show');
+            }
+          });
+        });
+      </script>
+      <div class="content-wrapper" style="min-height: 650px;">
+        <!-- Main content -->
+        <section class="content" style="padding-top: 20px">
+          <!--                  -->
+          <div class="card">
+            <div class="card-header"> Create User </div>
+            <div class="card-body">
+              <form method="POST" action="" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ" autocomplete="off">
+                <div class="form-group">
+                  <label class="required" for="name">Name</label>
+                  <input class="form-control " type="text" name="name" id="name" value="" required>
+                  <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+                  <label class="required" for="email">Email</label>
+                  <input class="form-control " type="email" name="email" id="email" value="" required>
+                  <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+                  <label class="required" for="password">Password</label>
+                  <input class="form-control " type="password" name="password" id="password" required>
+                  <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+                  <label class="required" for="roles">Roles</label>
+                  <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">Deselect all</span>
+                  </div>
+                  <select class="form-control select2 " name="roles[]" id="roles" multiple required>
+                    <option value="1">Admin</option>
+                    <option value="2">User</option>
+                    <option value="3">PaidUser</option>
+                    <option value="4">FreeUser</option>
+                  </select>
+                  <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-danger" type="submit"> Save </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+        <!-- /.content -->
+      </div>
+      <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+          <b>Version</b> 3.0.0-alpha
+        </div>
+        <strong> &copy;</strong> All rights reserved.
+      </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/main.js"></script>
+    <!-- CDN Links for Popper.js and Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/jquery.slim.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/popper.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $(".btnclick").click(function() {
+          $(this).removeClass("active");
+          // Remove active class from all buttons
+          $(".btnclick").removeClass("active");
+          // Add active class to the clicked button
+          $(this).addClass("active");
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+        // Remove success alert after 20 seconds
+        setTimeout(function() {
+          $('#success-alert').fadeOut('slow');
+        }, 2000); // 20 seconds
+        // Remove error alert after 20 seconds
+        setTimeout(function() {
+          $('#error-alert').fadeOut('slow');
+        }, 2000); // 20 seconds
+      });
+    </script>
+    <script>
+      $(function() {
+        let copyButtonTrans = 'Copy'
+        let csvButtonTrans = 'CSV'
+        let excelButtonTrans = 'Excel'
+        let pdfButtonTrans = 'PDF'
+        let printButtonTrans = 'Print'
+        let colvisButtonTrans = 'Columns'
+        let selectAllButtonTrans = 'Select all'
+        let selectNoneButtonTrans = 'Deselect all'
+        let languages = {
+          'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
+        };
+        $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, {
+          className: 'btn'
+        })
+        $.extend(true, $.fn.dataTable.defaults, {
+          language: {
+            url: languages['en']
+          },
+          columnDefs: [{
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0
+          }, {
+            orderable: false,
+            searchable: false,
+            targets: -1
+          }],
+          select: {
+            style: 'multi+shift',
+            selector: 'td:first-child'
+          },
+          order: [],
+          scrollX: true,
+          pageLength: 100,
+          dom: 'lBfrtip<"actions">',
+          buttons: [{
+            extend: 'selectAll',
+            className: 'btn-primary',
+            text: selectAllButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            },
+            action: function(e, dt) {
+              e.preventDefault()
+              dt.rows().deselect();
+              dt.rows({
+                search: 'applied'
+              }).select();
+            }
+          }, {
+            extend: 'selectNone',
+            className: 'btn-primary',
+            text: selectNoneButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          }, {
+            extend: 'copy',
+            className: 'btn-default',
+            text: copyButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          }, {
+            extend: 'csv',
+            className: 'btn-default',
+            text: csvButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          }, {
+            extend: 'excel',
+            className: 'btn-default',
+            text: excelButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          }, {
+            extend: 'pdf',
+            className: 'btn-default',
+            text: pdfButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          }, {
+            extend: 'print',
+            className: 'btn-default',
+            text: printButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          }, {
+            extend: 'colvis',
+            className: 'btn-default',
+            text: colvisButtonTrans,
+            exportOptions: {
+              columns: ':visible'
+            }
+          }]
+        });
+        $.fn.dataTable.ext.classes.sPageButton = '';
+      });
+    </script>
+   
+  </body>
+</html>

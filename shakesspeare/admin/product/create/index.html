@@ -1,514 +1,709 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">
-    <title>BecomeShakespeare</title>
-    <link rel="shortcut icon" href="http://cdn.sstatic.net/superuser/img/favicon.ico">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="https://cards.forebearpro.co.in/public/assets/css/adminltev3.css" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
-    <link href="https://cards.forebearpro.co.in/public/assets/css/custom.css" rel="stylesheet" />
-    <style>
-      .app-sidebar-footer>a {
-        width: 100%;
-        padding: 0.75rem 1.75rem;
-        border-top: 1px solid var(--gray-100);
-        display: flex;
-        align-items: center;
-        color: var(--gray-500);
-        font-size: .9rem;
-        font-weight: 500;
-        transition: background .3s;
-      }
-  
-      .app-sidebar-avatar {
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-      }
-  
-      .select-wrapper {
-      position: relative;
-  }
-  
-  .select-wrapper select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      padding-right: 30px;
-  }
-  
-  .select-wrapper i {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      color: #888;
-  }
-  #loader {
-      position: fixed;
-      top: 0;
-      left: 0;
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="csrf-token" content="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">
+  <title>BecomeShakespeare</title>
+  <link rel="shortcut icon" href="http://cdn.sstatic.net/superuser/img/favicon.ico">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+    rel="stylesheet" />
+  <link href="https://cards.forebearpro.co.in/public/assets/css/adminltev3.css" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+  <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+  <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
+  <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+  <link href="https://cards.forebearpro.co.in/public/assets/css/custom.css" rel="stylesheet" />
+  <style>
+    .app-sidebar-footer>a {
       width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+      padding: 0.75rem 1.75rem;
+      border-top: 1px solid var(--gray-100);
       display: flex;
-      justify-content: center;
       align-items: center;
-      z-index: 9999; /* Ensure it appears above other elements */
-      border-color: #888;
-  }
-  
-  .spinner-border {
-      width: 3rem; /* Adjust size as needed */
-      height: 3rem; /* Adjust size as needed */
-  }
-  
-  
-    </style>
-    <style>
-      /* Internal CSS for setting height and width of the image */
-      #product-image {
-        width: 200px;
-        /* Set width to 200px */
-        height: auto;
-        /* Automatically adjust height to maintain aspect ratio */
-      }
-    </style>
-  </head>
-  <body class="sidebar-mini layout-fixed" style="height: auto;">
-    <div class="wrapper">
-      <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#">
-              <i class="fa fa-bars"></i>
-            </a>
-          </li>
-        </ul>
-        <!-- Right navbar links -->
-      </nav>
-      <aside class="main-sidebar sidebar-primary elevation-4" style="min-height: 917px; overflow-y: clip;">
-        <!-- Brand Logo -->
-        <a href="#" class="brand-link" style="background-color: #fff;">
-          <span class="brand-text font-weight-light">
-            <image src="https://becomeshakespeare.com/webroot/uploads/Become-Shakespeare-Final-Logo.png" height="60px" width="200px">
-          </span>
-        </a>
-        <!-- Brand Logo -->
-        <!-- Sidebar -->
-        <div class="sidebar">
-          <!-- Sidebar user (optional) -->
-          <!-- Sidebar Menu -->
-          <nav class="mt-2" style="position: relative;">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-              <li class="nav-item active btnclick">
-                <a class="nav-link active" href="../../dashboard/index.html">
-                  <i class="fa fa-fw fa-sm fa-th mr-2" style="margin-right: 10px;"></i>
-                  <p> Dashboard </p>
-                </a>
-              </li>
-              <li class="nav-item btnclick">
-                <a href="../../product/list/index.html" class="nav-link ">
-                  <i class="fa fa-address-card" aria-hidden="true" style="margin-right: 10px;"></i>
-                  <p> Products </p>
-                </a>
-              </li>
-              <li class="nav-item has-treeview">
-                <a class="nav-link nav-dropdown-toggle" href="#">
-                  <i class="fa-fw nav-icon fas fa-users"></i>
-                  <p> User management <i class="right fa fa-fw fa-angle-left nav-icon"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item btnclick">
-                    <a href="javascript:void(0)" class="nav-link ">
-                      <i class="fa-fw nav-icon fas fa-user"></i>
-                      <p> Users </p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-          <!-- /.sidebar-menu -->
-        </div>
-        <!-- /.sidebar -->
-      </aside>
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          const appSidebarFooter = document.querySelector('.app-sidebar-footer');
-          const dropdownMenu = document.querySelector('.dropdown-menu');
-          appSidebarFooter.addEventListener('click', function(event) {
-            dropdownMenu.classList.toggle('show');
-            event.stopPropagation();
-          });
-          document.addEventListener('click', function(event) {
-            const isClickInside = appSidebarFooter.contains(event.target);
-            if (!isClickInside) {
-              dropdownMenu.classList.remove('show');
-            }
-          });
+      color: var(--gray-500);
+      font-size: .9rem;
+      font-weight: 500;
+      transition: background .3s;
+    }
+
+    .app-sidebar-avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+
+    .select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 30px;
+}
+
+.select-wrapper i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #888;
+}
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it appears above other elements */
+    border-color: #888;
+}
+
+.spinner-border {
+    width: 3rem; /* Adjust size as needed */
+    height: 3rem; /* Adjust size as needed */
+}
+
+
+  </style>
+  <style>
+    /* Internal CSS for setting height and width of the image */
+    #product-image {
+      width: 200px;
+      /* Set width to 200px */
+      height: auto;
+      /* Automatically adjust height to maintain aspect ratio */
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-lFy0MwLoO7V1y6KfxX8HsD4bqTmcuT55Djwdq1rnXJPMHE9VJmLOqS6gsH5zkg0Wmwpbs5VSJojI8InF3MqghA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body class="sidebar-mini layout-fixed" style="height: auto;">
+  <div id="loader" style="display: none;">
+    <!-- Add your loading spinner or animation here -->
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden"></span>
+    </div>
+</div>
+  <div class="wrapper">
+    <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#">
+            <i class="fa fa-bars"></i>
+          </a>
+        </li>
+      </ul>
+      <!-- Right navbar links -->
+    </nav>
+    <aside class="main-sidebar sidebar-primary elevation-4" style="min-height: 917px; overflow-y: clip;">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link" style="background-color: #fff;">
+        <span class="brand-text font-weight-light">
+          <image src="https://becomeshakespeare.com/webroot/uploads/Become-Shakespeare-Final-Logo.png" height="60px"
+            width="200px">
+        </span>
+      </a>
+      <!-- Brand Logo -->
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <!-- Sidebar Menu -->
+        <nav class="mt-2" style="position: relative;">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item active btnclick">
+              <a class="nav-link active" href="../../dashboard/index.html">
+                <i class="fa fa-fw fa-sm fa-th mr-2" style="margin-right: 10px;"></i>
+                <p> Dashboard </p>
+              </a>
+            </li>
+            <li class="nav-item btnclick">
+              <a href="../../product/list/index.html" class="nav-link ">
+                <i class="fa fa-address-card" aria-hidden="true" style="margin-right: 10px;"></i>
+                <p> Products </p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="fa-fw nav-icon fas fa-users"></i>
+                <p> User management <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item btnclick">
+                  <a href="javascript:void(0)" class="nav-link ">
+                    <i class="fa-fw nav-icon fas fa-user"></i>
+                    <p> Users </p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const appSidebarFooter = document.querySelector('.app-sidebar-footer');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        appSidebarFooter.addEventListener('click', function (event) {
+          dropdownMenu.classList.toggle('show');
+          event.stopPropagation();
         });
-      </script>
-      <div class="content-wrapper" style="min-height: 650px;">
-        <!-- Main content -->
-        <section class="content" style="padding-top: 20px">
-          <!--                  -->
-          <div class="card">
-            <div class="card-header"> Create User </div>
-            <div class="card-body">
-              <form id="productForm" method="POST" action="" enctype="multipart/form-data">
-                <input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ" autocomplete="off">
-                <div class="form-group">
-                    <label class="required" for="name">Product Name</label>
-                    <input class="form-control" type="text" name="name" id="name" value="" required>
-                    <span class="help-block"></span>
-                </div>
-                <div class="form-group">
-                    <label class="required" for="description">Product Description</label>
-                    <textarea class="form-control" name="description" id="description" required></textarea>
-                    <span class="help-block"></span>
-                </div>
-                <div class="form-group">
-                    <label class="required" for="price">Product Price</label>
-                    <input class="form-control" type="text" name="price" id="price" value="" required>
-                    <span class="help-block"></span>
-                </div>
-                <div class="form-group">
-                    <label class="required" for="price">Product Quantity</label>
-                    <input class="form-control" type="text" name="quantity" id="quantity" value="" required>
-                    <span class="help-block"></span>
-                </div>
-                <div class="form-group">
-                    <label class="required" for="pages">Total Pages</label>
-                    <input class="form-control" type="text" name="pages" id="pages" value="" required>
-                    <span class="help-block"></span>
-                </div>
-                <div class="form-group">
-                    <label class="required" for="password">Product Sku</label>
-                    <input class="form-control" type="text" name="password" id="password" required>
-                    <span class="help-block"></span>
-                </div>
-                <div class="form-group">
-                  <label for="roles">Category</label>
-                  <div class="select-wrapper">
-                      <select class="form-control select2" name="roles[]" id="roles" multiple required>
-                          <option value="Fiction">Fiction</option>
-                          <option value="Non-Fiction">Non-Fiction</option>
-                         
-                      </select>
-                      <i class="fas fa-caret-down"></i>
-                  </div>
-                 
+        document.addEventListener('click', function (event) {
+          const isClickInside = appSidebarFooter.contains(event.target);
+          if (!isClickInside) {
+            dropdownMenu.classList.remove('show');
+          }
+        });
+      });
+    </script>
+    <div class="content-wrapper" style="min-height: 650px;">
+      <!-- Main content -->
+      <section class="content" style="padding-top: 20px">
+        <!--                  -->
+
+        <div class="card">
+          <div class="card-header"> Edit Product </div>
+          
+          <div class="card-body">
+            <form id="productForm" method="POST" action="" enctype="multipart/form-data">
+              <input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ" autocomplete="off">
+              <div class="form-group">
+                  <label class="required" for="name">Product Name</label>
+                  <input class="form-control" type="text" name="name" id="name" value="" required>
+                  <span class="help-block"></span>
               </div>
-                <div class="form-group">
-                    <label for="product-image">Product Image</label>
-                    <label for="upload-image" style="cursor: pointer;">
-                        <img id="product-image" src="https://www.becomeshakespeare.com/wp-content/uploads/2019/03/74A.jpg" alt="Product Image">
-                    </label>
-                    <input type="file" accept="image/*" id="upload-image" style="display: none;">
-                    <button type="button" id="select-image-button">+ Select Image</button>
-                </div>
-                <div class="form-group">
-                    <label for="text-field">Image Name</label>
-                    <input class="form-control" type="text" name="text-field" id="text-field">
-                    <span class="help-block"></span>
+              <div class="form-group">
+                  <label class="required" for="description">Product Description</label>
+                  <textarea class="form-control" name="description" id="description" required></textarea>
+                  <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                  <label class="required" for="price">Product Price</label>
+                  <input class="form-control" type="text" name="price" id="price" value="" required>
+                  <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                  <label class="required" for="price">Product Quantity</label>
+                  <input class="form-control" type="text" name="quantity" id="quantity" value="" required>
+                  <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                  <label class="required" for="pages">Total Pages</label>
+                  <input class="form-control" type="text" name="pages" id="pages" value="" required>
+                  <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                  <label class="required" for="password">Product Sku</label>
+                  <input class="form-control" type="text" name="password" id="password" required>
+                  <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                <label for="roles">Category</label>
+                <div class="select-wrapper">
+                    <select class="form-control select2" name="roles[]" id="roles" multiple required>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                       
+                    </select>
+                    <i class="fas fa-caret-down"></i>
                 </div>
                
-              
-              
-              
-                <div class="form-group">
-                    <button id="saveButton" class="btn btn-danger" type="button"> Save </button>
-                </div>
-            </form>
             </div>
-          </div>
-        </section>
-        <!-- /.content -->
-      </div>
-      <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-          <b>Version</b> 3.0.0-alpha
-        </div>
-        <strong> &copy;</strong> All rights reserved.
-      </footer>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-    <script src="https://cards.forebearpro.co.in/public/assets/js/main.js"></script>
-    <!-- CDN Links for Popper.js and Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/jquery.slim.min.js"></script>
-    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/popper.min.js"></script>
-    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+              <div class="form-group">
+                  <label for="product-image">Product Image</label>
+                  <label for="upload-image" style="cursor: pointer;">
+                      <img id="product-image" src="https://www.becomeshakespeare.com/wp-content/uploads/2019/03/74A.jpg" alt="Product Image">
+                  </label>
+                  <input type="file" accept="image/*" id="upload-image" style="display: none;">
+                  <button type="button" id="select-image-button">+ Select Image</button>
+              </div>
+              <div class="form-group">
+                  <label for="text-field">Image Name</label>
+                  <input class="form-control" type="text" name="text-field" id="text-field">
+                  <span class="help-block"></span>
+              </div>
+             
+            
+            
+            
+              <div class="form-group">
+                  <button id="saveButton" class="btn btn-danger" type="button"> Save </button>
+              </div>
+          </form>
+          
 
-    <script type="module">
-      import { getdata,setdata } from "../../../api/firebase.js"
-      $(document).ready(async function () {
-        fetchData()
-        $('#saveButton').click(function (e) {
-       var   inputs2 = {
-            post_title: $('#name').val(),
-            post_content:"<span>"+ $('#description').val()+"</span>",
-            regular_price: $('#price').val(),
-            ["attribute:Page Count"]: $('#pages').val(),
-            ["attribute:ISBN"]: $('#password').val(),
-            // textField: "Text Field Value",
-            ["tax:product_cat"]: $('#roles').val(),
-            ["quantity"]: $('#quantity').val()
-          }
-          // var selectedRoles = $('#roles').val();
-          setdatadb(inputs2)
-        });
-      })
-      async function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = await new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-          results = await regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-      }
-  
-      async function fetchData() {
-        try{
-          $('#loader').show();
-        
-        const firebasedata = await getdata('Finction_update', 'products')
-        const produts = firebasedata.products.slice(0, 20)
-        const product_id = await getParameterByName('id')
-  
-        const productdata = await getObjectById(produts, product_id)
-        setItme(productdata, produts)
-        }catch(err){
-          alert('something went wrong')
-          $('#loader').hide();
-        }
-      }
-      function getObjectById(array, id) {
-        return array.find((item) => {
-          return item['ID'] == id
-        })
-      
-      }
-  
-  
-      async function setItme(item, array) {
-  
-        var inputs = {
-          post_title: item["post_title"],
-          post_content: $(item["post_content"]).text(),
-          regular_price: item["regular_price"],
-          ["attribute:Page Count"]: item["attribute:Page Count"],
-          ["attribute:ISBN"]: item["attribute:ISBN"],
+          </div>
+        </div>
+      </section>
+      <!-- /.content -->
+    </div>
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+        <b>Version</b> 3.0.0-alpha
+      </div>
+      <strong> &copy;</strong> All rights reserved.
+    </footer>
+  </div>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+  <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
+  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+  <script src="https://cards.forebearpro.co.in/public/assets/js/main.js"></script>
+  <!-- CDN Links for Popper.js and Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/jquery.slim.min.js"></script>
+  <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/popper.min.js"></script>
+  <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="module" src="../../../api/firebase.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+  <script type="module">
+    import { getdata,setdata } from "../../../api/firebase.js"
+    $(document).ready(async function () {
+    //   fetchData()
+    let id=getRandomNumber(4)
+  let  isbn=getRandomNumber(12)
+    $('#password').val(isbn)
+      $('#saveButton').click(function (e) {
+     var   inputs2 = {
+          post_title: $('#name').val(),
+          post_content:"<span>"+ $('#description').val()+"</span>",
+          regular_price: $('#price').val(),
+          ["attribute:Page Count"]: $('#pages').val(),
+          ["attribute:ISBN"]: $('#password').val(),
           // textField: "Text Field Value",
-          ["tax:product_cat"]: item["tax:product_cat"],
-          ["quantity"]: item.quantity??'0'
-         
-        };
-        $('#name').val(inputs.post_title);
-        $('#description').val(inputs.post_content);
-        $('#price').val(inputs.regular_price);
-        $('#pages').val(inputs["attribute:Page Count"]);
-        $('#password').val(inputs["attribute:ISBN"]);
-        $('#text-field').val(inputs.textField);
-        $('#roles').val(inputs["tax:product_cat"]);
-        $('#quantity').val(inputs["quantity"]);
+          ["tax:product_cat"]: $('#roles').val(),
+          ["quantity"]: $('#quantity').val(),
+          ["post_name"]:$('#name').val(),
+          ID:id
+        }
+        // alert(id)
+        // var selectedRoles = $('#roles').val();
+        setdatadb(inputs2)
+      });
+    })
+    async function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = await new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = await regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    async function fetchData() {
+      try{
+        $('#loader').show();
+      
+      const firebasedata = await getdata('Finction_update', 'products')
+      const produts = firebasedata.products.slice(0, 20)
+      const product_id = await getParameterByName('id')
+
+      const productdata = await getObjectById(produts, product_id)
+      setItme(productdata, produts)
+      }catch(err){
+        alert('something went wrong')
         $('#loader').hide();
       }
-      async function setdatadb(obj) {
-        try{
-        $('#loader').show();
-      const id = await getParameterByName('id');
-      const firebasedata = await getdata('Finction_update', 'products');
-      let products = firebasedata.products;
-  
-      // Find the index of the product with the matching ID
-      const index = products.findIndex(product => product["ID"] == id);
-  
-      // If the product with the matching ID exists, update it
-      if (index !== -1) {
-          // Update the product using the spread operator
-          products[index] = { ...products[index], ...obj };
-      }
-    
-      await  setdata('Finction_update', 'products',{products:products})
-      window.location.href="../list"
-      $('#loader').hide();
-    }catch(err){
-      $('#loader').hide();
-      alert('something went wrong')
     }
-      // You can now do something with the updated products array
-      // For example, save it back to the database or perform other operations
-  }
-  
-  
-  
-    </script>
+    function getObjectById(array, id) {
+      return array.find((item) => {
+        return item['ID'] == id
+      })
+    
+    }
+    function getRandomNumber(numDigits) {
+    const min = Math.pow(10, numDigits - 1); // Minimum value based on number of digits
+    const max = Math.pow(10, numDigits) - 1; // Maximum value based on number of digits
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-    <script>
-      $(document).ready(function() {
-        $(".btnclick").click(function() {
-          $(this).removeClass("active");
-          // Remove active class from all buttons
-          $(".btnclick").removeClass("active");
-          // Add active class to the clicked button
-          $(this).addClass("active");
-        });
-      });
-    </script>
-    <script>
-      $(document).ready(function() {
-        // Remove success alert after 20 seconds
-        setTimeout(function() {
-          $('#success-alert').fadeOut('slow');
-        }, 2000); // 20 seconds
-        // Remove error alert after 20 seconds
-        setTimeout(function() {
-          $('#error-alert').fadeOut('slow');
-        }, 2000); // 20 seconds
-      });
-    </script>
-    <script>
-      $(function() {
-        let copyButtonTrans = 'Copy'
-        let csvButtonTrans = 'CSV'
-        let excelButtonTrans = 'Excel'
-        let pdfButtonTrans = 'PDF'
-        let printButtonTrans = 'Print'
-        let colvisButtonTrans = 'Columns'
-        let selectAllButtonTrans = 'Select all'
-        let selectNoneButtonTrans = 'Deselect all'
-        let languages = {
-          'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
-        };
-        $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, {
-          className: 'btn'
-        })
-        $.extend(true, $.fn.dataTable.defaults, {
-          language: {
-            url: languages['en']
-          },
-          columnDefs: [{
-            orderable: false,
-            className: 'select-checkbox',
-            targets: 0
-          }, {
-            orderable: false,
-            searchable: false,
-            targets: -1
-          }],
-          select: {
-            style: 'multi+shift',
-            selector: 'td:first-child'
-          },
-          order: [],
-          scrollX: true,
-          pageLength: 100,
-          dom: 'lBfrtip<"actions">',
-          buttons: [{
-            extend: 'selectAll',
-            className: 'btn-primary',
-            text: selectAllButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            },
-            action: function(e, dt) {
-              e.preventDefault()
-              dt.rows().deselect();
-              dt.rows({
-                search: 'applied'
-              }).select();
-            }
-          }, {
-            extend: 'selectNone',
-            className: 'btn-primary',
-            text: selectNoneButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          }, {
-            extend: 'copy',
-            className: 'btn-default',
-            text: copyButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          }, {
-            extend: 'csv',
-            className: 'btn-default',
-            text: csvButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          }, {
-            extend: 'excel',
-            className: 'btn-default',
-            text: excelButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          }, {
-            extend: 'pdf',
-            className: 'btn-default',
-            text: pdfButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          }, {
-            extend: 'print',
-            className: 'btn-default',
-            text: printButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          }, {
-            extend: 'colvis',
-            className: 'btn-default',
-            text: colvisButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          }]
-        });
-        $.fn.dataTable.ext.classes.sPageButton = '';
-      });
-    </script>
+    async function setItme(item, array) {
+
+      var inputs = {
+        post_title: item["post_title"],
+        post_content: $(item["post_content"]).text(),
+        regular_price: item["regular_price"],
+        ["attribute:Page Count"]: item["attribute:Page Count"],
+        ["attribute:ISBN"]: item["attribute:ISBN"],
+        // textField: "Text Field Value",
+        ["tax:product_cat"]: item["tax:product_cat"],
+        ["quantity"]: item.quantity??'0'
+       
+      };
+      $('#name').val(inputs.post_title);
+      $('#description').val(inputs.post_content);
+      $('#price').val(inputs.regular_price);
+      $('#pages').val(inputs["attribute:Page Count"]);
+      $('#password').val(inputs["attribute:ISBN"]);
+      $('#text-field').val(inputs.textField);
+      $('#roles').val(inputs["tax:product_cat"]);
+      $('#quantity').val(inputs["quantity"]);
+      $('#loader').hide();
+    }
    
-  </body>
+      
+
+async function setdatadb(obj) {
+    try {
+        $('#loader').show();
+
+        const uploadItem = {
+                "post_parent": "",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "post_password": "",
+                "menu_order": 0,
+                "post_date": "2019-03-29 07:33:38",
+                "post_author": 14,
+                "comment_status": "closed",
+                "sku": "dcef23a301f2",
+                "parent_sku": "",
+                "children": "",
+                "downloadable": "no",
+                "virtual": "no",
+                "stock": "",
+                "sale_price": "",
+                "weight": "",
+                "length": "",
+                "width": 8.5,
+                "height": 5.5,
+                "tax_class": "",
+                "visibility": "",
+                "stock_status": "instock",
+                "backorders": "no",
+                "sold_individually": "",
+                "low_stock_amount": "",
+                "manage_stock": "no",
+                "tax_status": "none",
+                "upsell_ids": "",
+                "crosssell_ids": "",
+                "purchase_note": "",
+                "sale_price_dates_from": "",
+                "sale_price_dates_to": "",
+                "download_limit": "'-1",
+                "download_expiry": "'-1",
+                "product_url": "",
+                "button_text": "",
+                "images": "https://www.becomeshakespeare.com/wp-content/uploads/2019/03/144A.jpg ! alt : Enamoured ! title : Enamoured ! desc :  ! caption :  | https://www.becomeshakespeare.com/wp-content/uploads/2019/03/144B.jpg ! alt : Enamoured ! title : Enamoured ! desc :  ! caption :",
+                "downloadable_files": "",
+                "product_page_url": "http://localhost/product-bk/product/enamoured/",
+                "meta:total_sales": 0,
+                "tax:product_type": "simple",
+                "tax:product_visibility": "",
+                "tax:product_tag": "",
+                "tax:product_shipping_class": "",
+                "attribute:BINDING": "",
+                "attribute_data:BINDING": "",
+                "attribute:Binding": "Paperback",
+                "attribute_data:Binding": "1|1|0",
+                "attribute:DIMENSIONS": "",
+                "attribute_data:DIMENSIONS": "",
+                "attribute:Dimension": "",
+                "attribute_data:Dimension": "",
+                "attribute_data:ISBN": "3|1|0",
+                "attribute:LAMINATION": "",
+                "attribute_data:LAMINATION": "",
+                "attribute:Lamination": "gloss",
+                "attribute_data:Lamination": "0|1|0",
+                "attribute:PAGE COUNT": "",
+                "attribute_data:PAGE COUNT": "",
+                "attribute_data:Page Count": "2|1|0",
+                "attribute:Page count": "",
+                "attribute_data:Page count": "",
+                "attribute:Pages Count": "",
+                "attribute_data:Pages Count": "",
+                "attribute:pa_binding": "",
+                "attribute_data:pa_binding": "",
+                "attribute:pa_lamination": "",
+                "attribute_data:pa_lamination": ""
+        };
+
+        // Merge the uploaded product object with the input object
+        const productUpload = { ...obj, ...uploadItem };
+
+        const id = await getParameterByName('id');
+        const firebaseData = await getdata('Finction_update', 'products');
+        let products = firebaseData.products;
+
+        // Find the index of the product with the matching ID
+        const index = products.findIndex(product => product["ID"] == id);
+
+        // If the product with the matching ID exists, update it
+        if (index !== -1) {
+            // Update the product using the spread operator
+            products[index] = { ...products[index], ...productUpload };
+        } else {
+            // If the product doesn't exist, push the new product to the array
+            products.push(productUpload);
+        }
+
+        // Set the updated products array in the database
+        await setdata('Finction_update', 'products', { products: products });
+        window.location.href = "../list";
+    } catch (err) {
+        $('#loader').hide();
+        alert('Something went wrong');
+    } finally {
+        $('#loader').hide();
+    }
+}
+
+
+
+
+  </script>
+  <script>
+    $(document).ready(function () {
+      // Handle form submission
+      $('form').submit(function (event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Retrieve values of input fields
+        var productName = $('#name').val();
+        var productDescription = $('#description').val();
+        var productPrice = $('#price').val();
+        var totalPages = $('#pages').val();
+        var productSku = $('#password').val();
+        var textField = $('#text-field').val();
+        var roles = $('#roles').val();
+
+        // Display the retrieved values (you can modify this as needed)
+        console.log('Product Name:', productName);
+        console.log('Product Description:', productDescription);
+        console.log('Product Price:', productPrice);
+        console.log('Total Pages:', totalPages);
+        console.log('Product Sku:', productSku);
+        console.log('Text Field:', textField);
+        console.log('Roles:', roles);
+
+        // You can perform further actions here, such as sending the data via AJAX or updating the UI
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      // Your data object with field values
+      var data = {
+        productName: "Product Name Value",
+        productDescription: "Product Description Value",
+        productPrice: "Product Price Value",
+        totalPages: "Total Pages Value",
+        productSku: "Product Sku Value",
+        textField: "Text Field Value",
+        roles: ["1", "2"] // Example roles values
+      };
+
+      // Populate input fields with data
+      // $('#name').val(data.productName);
+      // $('#description').val(data.productDescription);
+      // $('#price').val(data.productPrice);
+      // $('#pages').val(data.totalPages);
+      // $('#password').val(data.productSku);
+      // $('#text-field').val(data.textField);
+      // $('#roles').val(data.roles); 
+      // For select input, set selected options
+
+      // Initialize select2 plugin if applicable
+      // $('#roles').select2(); // Ensure to include the Select2 library
+
+      // You can perform further actions here if needed
+    });
+  </script>
+
+
+
+
+
+ 
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById('select-image-button').addEventListener('click', function() {
+          document.getElementById('upload-image').click();
+      });
+
+      document.getElementById('upload-image').addEventListener('change', function(event) {
+          const file = event.target.files[0];
+          if (file) {
+              const reader = new FileReader();
+              reader.onload = function(e) {
+                  document.getElementById('product-image').src = e.target.result;
+              };
+              reader.readAsDataURL(file);
+          }
+      });
+  });
+</script>
+  <script>
+    $(document).ready(function () {
+      $(".btnclick").click(function () {
+        $(this).removeClass("active");
+        // Remove active class from all buttons
+        $(".btnclick").removeClass("active");
+        // Add active class to the clicked button
+        $(this).addClass("active");
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      // Remove success alert after 20 seconds
+      setTimeout(function () {
+        $('#success-alert').fadeOut('slow');
+      }, 2000); // 20 seconds
+      // Remove error alert after 20 seconds
+      setTimeout(function () {
+        $('#error-alert').fadeOut('slow');
+      }, 2000); // 20 seconds
+    });
+  </script>
+  <script>
+    $(function () {
+      let copyButtonTrans = 'Copy'
+      let csvButtonTrans = 'CSV'
+      let excelButtonTrans = 'Excel'
+      let pdfButtonTrans = 'PDF'
+      let printButtonTrans = 'Print'
+      let colvisButtonTrans = 'Columns'
+      let selectAllButtonTrans = 'Select all'
+      let selectNoneButtonTrans = 'Deselect all'
+      let languages = {
+        'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
+      };
+      $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, {
+        className: 'btn'
+      })
+      $.extend(true, $.fn.dataTable.defaults, {
+        language: {
+          url: languages['en']
+        },
+        columnDefs: [{
+          orderable: false,
+          className: 'select-checkbox',
+          targets: 0
+        }, {
+          orderable: false,
+          searchable: false,
+          targets: -1
+        }],
+        select: {
+          style: 'multi+shift',
+          selector: 'td:first-child'
+        },
+        order: [],
+        scrollX: true,
+        pageLength: 100,
+        dom: 'lBfrtip<"actions">',
+        buttons: [{
+          extend: 'selectAll',
+          className: 'btn-primary',
+          text: selectAllButtonTrans,
+          exportOptions: {
+            columns: ':visible'
+          },
+          action: function (e, dt) {
+            e.preventDefault()
+            dt.rows().deselect();
+            dt.rows({
+              search: 'applied'
+            }).select();
+          }
+        }, {
+          extend: 'selectNone',
+          className: 'btn-primary',
+          text: selectNoneButtonTrans,
+          exportOptions: {
+            columns: ':visible'
+          }
+        }, {
+          extend: 'copy',
+          className: 'btn-default',
+          text: copyButtonTrans,
+          exportOptions: {
+            columns: ':visible'
+          }
+        }, {
+          extend: 'csv',
+          className: 'btn-default',
+          text: csvButtonTrans,
+          exportOptions: {
+            columns: ':visible'
+          }
+        }, {
+          extend: 'excel',
+          className: 'btn-default',
+          text: excelButtonTrans,
+          exportOptions: {
+            columns: ':visible'
+          }
+        }, {
+          extend: 'pdf',
+          className: 'btn-default',
+          text: pdfButtonTrans,
+          exportOptions: {
+            columns: ':visible'
+          }
+        }, {
+          extend: 'print',
+          className: 'btn-default',
+          text: printButtonTrans,
+          exportOptions: {
+            columns: ':visible'
+          }
+        }, {
+          extend: 'colvis',
+          className: 'btn-default',
+          text: colvisButtonTrans,
+          exportOptions: {
+            columns: ':visible'
+          }
+        }]
+      });
+      $.fn.dataTable.ext.classes.sPageButton = '';
+    });
+  </script>
+
+</body>
+
 </html>

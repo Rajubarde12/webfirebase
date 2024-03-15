@@ -42,68 +42,73 @@
       border-radius: 50%;
     }
   </style>
- <style>
-  .container {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
-  }
+  <style>
+    .container {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+    }
 
-  .image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+    .image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    box-sizing: border-box;
-  }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      box-sizing: border-box;
+    }
 
-  .price {
-    align-self: flex-end;
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 5px;
-    text-align: center;
-    color: black;
-  }
+    .price {
+      align-self: flex-end;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+      text-align: center;
+      color: black;
+    }
 
-  .name {
-    align-self: flex-start;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  #loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Ensure it appears above other elements */
-    border-color: #888;
-}
+    .name {
+      align-self: flex-start;
+      font-size: 12px;
+      margin-top: 5px;
+    }
 
-.spinner-border {
-    width: 2rem; /* Adjust size as needed */
-    height: 2rem; /* Adjust size as needed */
-}
-</style>
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      /* Semi-transparent white background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      /* Ensure it appears above other elements */
+      border-color: #888;
+    }
+
+    .spinner-border {
+      width: 2rem;
+      /* Adjust size as needed */
+      height: 2rem;
+      /* Adjust size as needed */
+    }
+  </style>
 
 </head>
 
@@ -111,9 +116,9 @@
   <div id="loader" style="display: none;">
     <!-- Add your loading spinner or animation here -->
     <div class="spinner-border" role="status">
-        <span class="visually-hidden"></span>
+      <span class="visually-hidden"></span>
     </div>
-</div>
+  </div>
   <div class="wrapper">
     <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
       <!-- Left navbar links -->
@@ -193,56 +198,93 @@
     <script type="module" src="../../../api/firebase.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="module">
-      import { getdata } from "../../../api/firebase.js"
-  
-      $(document).ready(function (e) {
-          fetchdata();
-      });
-  
-      async function fetchdata() {
+      import { getdata ,setdata} from "../../../api/firebase.js"
+
+      $(document).ready(async function (e) {
         try{
-          $('#loader').show();
-          const firebasedata = await getdata('Finction_update', 'products');
-          const data = firebasedata.products.slice(0, 20);
-          if (data.length > 0) {
-              var outputelemt = $('#products');
-              for (let i = 0; i < data.length; i++) {
-                  let item = data[i];
-                  const urlRegex = /(https?:\/\/[^\s]+)/;
-          const matches = item['images'].match(urlRegex);
-          const url = matches ? matches[0] : null;
-                  var myhtml = '';
-                  myhtml += '<tr>';
-                  myhtml += '<td>' + (i + 1) + '</td>';
-                  myhtml += '<td style="align-items: center;justify-content: center;">';
-                  myhtml += '<div class="container">';
-                  myhtml += '<img class="image" src="'+url+'" alt="admin">';
-                  myhtml += ' </div>';
-                  myhtml += '</td>';
-                  myhtml += '<td style="text-align: center;" > <div class="price">'+item["post_title"]+'</div> <div>price:₹'+item["regular_price"]+'</div></td>';
-                  myhtml += '<td>'+item["tax:product_cat"]+'</td>';
-                  myhtml += '<td>'+item["post_date"]+'</td>';
-                  myhtml += '<td>';
-                  myhtml += '<a class="btn btn-xs btn-info" href="../../product/edit/index.html?id='+item["ID"]+'"> Edit </a>';
-                  myhtml += '<form action="javascript:void(0)" method="POST" onsubmit="return confirm(\'Are you sure?\');" style="display: inline-block;">';
-                  myhtml += '<input type="hidden" name="_method" value="DELETE">';
-                  myhtml += '<input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">';
-                  myhtml += '<input type="submit" class="btn btn-xs btn-danger" value="Delete">';
-                  myhtml += '</form>';
-                  myhtml += '</td>';
-                  myhtml += '</tr>';
-                  outputelemt.append(myhtml);
-              }
-              $('#loader').hide();
-          }
+        $('#loader').show();
+        const firebasedata = await getdata('Finction_update', 'products');
+        fetchdata(firebasedata);
         }catch(err){
+          $('#loader').hide();
+          alert('some thing went wrong')
+        
+        }
+      });
+
+      async function fetchdata(firebasedata) {
+        try {
+         
+          const data = firebasedata.products.slice(0, 20);
+          const data2 = firebasedata.products;
+          if (data.length > 0) {
+            var outputelemt = $('#products');
+            for (let i = 0; i < data.length; i++) {
+              let item = data[i];
+              const urlRegex = /(https?:\/\/[^\s]+)/;
+              const matches = item['images'].match(urlRegex);
+              const url = matches ? matches[0] : null;
+              var myhtml = '';
+              myhtml += '<tr>';
+              myhtml += '<td>' + (i + 1) + '</td>';
+              myhtml += '<td style="align-items: center;justify-content: center;">';
+              myhtml += '<div class="container">';
+              myhtml += '<img class="image" src="' + url + '" alt="admin">';
+              myhtml += ' </div>';
+              myhtml += '</td>';
+              myhtml += '<td style="text-align: center;" > <div class="price">' + item["post_title"] + '</div> <div>price:₹' + item["regular_price"] + '</div></td>';
+              myhtml += '<td>' + item["tax:product_cat"] + '</td>';
+              myhtml += '<td>' + item["post_date"] + '</td>';
+              myhtml += '<td>';
+              myhtml += '<a class="btn btn-xs btn-info" href="../../product/edit/index.html?id=' + item["ID"] + '"> Edit </a>';
+              myhtml += '<form action="javascript:void(0)" method="POST" class="delete-form" style="display: inline-block;">';
+              myhtml += '<input type="hidden" name="_method" value="DELETE">';
+              myhtml += '<input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">';
+              myhtml += '<input type="hidden" name="product_id" value="' + item["ID"] + '">';
+              myhtml += '<input type="submit" class="btn btn-xs btn-danger delete-button" value="Delete">';
+              myhtml += '</form>';
+              myhtml += '</td>';
+              myhtml += '</tr>';
+              outputelemt.append(myhtml);
+            }
+            $('#loader').hide();
+
+            // Add click event handler for delete button
+            $('.delete-button').click(function (e) {
+              e.preventDefault();
+              var productId = $(this).closest('.delete-form').find('input[name="product_id"]').val();
+              // alert('Deleting product with ID: ' + productId);
+              // Call your delete function here passing the product ID
+              var confirmation = confirm('Are you sure you want to delete this product?');
+              if (confirmation) {
+                deleteProduct(data2,productId)
+              }
+            });
+          }
+        } catch (err) {
           console.log(err);
           $('#loader').hide();
           alert('Some thing went wrong')
         }
       }
-  </script>
-  
+      async function deleteProduct(products, id) {
+    try {
+      $('#loader').show();
+        const filtered = products.filter(item => item["ID"] != id);
+        await setdata('Finction_update', 'products', { products: filtered }); // Assuming setdata is a function to update the data
+        alert('Product deleted successfully');
+        location.reload(); // Refresh the page after deletion
+        $('#loader').hide();
+    } catch (error) {
+        console.error(error);
+        alert('Failed to delete product');
+        $('#loader').hide();
+    }
+}
+
+
+    </script>
+
 
 
 
@@ -265,18 +307,18 @@
                   <tr>
                     <th width="10">ID</th>
                     <th> Image </th>
-                    <th> Name & Price   </th>
+                    <th> Name & Price </th>
                     <th>Product type </th>
                     <th>Date </th>
                     <th> Actions </th>
-                    <th>  </th>
+                    <th> </th>
                   </tr>
                 </thead>
                 <tbody id="products">
                   <!-- Products will be dynamically added here using JavaScript -->
                 </tbody>
               </table>
-              
+
             </div>
           </div>
         </div>
