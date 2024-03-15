@@ -298,7 +298,10 @@
   <script type="module">
     import { getdata,setdata } from "../../../api/firebase.js"
     $(document).ready(async function () {
-      fetchData()
+    //   fetchData()
+    let id=getRandomNumber(4)
+  let  isbn=getRandomNumber(12)
+    $('#password').val(isbn)
       $('#saveButton').click(function (e) {
      var   inputs2 = {
           post_title: $('#name').val(),
@@ -309,8 +312,10 @@
           // textField: "Text Field Value",
           ["tax:product_cat"]: $('#roles').val(),
           ["quantity"]: $('#quantity').val(),
-          ["post_name"]:$('#name').val()
+          ["post_name"]:$('#name').val(),
+          ID:id
         }
+        // alert(id)
         // var selectedRoles = $('#roles').val();
         setdatadb(inputs2)
       });
@@ -346,7 +351,11 @@
       })
     
     }
-
+    function getRandomNumber(numDigits) {
+    const min = Math.pow(10, numDigits - 1); // Minimum value based on number of digits
+    const max = Math.pow(10, numDigits) - 1; // Maximum value based on number of digits
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
     async function setItme(item, array) {
 
@@ -371,32 +380,115 @@
       $('#quantity').val(inputs["quantity"]);
       $('#loader').hide();
     }
-    async function setdatadb(obj) {
-      try{
-      $('#loader').show();
-    const id = await getParameterByName('id');
-    const firebasedata = await getdata('Finction_update', 'products');
-    let products = firebasedata.products;
+   
+      
 
-    // Find the index of the product with the matching ID
-    const index = products.findIndex(product => product["ID"] == id);
+async function setdatadb(obj) {
+    try {
+        $('#loader').show();
 
-    // If the product with the matching ID exists, update it
-    if (index !== -1) {
-        // Update the product using the spread operator
-        products[index] = { ...products[index], ...obj };
+        const uploadItem = {
+                "post_name": "enamoured",
+                "post_parent": "",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "post_password": "",
+                "menu_order": 0,
+                "post_date": "2019-03-29 07:33:38",
+                "post_author": 14,
+                "comment_status": "closed",
+                "sku": "dcef23a301f2",
+                "parent_sku": "",
+                "children": "",
+                "downloadable": "no",
+                "virtual": "no",
+                "stock": "",
+                "sale_price": "",
+                "weight": "",
+                "length": "",
+                "width": 8.5,
+                "height": 5.5,
+                "tax_class": "",
+                "visibility": "",
+                "stock_status": "instock",
+                "backorders": "no",
+                "sold_individually": "",
+                "low_stock_amount": "",
+                "manage_stock": "no",
+                "tax_status": "none",
+                "upsell_ids": "",
+                "crosssell_ids": "",
+                "purchase_note": "",
+                "sale_price_dates_from": "",
+                "sale_price_dates_to": "",
+                "download_limit": "'-1",
+                "download_expiry": "'-1",
+                "product_url": "",
+                "button_text": "",
+                "images": "https://www.becomeshakespeare.com/wp-content/uploads/2019/03/144A.jpg ! alt : Enamoured ! title : Enamoured ! desc :  ! caption :  | https://www.becomeshakespeare.com/wp-content/uploads/2019/03/144B.jpg ! alt : Enamoured ! title : Enamoured ! desc :  ! caption :",
+                "downloadable_files": "",
+                "product_page_url": "http://localhost/product-bk/product/enamoured/",
+                "meta:total_sales": 0,
+                "tax:product_type": "simple",
+                "tax:product_visibility": "",
+                "tax:product_tag": "",
+                "tax:product_shipping_class": "",
+                "attribute:BINDING": "",
+                "attribute_data:BINDING": "",
+                "attribute:Binding": "Paperback",
+                "attribute_data:Binding": "1|1|0",
+                "attribute:DIMENSIONS": "",
+                "attribute_data:DIMENSIONS": "",
+                "attribute:Dimension": "",
+                "attribute_data:Dimension": "",
+                "attribute_data:ISBN": "3|1|0",
+                "attribute:LAMINATION": "",
+                "attribute_data:LAMINATION": "",
+                "attribute:Lamination": "gloss",
+                "attribute_data:Lamination": "0|1|0",
+                "attribute:PAGE COUNT": "",
+                "attribute_data:PAGE COUNT": "",
+                "attribute_data:Page Count": "2|1|0",
+                "attribute:Page count": "",
+                "attribute_data:Page count": "",
+                "attribute:Pages Count": "",
+                "attribute_data:Pages Count": "",
+                "attribute:pa_binding": "",
+                "attribute_data:pa_binding": "",
+                "attribute:pa_lamination": "",
+                "attribute_data:pa_lamination": ""
+        };
+
+        // Merge the uploaded product object with the input object
+        const productUpload = { ...obj, ...uploadItem };
+
+        const id = await getParameterByName('id');
+        const firebaseData = await getdata('Finction_update', 'products');
+        let products = firebaseData.products;
+
+        // Find the index of the product with the matching ID
+        const index = products.findIndex(product => product["ID"] == id);
+
+        // If the product with the matching ID exists, update it
+        if (index !== -1) {
+            // Update the product using the spread operator
+            products[index] = { ...products[index], ...productUpload };
+        } else {
+            // If the product doesn't exist, push the new product to the array
+            products.push(productUpload);
+        }
+
+        // Set the updated products array in the database
+        await setdata('Finction_update', 'products', { products: products });
+        window.location.href = "../list";
+    } catch (err) {
+        $('#loader').hide();
+        alert('Something went wrong');
+    } finally {
+        $('#loader').hide();
     }
-  
-    await  setdata('Finction_update', 'products',{products:products})
-    window.location.href="../list"
-    $('#loader').hide();
-  }catch(err){
-    $('#loader').hide();
-    alert('something went wrong')
-  }
-    // You can now do something with the updated products array
-    // For example, save it back to the database or perform other operations
 }
+
 
 
 
