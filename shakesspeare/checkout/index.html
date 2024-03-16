@@ -1662,18 +1662,28 @@
 
 
             var outputElement = $(".shop_table.woocommerce-checkout-review-order-table tbody");
+            var outputElement2 = $(".shop_table.woocommerce-checkout-review-order-table tfoot");
             var myHtml = '';
+            var myhtml2 = ''
+            let subtotal=0
 
             for (let i = 0; i < data.length; i++) {
                 const quantity = array.cart.find(item => item.id === data[i].ID.toString()).quantity;
+                subtotal+=parseFloat(data[i]["regular_price"]) * parseInt(quantity)
                 myHtml += '  <tr class="cart_item">'
                 myHtml += '<td class="product-name">' + data[i]["post_title"] + '&nbsp;<strong class="product-quantity">&times;&nbsp;' + quantity + '</strong></td>';
                 myHtml += ' <div id="checkout"></div><td class="product-total"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + parseFloat(data[i]["regular_price"]) * parseInt(quantity) + '</bdi></span>  </td>  </tr>'
             }
+            myhtml2 += '<tr class="cart-subtotal"> <th>Subtotal</th> <td><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>'+subtotal+'</bdi></span> </td></tr>'
+
+            myhtml2 += ' <tr class="tax-total">  <th>GST</th> <td><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>0.00</bdi></span> </td>  </tr>'
+
+            myhtml2 += '<tr class="order-total"><th>Total</th> <td><strong><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>'+subtotal+'</bdi></span></strong> </td> </tr>'
 
             outputElement.append(myHtml);
-            var priceValue = $('td .woocommerce-Price-amount').text();
-            $(".target-element").append(50000);
+            outputElement2.append(myhtml2)
+
+
         }
 
 
@@ -1730,7 +1740,7 @@
                         <div id="logo" class="flex-col logo">
 
                             <!-- Header logo -->
-                            <a href="https://wordpress.becomeshakespeare.com/"
+                            <a href="../"
                                 title="BecomeShakespeare - Give Your Book A Global Audience" rel="home">
                                 <img width="340" height="120"
                                     src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/03/Become-Shakespeare-Final-Logo.png"
@@ -1760,69 +1770,69 @@
                             <ul class="header-nav header-nav-main nav nav-left  nav-size-xlarge nav-uppercase">
                                 <li id="menu-item-270"
                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-270 menu-item-design-default has-dropdown">
-                                    <a href="http://www.becomeshakespeare.com/publishing-packages/" class="nav-top-link"
+                                    <a href="../publishing-packages/" class="nav-top-link"
                                         aria-expanded="false" aria-haspopup="menu">Publish<i
                                             class="icon-angle-down"></i></a>
                                     <ul class="sub-menu nav-dropdown nav-dropdown-default">
                                         <li id="menu-item-2179"
                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2179">
-                                            <a href="https://wordpress.becomeshakespeare.com/publishing-packages/">Publishing
+                                            <a href="../publishing-packages/">Publishing
                                                 Packages</a>
                                         </li>
                                         <li id="menu-item-381"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-381">
-                                            <a href="/royalty-calculator/">Royalty
+                                            <a href="../royalty-calculator/">Royalty
                                                 Calculator</a>
                                         </li>
                                         <li id="menu-item-383"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-383">
-                                            <a href="/book-editing-services/">Additional
+                                            <a href="../book-editing-services/">Additional
                                                 Services</a>
                                         </li>
                                         <li id="menu-item-3738"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3738">
-                                            <a href="/waf/">Wordit Art
+                                            <a href="../waf/">Wordit Art
                                                 Fund</a>
                                         </li>
                                         <li id="menu-item-382"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-382">
-                                            <a href="/faq/">FAQs</a>
+                                            <a href="../faq/">FAQs</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li id="menu-item-271"
                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-271 menu-item-design-default has-dropdown">
-                                    <a href="http://www.becomeshakespeare.com/shop/" class="nav-top-link"
+                                    <a href="../shop/" class="nav-top-link"
                                         aria-expanded="false" aria-haspopup="menu">Shop<i
                                             class="icon-angle-down"></i></a>
                                     <ul class="sub-menu nav-dropdown nav-dropdown-default">
                                         <li id="menu-item-3964"
                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3964">
-                                            <a href="https://wordpress.becomeshakespeare.com/collection/">Collection</a>
+                                            <a href="../collection/">Collection</a>
                                         </li>
                                         <li id="menu-item-3911"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3911">
                                             <a
-                                                href="https://wordpress.becomeshakespeare.com/product-category/fiction/">Fiction</a>
+                                                href="../product-category/fiction/">Fiction</a>
                                         </li>
                                         <li id="menu-item-3912"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3912">
-                                            <a href="/product-category/non-fiction/">Non-Fiction</a>
+                                            <a href="../product-category/non-fiction/">Non-Fiction</a>
                                         </li>
                                         <li id="menu-item-3910"
                                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3910">
-                                            <a href="/product-category/poetry/">Poetry</a>
+                                            <a href="../product-category/poetry/">Poetry</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li id="menu-item-272"
                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272 menu-item-design-default has-dropdown">
-                                    <a href="/learn/" class="nav-top-link" aria-expanded="false"
+                                    <a href="../learn/" class="nav-top-link" aria-expanded="false"
                                         aria-haspopup="menu">Learn<i class="icon-angle-down"></i></a>
                                     <ul class="sub-menu nav-dropdown nav-dropdown-default">
                                         <li id="menu-item-2973"
                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2973">
-                                            <a href="https://wordpress.becomeshakespeare.com/learning-space/">Learning
+                                            <a href="../learning-space/">Learning
                                                 Space</a>
                                         </li>
                                         <li id="menu-item-2975"
@@ -1919,7 +1929,7 @@
 
                                     <p class="woocommerce-mini-cart__total total">
                                         <strong>Subtotal:</strong> <span
-                                            class="woocommerce-Price-amount amount"><bdi><span
+                                            class="woocommerce-Price-amount amount"><bdi><span id="subtotal"
                                                     class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
                                     </p>
 
@@ -2644,7 +2654,7 @@
                                                 </tbody>
                                                 <tfoot>
 
-                                                    <tr class="cart-subtotal">
+                                                    <!-- <tr class="cart-subtotal">
                                                         <th>Subtotal</th>
                                                         <td><span class="woocommerce-Price-amount amount"><bdi><span
                                                                         class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
@@ -2664,7 +2674,7 @@
                                                                     class="woocommerce-Price-amount amount"><bdi><span
                                                                             class="woocommerce-Price-currencySymbol">&#8377;</span>350.00</bdi></span></strong>
                                                         </td>
-                                                    </tr>
+                                                    </tr> -->
 
                                                 </tfoot>
                                             </table>
