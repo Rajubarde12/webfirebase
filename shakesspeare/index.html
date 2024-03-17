@@ -2204,7 +2204,7 @@
 										src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
 									</span>
 								  </a>
-									<ul class="nav-dropdown nav-dropdown-default">
+									<!-- <ul class="nav-dropdown nav-dropdown-default">
 										<li class="html widget_shopping_cart">
 											<div class="widget_shopping_cart_content">
 												<p class="woocommerce-mini-cart__empty-message">No products in the
@@ -2212,7 +2212,7 @@
 												</p>
 											</div>
 										</li>
-									</ul>
+									</ul> -->
 
 								</li>
 							</ul>
@@ -2683,15 +2683,20 @@
 
 		</script>
 		 <script type="module">
-			import { getdata, setdata, } from './api/firebase.js'
+			import { getdata, setdata, } from '../api/firebase.js'
 			$(document).ready(async function () {
-			  const prevItem = await getdata('cart_items', 'cart');
+			  const prevItem = await getdata2('cart_items');
 			  appendCart(prevItem)
 		
 			})
 		
+			function getdata2(key) {
+				 const data = localStorage.getItem(key);
+				 return data ? JSON.parse(data) : null;
+			 }
+ 
 			async function appendCart(cartItem) {
-			  $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length - 1);
+			  $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length);
 		
 			  const idarr = cartItem.cart.map(item => item.id);
 			  const data = await filteritems_id(idarr);
@@ -2738,19 +2743,32 @@
 			  return data;
 			}
 		
-		
 			async function removeFromCart(id) {
-			  const prevItem = await getdata('cart_items', 'cart');
-			  let data = [...prevItem.cart]
-			  const newdata = data.filter(item => item.id != id.toString())
-			  await setdata('cart_items', 'cart', { cart: newdata })
-			  Swal.fire({
-				icon: 'success',
-				title: 'Item removed',
-				showConfirmButton: false,
-				timer: 1500
-			  });
-			  appendCart({ cart: newdata });
+				try {
+					const prevItem = await getdata2('cart_items');
+					let data = [...prevItem.cart];
+					const newdata = data.filter(item => item.id != id.toString());
+					console.log(newdata);
+					localStorage.setItem('cart_items', JSON.stringify({ cart: newdata }));
+
+					Swal.fire({
+						icon: 'success',
+						title: 'Item removed',
+						showConfirmButton: false,
+						timer: 1500
+					});
+
+					if (newdata.length <= 0) {
+						$('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + "00.00" + '</bdi></span>');
+						$('#cartitems').empty().append('<h1>No Products in the cart</h1>');
+						$('.header-cart-icon').attr('data-icon-label', 0);
+					} else {
+						appendCart({ cart: newdata });
+					}
+				} catch (error) {
+					console.error('Error removing item from cart:', error);
+					// Handle errors if necessary
+				}
 			}
 		  </script>
 		<style>

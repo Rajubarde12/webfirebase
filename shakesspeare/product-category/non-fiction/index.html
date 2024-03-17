@@ -472,19 +472,19 @@
 	<link rel="stylesheet" id="flatsome-main-css"
 		href="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/css/flatsome.css?ver=3.16.1"
 		type="text/css" media="all" />
-		<style id="flatsome-main-inline-css" type="text/css">
-			@font-face {
-			  font-family: "fl-icons";
-			  font-display: block;
-			  src: url(webroot/fl-icons.eot?v=3.16.1);
-			  src:
+	<style id="flatsome-main-inline-css" type="text/css">
+		@font-face {
+			font-family: "fl-icons";
+			font-display: block;
+			src: url(webroot/fl-icons.eot?v=3.16.1);
+			src:
 				url(../../webroot/themefont/fl-icons.eot#iefix?v=3.16.1) format("embedded-opentype"),
 				url(../../webroot/themefont/fl-icons.woff2?v=3.16.1) format("woff2"),
 				url(../../webroot/themefont/fl-icons.ttf?v=3.16.1) format("truetype"),
 				url(../../webroot/themefont/fl-icons.woff?v=3.16.1) format("woff"),
 				url(https://becomeshakespeare.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.svg?v=3.16.1#fl-icons) format("svg");
-			}
-		  </style>
+		}
+	</style>
 	<link rel="stylesheet" id="flatsome-shop-css"
 		href="https://www.becomeshakespeare.com/wp-content/themes/flatsome/assets/css/flatsome-shop.css?ver=3.16.1"
 		type="text/css" media="all" />
@@ -2678,260 +2678,279 @@
 	<script type="module" src="../../api/firebase.js"></script>
 	<script type="module">
 		import { getdata, setdata, } from '../../api/firebase.js'
-	   
-	
+
+
 		$(document).ready(function () {
-		  getdatas()
-		//  setdatas2()
-		  $(document).on('click', '.page-number', function (e) {
-			
-			var itemsPerPage = 8;
-			e.preventDefault();
-			var page = parseInt($(this).text());
-			displayPage(page, itemsPerPage, 'noraml', '')
-		  });
-		  $('#woocommerce-product-search-field-0').on('keyup', async function () {
-			var query = $(this).val();
-			// var searchResults = await searchProducts(query);
-			displayPage(1, 8, 'search', query);
-	
-		  });
+			getdatas()
+			//  setdatas2()
+			$(document).on('click', '.page-number', function (e) {
+
+				var itemsPerPage = 8;
+				e.preventDefault();
+				var page = parseInt($(this).text());
+				displayPage(page, itemsPerPage, 'noraml', '')
+			});
+			$('#woocommerce-product-search-field-0').on('keyup', async function () {
+				var query = $(this).val();
+				// var searchResults = await searchProducts(query);
+				displayPage(1, 8, 'search', query);
+
+			});
 		});
 		async function searchProducts(query, products) {
-	
-		  var results = [];
-	
-		  products.forEach(function (product) {
-			if (product["post_name"].toLowerCase().includes(query.toLowerCase()) || product["post_content"].toLowerCase().includes(query.toLowerCase())) {
-			  results.push(product);
-			}
-		  });
-	
-		  return results
+
+			var results = [];
+
+			products.forEach(function (product) {
+				if (product["post_name"].toLowerCase().includes(query.toLowerCase()) || product["post_content"].toLowerCase().includes(query.toLowerCase())) {
+					results.push(product);
+				}
+			});
+
+			return results
 		}
-	
+
 		async function getdatas() {
-	
-	
-	
-	
-		  const firebasedata = await getdata('Finction_update', 'products')
-		  var totalPages = Math.ceil(firebasedata.products.length / 8);
-		  
-	
-		  const mydata = firebasedata.products.slice(0, 8)
-		  const tempdata = {
-			instock: 'first instock',
-			post: 'post-7015',
-			btn_link: 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/',
-			desc: 'The Million Dollar Powerful Personality : The First 360 Degree Book on Personality by a Cosmetic Surgeon in the World Today',
-			img_link: 'https://www.becomeshakespeare.com/wp-content/uploads/2019/12/The-Million-Dollar-Powerful-Personality-247x296.jpg',
-			price: '350.00',
-	
-		  }
-	
-		  var outputElement = $('#mainId')
-		  var myhtml = ''
-		  if (true) {
-	
-			myhtml += '<div  class="row category-page-row"><div style="flex-direction: row;"  class="col  large-3 hide-for-medium" ><div id="shop-sidebar"   class="sidebar-inner col-inner"><aside id="search-5" class="widget widget_search">'
-			myhtml += '<form method="get" class="searchform" action="https://www.becomeshakespeare.com/" role="search"><div class="flex-row relative">'
-			myhtml += '<div class="flex-col flex-grow">'
-			myhtml += '<input type="search" class="search-field mb-0" name="s" value="" id="s" placeholder="Search…" /></div>'
-			myhtml += '<div class="flex-col"><button type="submit" class="ux-search-submit submit-button secondary button icon mb-0"aria-label="Submit"><i class="icon-search"></i> </button>'
-			myhtml += '</div></div><div class="live-search-results text-left z-top"></div>'
-			myhtml += '</form>'
-			myhtml += ' </aside></div></div>'
-			myhtml += '<div class="col large-9"><div class="shop-container"><div class="woocommerce-notices-wrapper"></div><div class="products row row-small large-columns-4 medium-columns-3 small-columns-2">'
-			for (let i = 0; i < mydata.length; i++) {
-			  const urlRegex = /(https?:\/\/[^\s]+)/;
-			  const matches = mydata[i]['images'].match(urlRegex);
-			  const url = matches ? matches[0] : null;
-			  myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
-			  myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
-			  myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
-			  myhtml += '<a href="../../product/?id=' + mydata[i]['ID'] + '" aria-label="&quot;' + mydata[i]['post_title'] + '">'
-			  myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" /> </a>    </div>'
-			  myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
-			  myhtml += '    <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
-			  myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
-			  myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
-			  myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="../../product/?id=' + mydata[i]['ID'] + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['post_title'] + '"</a></p>'
-			  myhtml += '</div>'
-			  myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['regular_price'] + '</bdi></span>'
-			  myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
-			  myhtml += '</div></div></div></div></div>'
+
+
+
+
+			const firebasedata = await getdata('Finction_update', 'products')
+			var totalPages = Math.ceil(firebasedata.products.length / 8);
+
+
+			const mydata = firebasedata.products.slice(0, 8)
+			const tempdata = {
+				instock: 'first instock',
+				post: 'post-7015',
+				btn_link: 'https://www.becomeshakespeare.com/product/the-million-dollar-powerful-personality-the-first-360-degree-book-on-personality-by-a-cosmetic-surgeon-in-the-world-toda/',
+				desc: 'The Million Dollar Powerful Personality : The First 360 Degree Book on Personality by a Cosmetic Surgeon in the World Today',
+				img_link: 'https://www.becomeshakespeare.com/wp-content/uploads/2019/12/The-Million-Dollar-Powerful-Personality-247x296.jpg',
+				price: '350.00',
+
 			}
-			myhtml += '</div>'
-			myhtml += '<div class="container"><nav class="woocommerce-pagination">'
-			myhtml += '<ul class="page-numbers nav-pagination links text-center">'
-			// myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
-			for (let i = 1; i <8; i++)
-			  if (i == 1) {
-				myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
-			  } else {
-				myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
-			  }
-			myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
-			myhtml += '	</nav></div></div></div></div>'
-		  }
-		  outputElement.append(myhtml)
-	
-	
-	
+
+			var outputElement = $('#mainId')
+			var myhtml = ''
+			if (true) {
+
+				myhtml += '<div  class="row category-page-row"><div style="flex-direction: row;"  class="col  large-3 hide-for-medium" ><div id="shop-sidebar"   class="sidebar-inner col-inner"><aside id="search-5" class="widget widget_search">'
+				myhtml += '<form method="get" class="searchform" action="https://www.becomeshakespeare.com/" role="search"><div class="flex-row relative">'
+				myhtml += '<div class="flex-col flex-grow">'
+				myhtml += '<input type="search" class="search-field mb-0" name="s" value="" id="s" placeholder="Search…" /></div>'
+				myhtml += '<div class="flex-col"><button type="submit" class="ux-search-submit submit-button secondary button icon mb-0"aria-label="Submit"><i class="icon-search"></i> </button>'
+				myhtml += '</div></div><div class="live-search-results text-left z-top"></div>'
+				myhtml += '</form>'
+				myhtml += ' </aside></div></div>'
+				myhtml += '<div class="col large-9"><div class="shop-container"><div class="woocommerce-notices-wrapper"></div><div class="products row row-small large-columns-4 medium-columns-3 small-columns-2">'
+				for (let i = 0; i < mydata.length; i++) {
+					const urlRegex = /(https?:\/\/[^\s]+)/;
+					const matches = mydata[i]['images'].match(urlRegex);
+					const url = matches ? matches[0] : null;
+					myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
+					myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
+					myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
+					myhtml += '<a href="../../product/?id=' + mydata[i]['ID'] + '" aria-label="&quot;' + mydata[i]['post_title'] + '">'
+					myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" /> </a>    </div>'
+					myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
+					myhtml += '    <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
+					myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
+					myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
+					myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="../../product/?id=' + mydata[i]['ID'] + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['post_title'] + '"</a></p>'
+					myhtml += '</div>'
+					myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['regular_price'] + '</bdi></span>'
+					myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
+					myhtml += '</div></div></div></div></div>'
+				}
+				myhtml += '</div>'
+				myhtml += '<div class="container"><nav class="woocommerce-pagination">'
+				myhtml += '<ul class="page-numbers nav-pagination links text-center">'
+				// myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
+				for (let i = 1; i < 8; i++)
+					if (i == 1) {
+						myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
+					} else {
+						myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
+					}
+				myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
+				myhtml += '	</nav></div></div></div></div>'
+			}
+			outputElement.append(myhtml)
+
+
+
 		}
 		async function paginate(mydata, totalpage, page, type) {
-		  var outputElement = $('#mainId')
-		
-		  var myhtml = ''
-		  if (true) {
-	
-			myhtml += '<div  class="row category-page-row"><div style="flex-direction: row;"  class="col  large-3 hide-for-medium" ><div id="shop-sidebar"   class="sidebar-inner col-inner"><aside id="search-5" class="widget widget_search">'
-			myhtml += '<form method="get" class="searchform" action="https://www.becomeshakespeare.com/" role="search"><div class="flex-row relative">'
-			myhtml += '<div class="flex-col flex-grow">'
-			myhtml += '<input type="search" class="search-field mb-0" name="s" value="" id="s" placeholder="Search…" /></div>'
-			myhtml += '<div class="flex-col"><button type="submit" class="ux-search-submit submit-button secondary button icon mb-0"aria-label="Submit"><i class="icon-search"></i> </button>'
-			myhtml += '</div></div><div class="live-search-results text-left z-top"></div>'
-			myhtml += '</form>'
-			myhtml += ' </aside></div></div>'
-			myhtml += '<div class="col large-9"><div class="shop-container"><div class="woocommerce-notices-wrapper"></div><div class="products row row-small large-columns-4 medium-columns-3 small-columns-2">'
-			if (mydata.length > 0) {
-			  for (let i = 0; i < mydata.length; i++) {
-				const urlRegex = /(https?:\/\/[^\s]+)/;
-				const matches = mydata[i]['images'].match(urlRegex);
-				const url = matches ? matches[0] : null;
-	
-				myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
-			  myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
-			  myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
-			  myhtml += '<a href="../../product/?id=' + mydata[i]['ID'] + '" aria-label="&quot;' + mydata[i]['post_title'] + '">'
-			  myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" /> </a>    </div>'
-			  myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
-			  myhtml += '    <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
-			  myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
-			  myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
-			  myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="../../product/?id=' + mydata[i]['ID'] + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['post_title'] + '"</a></p>'
-			  myhtml += '            </div>'
-			  myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['regular_price'] + '</bdi></span>'
-			  myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
-			  myhtml += '</div></div></div></div></div>'
-			  }
-			} else {
-			  myhtml += '<h1 class="mycostumeclass">No data found</h1>'
-			}
-			myhtml += '</div>'
-			myhtml += '<div class="container"><nav class="woocommerce-pagination">'
-			myhtml += '<ul class="page-numbers nav-pagination links text-center">'
-			// myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
-			if (mydata.length >= 8) {
-			  for (let i = 1; i <= 12; i++)
-				if (i == page) {
-				  myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
+			var outputElement = $('#mainId')
+
+			var myhtml = ''
+			if (true) {
+
+				myhtml += '<div  class="row category-page-row"><div style="flex-direction: row;"  class="col  large-3 hide-for-medium" ><div id="shop-sidebar"   class="sidebar-inner col-inner"><aside id="search-5" class="widget widget_search">'
+				myhtml += '<form method="get" class="searchform" action="https://www.becomeshakespeare.com/" role="search"><div class="flex-row relative">'
+				myhtml += '<div class="flex-col flex-grow">'
+				myhtml += '<input type="search" class="search-field mb-0" name="s" value="" id="s" placeholder="Search…" /></div>'
+				myhtml += '<div class="flex-col"><button type="submit" class="ux-search-submit submit-button secondary button icon mb-0"aria-label="Submit"><i class="icon-search"></i> </button>'
+				myhtml += '</div></div><div class="live-search-results text-left z-top"></div>'
+				myhtml += '</form>'
+				myhtml += ' </aside></div></div>'
+				myhtml += '<div class="col large-9"><div class="shop-container"><div class="woocommerce-notices-wrapper"></div><div class="products row row-small large-columns-4 medium-columns-3 small-columns-2">'
+				if (mydata.length > 0) {
+					for (let i = 0; i < mydata.length; i++) {
+						const urlRegex = /(https?:\/\/[^\s]+)/;
+						const matches = mydata[i]['images'].match(urlRegex);
+						const url = matches ? matches[0] : null;
+
+						myhtml += '<div class="product-small col has-hover product type-product post-' + mydata[i]['ID'] + ' status-publish first ' + mydata[i]['stock_status'] + ' product_cat-self-help-fiction has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">'
+						myhtml += '<div class="col-inner"><div  class="badge-container absolute left top z-1"></div>'
+						myhtml += '<div class="product-small box "><div class="box-image"><div class="image-none">'
+						myhtml += '<a href="../../product/?id=' + mydata[i]['ID'] + '" aria-label="&quot;' + mydata[i]['post_title'] + '">'
+						myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" /> </a>    </div>'
+						myhtml += '<div class="image-tools is-small top right show-on-hover"></div><div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>'
+						myhtml += '    <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">'
+						myhtml += '<a class="quick-view" data-prod="7015" href="#quick-view">Quick View</a></div></div>'
+						myhtml += '<div class="box-text box-text-products text-center grid-style-2"><div class="title-wrapper">'
+						myhtml += '<p class="name product-title woocommerce-loop-product__title"><a href="../../product/?id=' + mydata[i]['ID'] + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">&#8220;' + mydata[i]['post_title'] + '"</a></p>'
+						myhtml += '            </div>'
+						myhtml += '<div class="price-wrapper"><span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + mydata[i]['regular_price'] + '</bdi></span>'
+						myhtml += '<small class="woocommerce-price-suffix">GST</small></span>'
+						myhtml += '</div></div></div></div></div>'
+					}
 				} else {
-				  myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
+					myhtml += '<h1 class="mycostumeclass">No data found</h1>'
 				}
-			  myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
-			  myhtml += '	</nav></div></div></div></div>'
+				myhtml += '</div>'
+				myhtml += '<div class="container"><nav class="woocommerce-pagination">'
+				myhtml += '<ul class="page-numbers nav-pagination links text-center">'
+				// myhtml += '<li><span aria-current="page" class="page-number current">1</span></li>'
+				if (mydata.length >= 8) {
+					for (let i = 1; i <= 12; i++)
+						if (i == page) {
+							myhtml += '<li><span aria-current="page" class="page-number current">' + i + '</span></li>'
+						} else {
+							myhtml += '	<li><a class="page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/18/">' + i + '</a></li>'
+						}
+					myhtml += '	<li><a class="next page-number" href="https://www.becomeshakespeare.com/product-category/fiction/page/2/"><i class="icon-angle-right"></i></a></li></ul>'
+					myhtml += '	</nav></div></div></div></div>'
+				}
 			}
-		  }
-	
-	
-	
-		  outputElement.html(myhtml);
-	
+
+
+
+			outputElement.html(myhtml);
+
 		}
 		async function displayPage(page, itemsPerPage, type, querry) {
-		  const firebasedata = await getdata('Finction_update', 'products')
-		  const productsArr = firebasedata.products
-		  let mydata = []
-		  if (type == 'normal') {
-			mydata = productsArr
-		  }
-		  else {
-			mydata = await searchProducts(querry, [...productsArr])
-		  }
-		  var startIndex = (page - 1) * itemsPerPage;
-		  var endIndex = Math.min(startIndex + itemsPerPage, mydata.length);
-		  var currentPageData = mydata.slice(startIndex, endIndex);
-		  var totalPages = Math.ceil(mydata.length / itemsPerPage);
-		  paginate(currentPageData, totalPages, page);
+			const firebasedata = await getdata('Finction_update', 'products')
+			const productsArr = firebasedata.products
+			let mydata = []
+			if (type == 'normal') {
+				mydata = productsArr
+			}
+			else {
+				mydata = await searchProducts(querry, [...productsArr])
+			}
+			var startIndex = (page - 1) * itemsPerPage;
+			var endIndex = Math.min(startIndex + itemsPerPage, mydata.length);
+			var currentPageData = mydata.slice(startIndex, endIndex);
+			var totalPages = Math.ceil(mydata.length / itemsPerPage);
+			paginate(currentPageData, totalPages, page);
 		}
-	
-	
-	  </script>
-	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	  <script type="module">
+
+
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script type="module">
 		import { getdata, setdata, } from '../../api/firebase.js'
 		$(document).ready(async function () {
-		  const prevItem = await getdata('cart_items', 'cart');
-		  appendCart(prevItem)
-	
+			const prevItem = await getdata2('cart_items');
+			appendCart(prevItem)
+
 		})
-	
+
+		function getdata2(key) {
+			const data = localStorage.getItem(key);
+			return data ? JSON.parse(data) : null;
+		}
+
 		async function appendCart(cartItem) {
-		  $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length - 1);
-	
-		  const idarr = cartItem.cart.map(item => item.id);
-		  const data = await filteritems_id(idarr);
-	
-		  var outputelement = $('#cartitems');
-		  var myhtml = '';
-		  let price = 0;
-	
-		  if (data.length > 0) {
-			for (let i = 0; i < data.length; i++) {
-			  const urlRegex = /(https?:\/\/[^\s]+)/;
-			  const matches = data[i]['images'].match(urlRegex);
-			  const url = matches ? matches[0] : null;
-			  const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity;
-			  price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity);
-			  myhtml += '<li class="woocommerce-mini-cart-item mini_cart_item">';
-			  myhtml += '<a href="#" class="remove remove_from_cart_button" aria-label="Remove ' + data[i]["post_title"] + ' from cart" data-product_id="' + data[i]['ID'] + '" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78" data-product_sku="' + data[i]["sku"] + '">&times;</a>';
-			  myhtml += '<a href="#">';
-			  myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="#' + data[i]["post_title"] + '" decoding="async" fetchpriority="high" />#' + data[i]["post_title"].substring(0, 15) + '.... </a>';
-			  myhtml += '<span class="quantity">' + quantity + ' &times; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + data[i]["regular_price"] + '</bdi></span></span> </li>';
+			$('.header-cart-icon').attr('data-icon-label', cartItem.cart.length);
+
+			const idarr = cartItem.cart.map(item => item.id);
+			const data = await filteritems_id(idarr);
+
+			var outputelement = $('#cartitems');
+			var myhtml = '';
+			let price = 0;
+
+			if (data.length > 0) {
+				for (let i = 0; i < data.length; i++) {
+					const urlRegex = /(https?:\/\/[^\s]+)/;
+					const matches = data[i]['images'].match(urlRegex);
+					const url = matches ? matches[0] : null;
+					const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity;
+					price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity);
+					myhtml += '<li class="woocommerce-mini-cart-item mini_cart_item">';
+					myhtml += '<a href="#" class="remove remove_from_cart_button" aria-label="Remove ' + data[i]["post_title"] + ' from cart" data-product_id="' + data[i]['ID'] + '" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78" data-product_sku="' + data[i]["sku"] + '">&times;</a>';
+					myhtml += '<a href="#">';
+					myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="#' + data[i]["post_title"] + '" decoding="async" fetchpriority="high" />#' + data[i]["post_title"].substring(0, 15) + '.... </a>';
+					myhtml += '<span class="quantity">' + quantity + ' &times; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + data[i]["regular_price"] + '</bdi></span></span> </li>';
+				}
+
+				$('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
+			} else {
+				myhtml += '<h5>No Products into the cart</h5>'
 			}
-	
-			$('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
-		  } else {
-			myhtml += '<h5>No Products into the cart</h5>'
-		  }
-		  outputelement.html(myhtml);
-	
-		  // Adding event listener to remove button
-		  $('.remove').on('click', function (e) {
-			e.preventDefault();
-			const productId = $(this).data('product_id');
-			removeFromCart(productId)
-	
-		  });
+			outputelement.html(myhtml);
+
+			// Adding event listener to remove button
+			$('.remove').on('click', function (e) {
+				e.preventDefault();
+				const productId = $(this).data('product_id');
+				removeFromCart(productId)
+
+			});
 		}
-	
-	
+
+
 		async function filteritems_id(idarr) {
-		  const firebasedata = await getdata('Finction_update', 'products');
-		  const data = firebasedata.products.filter(item => {
-			return idarr.includes(item.ID.toString());
-		  });
-		  return data;
+			const firebasedata = await getdata('Finction_update', 'products');
+			const data = firebasedata.products.filter(item => {
+				return idarr.includes(item.ID.toString());
+			});
+			return data;
 		}
-	
-	
+
+
 		async function removeFromCart(id) {
-		  const prevItem = await getdata('cart_items', 'cart');
-		  let data = [...prevItem.cart]
-		  const newdata = data.filter(item => item.id != id.toString())
-		  await setdata('cart_items', 'cart', { cart: newdata })
-		  Swal.fire({
-			icon: 'success',
-			title: 'Item removed',
-			showConfirmButton: false,
-			timer: 1500
-		  });
-		  appendCart({ cart: newdata });
-		}
-	  </script>
-  
+				try {
+					const prevItem = await getdata2('cart_items');
+					let data = [...prevItem.cart];
+					const newdata = data.filter(item => item.id != id.toString());
+					console.log(newdata);
+					localStorage.setItem('cart_items', JSON.stringify({ cart: newdata }));
+
+					Swal.fire({
+						icon: 'success',
+						title: 'Item removed',
+						showConfirmButton: false,
+						timer: 1500
+					});
+
+					if (newdata.length <= 0) {
+						$('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + "00.00" + '</bdi></span>');
+						$('#cartitems').empty().append('<h1>No Products in the cart</h1>');
+						$('.header-cart-icon').attr('data-icon-label', 0);
+					} else {
+						appendCart({ cart: newdata });
+					}
+				} catch (error) {
+					console.error('Error removing item from cart:', error);
+					// Handle errors if necessary
+				}
+			}
+	</script>
+
 
 	<div id="wrapper">
 
@@ -2992,8 +3011,7 @@
 						<div id="logo" class="flex-col logo">
 
 							<!-- Header logo -->
-							<a href="../"
-								title="BecomeShakespeare - Give Your Book A Global Audience" rel="home">
+							<a href="../" title="BecomeShakespeare - Give Your Book A Global Audience" rel="home">
 								<img width="340" height="120"
 									src="https://www.becomeshakespeare.com/wp-content/uploads/2019/03/Become-Shakespeare-Final-Logo.png"
 									class="header_logo header-logo" alt="BecomeShakespeare" /><img width="340"
@@ -3023,81 +3041,86 @@
 								class="header-nav header-nav-main nav nav-left  nav-line-bottom nav-size-xlarge nav-spacing-xlarge nav-uppercase">
 								<li id="menu-item-270"
 									class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-270 menu-item-design-default has-dropdown">
-									<a href="../../publishing-packages/" class="nav-top-link"
-										aria-expanded="false" aria-haspopup="menu">Publish<i
-											class="icon-angle-down"></i></a>
+									<a href="../../publishing-packages/" class="nav-top-link" aria-expanded="false"
+										aria-haspopup="menu">Publish<i class="icon-angle-down"></i></a>
 									<ul class="sub-menu nav-dropdown nav-dropdown-default">
 										<li id="menu-item-2179"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2179">
 											<a href="../../publishing-packages/">Publishing
-												Packages</a></li>
+												Packages</a>
+										</li>
 										<li id="menu-item-381"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-381">
 											<a href="../../royalty-calculator/">Royalty
-												Calculator</a></li>
+												Calculator</a>
+										</li>
 										<li id="menu-item-383"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-383">
 											<a href="../../book-editing-services/">Additional
-												Services</a></li>
+												Services</a>
+										</li>
 										<li id="menu-item-3738"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3738">
-											<a href="../../waf/">Wordit Art Fund</a></li>
+											<a href="../../waf/">Wordit Art Fund</a>
+										</li>
 										<li id="menu-item-382"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-382">
-											<a href="../../faq/">FAQs</a></li>
+											<a href="../../faq/">FAQs</a>
+										</li>
 									</ul>
 								</li>
 								<li id="menu-item-271"
 									class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-271 active menu-item-design-default has-dropdown">
-									<a href="../../shop/" class="nav-top-link"
-										aria-expanded="false" aria-haspopup="menu">Shop<i
-											class="icon-angle-down"></i></a>
+									<a href="../../shop/" class="nav-top-link" aria-expanded="false"
+										aria-haspopup="menu">Shop<i class="icon-angle-down"></i></a>
 									<ul class="sub-menu nav-dropdown nav-dropdown-default">
 										<li id="menu-item-3964"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3964">
-											<a href="../../collection/">Collection</a></li>
+											<a href="../../collection/">Collection</a>
+										</li>
 										<li id="menu-item-3911"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3911">
-											<a
-												href="../fiction/">Fiction</a>
+											<a href="../fiction/">Fiction</a>
 										</li>
 										<li id="menu-item-3912"
 											class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-3912 active">
 											<script>
 												function refresh() {
-												  window.location.reload()
+													window.location.reload()
 												}
-											  </script>
-											<a onclick="refresh()"
-												aria-current="page">Non-Fiction</a></li>
+											</script>
+											<a onclick="refresh()" aria-current="page">Non-Fiction</a>
+										</li>
 										<li id="menu-item-3910"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3910">
-											<a
-												href="../poetry/">Poetry</a>
+											<a href="../poetry/">Poetry</a>
 										</li>
 									</ul>
 								</li>
 								<li id="menu-item-272"
 									class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272 menu-item-design-default has-dropdown">
-									<a href="../learn/" class="nav-top-link"
-										aria-expanded="false" aria-haspopup="menu">Learn<i
-											class="icon-angle-down"></i></a>
+									<a href="../learn/" class="nav-top-link" aria-expanded="false"
+										aria-haspopup="menu">Learn<i class="icon-angle-down"></i></a>
 									<ul class="sub-menu nav-dropdown nav-dropdown-default">
 										<li id="menu-item-2973"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2973">
 											<a href="../learning-space/">Learning
-												Space</a></li>
+												Space</a>
+										</li>
 										<li id="menu-item-2975"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2975">
 											<a href="../publishing-landscape/">Publishing
-												Landscape</a></li>
+												Landscape</a>
+										</li>
 										<li id="menu-item-2974"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2974">
-											<a href="../trending/">Trending</a></li>
+											<a href="../trending/">Trending</a>
+										</li>
 										<li id="menu-item-3571"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3571">
 											<a href="../meet-our-authors/">Meet Our
-												Authors</a></li>
+												Authors</a>
+										</li>
 									</ul>
 								</li>
 							</ul>
@@ -3148,15 +3171,16 @@
 								<li class="header-divider"></li>
 								<li class="cart-item has-icon has-dropdown">
 
-									<a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"
-									data-class="off-canvas-cart" title="Cart" data-pos="right">
-				
-				
-									<span class="image-icon header-cart-icon" data-icon-label="0">
-									  <img class="cart-img-icon" alt="Cart"
-										src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
-									</span>
-								  </a>
+									<a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small"
+										data-open="#cart-popup" data-class="off-canvas-cart" title="Cart"
+										data-pos="right">
+
+
+										<span class="image-icon header-cart-icon" data-icon-label="0">
+											<img class="cart-img-icon" alt="Cart"
+												src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+										</span>
+									</a>
 
 									<ul class="nav-dropdown nav-dropdown-default">
 										<li class="html widget_shopping_cart">
@@ -3174,54 +3198,297 @@
 								</li>
 							</ul>
 						</div>
-
+						<div id="login-form-popup" class="lightbox-content mfp-hide">
+							<div class="woocommerce">
+							  <div class="woocommerce-notices-wrapper"></div>
+							  <div class="account-container lightbox-inner">
+						
+								<div class="col2-set row row-divided row-large" id="customer_login">
+						
+								  <div class="col-1 large-6 col pb-0">
+						
+									<div class="account-login-inner">
+						
+									  <h3 class="uppercase">Login</h3>
+						
+									  <form id="loginForm" class="woocommerce-form woocommerce-form-login login" method="post">
+										<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+										  <span id="emailError" style="color: red;"></span>
+										  <label for="username">Username or email address<span class="required">*</span></label>
+										  <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username"
+											id="username" autocomplete="username" value />
+										</p>
+										<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+										  <label for="password">Password<span class="required">*</span></label>
+										  <span id="passwordError" style="color: red;"></span>
+										  <input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password"
+											id="password" autocomplete="current-password" />
+										</p>
+										<br />
+										<div class="g-recaptcha" data-sitekey="6LezZ_EkAAAAAJ5mPw9RQ3AXTJUtegL30t2tHinV">
+										</div>
+										<br />
+										<p class="form-row">
+										  <label
+											class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
+											<input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme"
+											  type="checkbox" id="rememberme" value="forever" />
+											<span>Remember me</span>
+										  </label>
+										  <input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="12df7e4eef" />
+										  <input type="hidden" name="_wp_http_referer" value="/" />
+										  <button type="button" class="woocommerce-button button woocommerce-form-login__submit" name="login"
+											value="Log in">Log in</button>
+										</p>
+										<p class="woocommerce-LostPassword lost_password">
+										  <a href="https://becomeshakespeare.com/my-account/lost-password/">Lost your
+											passwordsss?</a>
+										</p>
+									  </form>
+						
+									  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+									  <script type="module">
+										import { getdata, setdata2 } from '../../api/firebase.js'
+										$(document).ready(function () {
+										  $('button[name="login"]').click(function () {
+											// Get the values of username and password fields
+											var username = $('#username').val().trim();
+											var password = $('#password').val().trim();
+						
+											// Perform validation
+											var isValid = true;
+											if (username === '') {
+											  $('#emailError').text('Username or email address is required');
+											  isValid = false;
+											} else {
+											  $('#emailError').text('');
+											}
+						
+											if (password === '') {
+											  $('#passwordError').text('Password is required');
+											  isValid = false;
+											} else {
+											  $('#passwordError').text('');
+											}
+						
+											// If everything is valid, submit the form
+											if (isValid) {
+											  // Here you can perform further validation if needed
+						
+											  // If validation passes, submit the form
+											  doLogin(username, password);
+											}
+										  });
+										});
+						
+						
+										async function doLogin(email, password) {
+										  const userDoc = await getdata('logindata', 'user')
+										  const users = userDoc.userDetails
+										  let userFound = false;
+						
+										  users.forEach(user => {
+											if (user.email === email && user.password === password) {
+											  userFound = true;
+											  return;
+											}
+										  });
+						
+										  if (userFound) {
+											swal({
+											  title: "success!",
+											  text: "Login success.",
+											  icon: "success",
+											  button: "OK",
+											}).then((ok) => {
+						
+											  if (ok) {
+												window.location.reload()
+											  }
+											});
+											sessionStorage.setItem('isLogin', email);
+						
+										  } else {
+						
+											swal({
+											  title: "Error!",
+											  text: "User not found with provided credentials.",
+											  icon: "error",
+											  button: "OK",
+											}).then((ok) => {
+						
+											  if (ok) {
+												$('input[type=text], input[type=password]').val('');
+											  }
+											});
+										  }
+										}
+									  </script>
+						
+									</div>
+						
+								  </div>
+						
+								  <div class="col-2 large-6 col pb-0">
+						
+									<div class="account-register-inner">
+						
+									  <h3 class="uppercase">Register</h3>
+						
+									  <form id="registrationForm" method="post" class="register">
+										<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+										  <label for="reg_email">Email address<span class="required">*</span></label>
+										  <span id="emailError2" style="color: red;"></span>
+										  <input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email"
+											id="reg_email" autocomplete="email" value />
+										</p>
+										<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+										  <label for="reg_password">Password<span class="required">*</span></label>
+										  <span id="passwordError2" style="color: red;"></span>
+										  <input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password"
+											id="reg_password" autocomplete="new-password" />
+										</p>
+										<br />
+										<div class="woocommerce-privacy-policy-text">
+										  <p>Your personal data will be used to support your experience throughout this
+											website, to manage access to your account, and for other purposes described
+											in
+											our <a href="https://becomeshakespeare.com/privacy-policy/" class="woocommerce-privacy-policy-link"
+											  target="_blank">privacy
+											  policy</a>.
+										  </p>
+										</div>
+										<p class="woocommerce-form-row form-row">
+										  <input type="hidden" id="woocommerce-register-nonce" name="woocommerce-register-nonce"
+											value="9fe54015e8" />
+										  <input type="hidden" name="_wp_http_referer" value="/" />
+										  <button type="button"
+											class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit"
+											name="register2" value="Register2">Register</button>
+										</p>
+									  </form>
+						
+									  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+									  <script type="module" src="../api//firebase.js"></script>
+									  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+									  <script type="module">
+										import { getdata, setdata2 } from '../../api/firebase.js'
+										$(document).ready(function () {
+										  $('button[name="register2"]').click(function () {
+											// Get the values of email and password fields
+											var email = $('#reg_email').val().trim();
+											var password = $('#reg_password').val().trim();
+						
+											// Perform validation
+											var isValid = true;
+											if (email === '') {
+											  $('#emailError2').text('Email address is required');
+											  isValid = false;
+											} else {
+											  $('#emailError2').text('');
+											}
+						
+											if (password === '') {
+											  $('#passwordError2').text('Password is required');
+											  isValid = false;
+											} else {
+											  $('#passwordError2').text('');
+											}
+						
+											// If everything is valid, submit the form
+											if (isValid) {
+											  // Here you can perform further validation if needed
+						
+											  // If validation passes, submit the form
+											  doRegister(email, password);
+											}
+										  });
+										});
+										async function doRegister(email, password) {
+										  const userDoc = await getdata('logindata', 'user');
+										  const users = userDoc.userDetails;
+						
+						
+										  if (users.some(user => user.email === email)) {
+											swal("Error!", "User already registered.", "error");
+										  } else {
+						
+											await setdata2('logindata', 'user', { userDetails: [...users, { email, password }] });
+											swal("Success!", "User registered successfully.", "success").then((value) => {
+						
+											  if (value) {
+												$('#reg_email').val('');
+												$('#reg_password').val('');
+											  }
+											});
+										  }
+										}
+									  </script>
+						
+						
+									</div>
+						
+								  </div>
+						
+								</div>
+						
+							  </div>
+						
+							</div>
+						  </div>
 						<!-- Mobile Right Elements -->
 						<div class="flex-col show-for-medium flex-right">
 							<ul class="mobile-nav nav nav-right ">
 								<li class="cart-item has-icon">
 
-									<a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"
-									data-class="off-canvas-cart" title="Cart" data-pos="right">
-				
-				
-									<span class="image-icon header-cart-icon" data-icon-label="0">
-									  <img class="cart-img-icon" alt="Cart"
-										src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
-									</span>
-								  </a>
+									<a href="#" class="header-cart-link off-canvas-toggle nav-top-link is-small"
+										data-open="#cart-popup" data-class="off-canvas-cart" title="Cart"
+										data-pos="right">
+
+
+										<span class="image-icon header-cart-icon" data-icon-label="0">
+											<img class="cart-img-icon" alt="Cart"
+												src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+										</span>
+									</a>
 
 
 									<!-- Cart Sidebar Popup -->
 									<div id="cart-popup" class="mfp-hide widget_shopping_cart">
 										<div class="cart-popup-inner inner-padding">
-										  <div class="cart-popup-title text-center">
-											<h4 class="uppercase">Cart</h4>
-											<div class="is-divider"></div>
-										  </div>
-										  <div class="widget_shopping_cart_content">
-					
-					
-											<ul class="woocommerce-mini-cart cart_list product_list_widget ">
-											  <div id="cartitems"></div>
-											</ul>
-					
-											<p class="woocommerce-mini-cart__total total">
-											  <strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span
-													class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
-											</p>
-					
-					
-											<p class="woocommerce-mini-cart__buttons buttons"><a
-												href="https://wordpress.becomeshakespeare.com/cart/" class="button wc-forward">View
-												cart</a><a href="https://wordpress.becomeshakespeare.com/checkout/"
-												class="button checkout wc-forward">Checkout</a></p>
-					
-					
-					
-										  </div>
-										  <div class="cart-sidebar-content relative"></div>
+											<div class="cart-popup-title text-center">
+												<h4 class="uppercase">Cart</h4>
+												<div class="is-divider"></div>
+											</div>
+											<div class="widget_shopping_cart_content">
+
+
+												<ul class="woocommerce-mini-cart cart_list product_list_widget ">
+													<div id="cartitems"></div>
+												</ul>
+
+												<p class="woocommerce-mini-cart__total total">
+													<strong>Subtotal:</strong> <span
+														class="woocommerce-Price-amount amount"><bdi><span
+																class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
+												</p>
+
+
+												<p class="woocommerce-mini-cart__buttons buttons">
+													<!-- <a
+														href="https://wordpress.becomeshakespeare.com/cart/"
+														class="button wc-forward">View
+														cart</a> -->
+														<a
+														href="../../checkout/"
+														class="button checkout wc-forward">Checkout</a></p>
+
+
+
+											</div>
+											<div class="cart-sidebar-content relative"></div>
 										</div>
-									  </div>
+									</div>
 
 								</li>
 							</ul>
@@ -3500,7 +3767,8 @@
 						<li
 							class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-3912">
 							<a href="http://www.becomeshakespeare.com/product-category/non-fiction/"
-								aria-current="page">Non-Fiction</a></li>
+								aria-current="page">Non-Fiction</a>
+						</li>
 						<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3910"><a
 								href="http://www.becomeshakespeare.com/product-category/poetry/">Poetry</a></li>
 					</ul>
@@ -3850,119 +4118,85 @@
 			document.getElementById('imageID').style.display = 'none'
 		}, 5 * 1000);
 	</script>
-	<div id="login-form-popup" class="lightbox-content mfp-hide">
-		<div class="woocommerce">
-			<div class="woocommerce-notices-wrapper"></div>
-			<div class="account-container lightbox-inner">
+	<script type="module">
+		import { getdata, setdata, } from '../../api/firebase.js'
+		$(document).ready(async function () {
+			const prevItem = await getdata2('cart_items');
+			appendCart(prevItem)
+
+		})
+
+		function getdata2(key) {
+			const data = localStorage.getItem(key);
+			return data ? JSON.parse(data) : null;
+		}
+
+		async function appendCart(cartItem) {
+			$('.header-cart-icon').attr('data-icon-label', cartItem.cart.length);
+
+			const idarr = cartItem.cart.map(item => item.id);
+			const data = await filteritems_id(idarr);
+
+			var outputelement = $('#cartitems');
+			var myhtml = '';
+			let price = 0;
+
+			if (data.length > 0) {
+				for (let i = 0; i < data.length; i++) {
+					const urlRegex = /(https?:\/\/[^\s]+)/;
+					const matches = data[i]['images'].match(urlRegex);
+					const url = matches ? matches[0] : null;
+					const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity;
+					price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity);
+					myhtml += '<li class="woocommerce-mini-cart-item mini_cart_item">';
+					myhtml += '<a href="#" class="remove remove_from_cart_button" aria-label="Remove ' + data[i]["post_title"] + ' from cart" data-product_id="' + data[i]['ID'] + '" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78" data-product_sku="' + data[i]["sku"] + '">&times;</a>';
+					myhtml += '<a href="#">';
+					myhtml += '<img width="247" height="296" src="' + url + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="#' + data[i]["post_title"] + '" decoding="async" fetchpriority="high" />#' + data[i]["post_title"].substring(0, 15) + '.... </a>';
+					myhtml += '<span class="quantity">' + quantity + ' &times; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + data[i]["regular_price"] + '</bdi></span></span> </li>';
+				}
+
+				$('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
+			} else {
+				myhtml += '<h5>No Products into the cart</h5>'
+			}
+			outputelement.html(myhtml);
+
+			// Adding event listener to remove button
+			$('.remove').on('click', function (e) {
+				e.preventDefault();
+				const productId = $(this).data('product_id');
+				removeFromCart(productId)
+
+			});
+		}
 
 
-				<div class="col2-set row row-divided row-large" id="customer_login">
-
-					<div class="col-1 large-6 col pb-0">
-
-
-						<div class="account-login-inner">
-
-							<h3 class="uppercase">Login</h3>
-
-							<form class="woocommerce-form woocommerce-form-login login" method="post">
+		async function filteritems_id(idarr) {
+			const firebasedata = await getdata('Finction_update', 'products');
+			const data = firebasedata.products.filter(item => {
+				return idarr.includes(item.ID.toString());
+			});
+			return data;
+		}
 
 
-								<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-									<label for="username">Username or email address&nbsp;<span
-											class="required">*</span></label>
-									<input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
-										name="username" id="username" autocomplete="username" value="" />
-								</p>
-								<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-									<label for="password">Password&nbsp;<span class="required">*</span></label>
-									<input class="woocommerce-Input woocommerce-Input--text input-text" type="password"
-										name="password" id="password" autocomplete="current-password" />
-								</p>
-
-								<div class="g-recaptcha" data-sitekey="6LezZ_EkAAAAAJ5mPw9RQ3AXTJUtegL30t2tHinV"></div>
-								<br />
-
-								<p class="form-row">
-									<label
-										class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
-										<input class="woocommerce-form__input woocommerce-form__input-checkbox"
-											name="rememberme" type="checkbox" id="rememberme" value="forever" />
-										<span>Remember me</span>
-									</label>
-									<input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce"
-										value="0d2f850e1d" /><input type="hidden" name="_wp_http_referer"
-										value="/product-category/non-fiction/" /> <button type="submit"
-										class="woocommerce-button button woocommerce-form-login__submit" name="login"
-										value="Log in">Log in</button>
-								</p>
-								<p class="woocommerce-LostPassword lost_password">
-									<a href="https://www.becomeshakespeare.com/my-account/lost-password/">Lost your
-										password?</a>
-								</p>
-
-
-							</form>
-						</div>
-
-
-					</div>
-
-					<div class="col-2 large-6 col pb-0">
-
-						<div class="account-register-inner">
-
-							<h3 class="uppercase">Register</h3>
-
-							<form method="post" class="woocommerce-form woocommerce-form-register register">
-
-
-
-								<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-									<label for="reg_email">Email address&nbsp;<span class="required">*</span></label>
-									<input type="email" class="woocommerce-Input woocommerce-Input--text input-text"
-										name="email" id="reg_email" autocomplete="email" value="" />
-								</p>
-
-
-								<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-									<label for="reg_password">Password&nbsp;<span class="required">*</span></label>
-									<input type="password" class="woocommerce-Input woocommerce-Input--text input-text"
-										name="password" id="reg_password" autocomplete="new-password" />
-								</p>
-
-
-								<div class="g-recaptcha" data-sitekey="6LezZ_EkAAAAAJ5mPw9RQ3AXTJUtegL30t2tHinV"></div>
-								<br />
-								<div class="woocommerce-privacy-policy-text">
-									<p>Your personal data will be used to support your experience throughout this
-										website, to manage access to your account, and for other purposes described in
-										our <a href="https://www.becomeshakespeare.com/privacy-policy/"
-											class="woocommerce-privacy-policy-link" target="_blank">privacy policy</a>.
-									</p>
-								</div>
-								<p class="woocommerce-form-row form-row">
-									<input type="hidden" id="woocommerce-register-nonce"
-										name="woocommerce-register-nonce" value="b44bb4ee75" /><input type="hidden"
-										name="_wp_http_referer" value="/product-category/non-fiction/" /> <button
-										type="submit"
-										class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit"
-										name="register" value="Register">Register</button>
-								</p>
-
-
-							</form>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-	</div>
+		async function removeFromCart(id) {
+			const prevItem = await getdata2('cart_items');
+			let data = [...prevItem.cart]
+			const newdata = data.filter(item => item.id != id.toString())
+			localStorage.setItem('cart_items', JSON.stringify({ cart: newdata }));
+			Swal.fire({
+				icon: 'success',
+				title: 'Item removed',
+				showConfirmButton: false,
+				timer: 1500
+			});
+			if (newdata.length == 0) {
+				$('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
+			}
+			appendCart({ cart: newdata });
+		}
+	</script>
 	<script
 		type="application/ld+json">{"@context":"http:\/\/web.archive.org\/web\/20230328022239\/https:\/\/schema.org\/","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"name":"Non-fiction","@id":"http:\/\/web.archive.org\/web\/20230328022239\/https:\/\/www.becomeshakespeare.com\/product-category\/non-fiction\/"}}]}</script>
 	<script type="text/javascript">

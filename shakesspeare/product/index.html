@@ -1753,9 +1753,9 @@
 
 
         <script type="module">
-            import { getdata, setdata, } from '../api/firebase.js'
+            import { getdata, setdata } from '../api/firebase.js'
             $(document).ready(async function () {
-                const prevItem = await getdata('cart_items', 'cart');
+                const prevItem = getdata2("cart_items");
                 appendCart(prevItem)
                 $(".plus").click(function () {
                     var quantityInput = $("#quantity_65e0c81b033ad");
@@ -1789,49 +1789,64 @@
             }
 
 
+            // Function to get data from local storage
+            function getdata2(key) {
+                const data = localStorage.getItem(key);
+                return data ? JSON.parse(data) : null;
+            }
+
             async function add_to_cart(id) {
-                const prevItem = await getdata('cart_items', 'cart');
+                // Retrieve previous cart items from local storage
+                let prevItem = getdata2('cart_items');
 
                 var quantityInput = $("#quantity_65e0c81b033ad");
                 var currentValue = parseInt(quantityInput.val());
                 var newItem = { quantity: currentValue, id: id };
 
-                var existingItemIndex = prevItem.cart?.findIndex(item => item.id === id);
-
-                if (existingItemIndex !== -1) {
-                    prevItem['cart'][existingItemIndex].quantity += currentValue;
+                if (prevItem) {
+                    var existingItemIndex = prevItem.cart?.findIndex(item => item.id === id);
+                    if (existingItemIndex !== -1) {
+                        prevItem['cart'][existingItemIndex].quantity += currentValue;
+                    } else {
+                        prevItem.cart.push(newItem);
+                    }
                 } else {
-                    prevItem.cart.push(newItem);
+                    // If no previous cart items exist, create a new cart object
+                    prevItem = { cart: [newItem] };
                 }
 
-                await setdata('cart_items', 'cart', prevItem);
-             
+                // Save updated cart data to local storage
+                localStorage.setItem('cart_items', JSON.stringify(prevItem));
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Item added to cart',
                     showConfirmButton: false,
                     timer: 1500
                 });
+                // console.log(prevItem);
                 appendCart(prevItem);
             }
 
+
             async function appendCart(cartItem) {
-                $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length - 1);
+                $('.header-cart-icon').attr('data-icon-label', cartItem.cart.length);
 
                 const idarr = cartItem.cart.map(item => item.id);
+                // console.log('this is idarr',idarr);
                 const data = await filteritems_id(idarr);
 
                 var outputelement = $('#cartitems');
                 var myhtml = '';
                 let price = 0;
 
-                if (data.length>0) {
+                if (data.length > 0) {
                     for (let i = 0; i < data.length; i++) {
                         const urlRegex = /(https?:\/\/[^\s]+)/;
                         const matches = data[i]['images'].match(urlRegex);
                         const url = matches ? matches[0] : null;
                         const quantity = cartItem.cart.find(item => item.id === data[i].ID.toString()).quantity;
-                        price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity); 
+                        price = parseFloat(price) + parseFloat(data[i]["regular_price"]) * parseFloat(quantity);
                         myhtml += '<li class="woocommerce-mini-cart-item mini_cart_item">';
                         myhtml += '<a href="#" class="remove remove_from_cart_button" aria-label="Remove ' + data[i]["post_title"] + ' from cart" data-product_id="' + data[i]['ID'] + '" data-cart_item_key="c5b2cebf15b205503560c4e8e6d1ea78" data-product_sku="' + data[i]["sku"] + '">&times;</a>';
                         myhtml += '<a href="#">';
@@ -1840,8 +1855,8 @@
                     }
 
                     $('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + price.toFixed(2) + '</bdi></span>');
-                }else{
-                    myhtml+='<h1>No Products into the cart</h1>'
+                } else {
+                    myhtml += '<h1>No Products into the cart</h1>'
                 }
                 outputelement.html(myhtml);
 
@@ -1863,20 +1878,33 @@
                 return data;
             }
 
-
             async function removeFromCart(id) {
-                const prevItem = await getdata('cart_items', 'cart');
-                let data = [...prevItem.cart]
-                const newdata = data.filter(item => item.id != id.toString())
-                await setdata('cart_items', 'cart', { cart: newdata })
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Item removed',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                appendCart({ cart: newdata });
-            }
+				try {
+					const prevItem = await getdata2('cart_items');
+					let data = [...prevItem.cart];
+					const newdata = data.filter(item => item.id != id.toString());
+					console.log(newdata);
+					localStorage.setItem('cart_items', JSON.stringify({ cart: newdata }));
+
+					Swal.fire({
+						icon: 'success',
+						title: 'Item removed',
+						showConfirmButton: false,
+						timer: 1500
+					});
+
+					if (newdata.length <= 0) {
+						$('.woocommerce-mini-cart__total.total').html('<strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#8377;</span>' + "00.00" + '</bdi></span>');
+						$('#cartitems').empty().append('<h1>No Products in the cart</h1>');
+						$('.header-cart-icon').attr('data-icon-label', 0);
+					} else {
+						appendCart({ cart: newdata });
+					}
+				} catch (error) {
+					console.error('Error removing item from cart:', error);
+					// Handle errors if necessary
+				}
+			}
 
         </script>
 
@@ -1884,127 +1912,7 @@
             id="wpos-custombox-popup-js-js"></script>
         <script type="text/javascript" src="webroot/js/popupaoc-public.js?ver=2.6" id="popupaoc-public-js-js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script type="module">
-            import { getdata } from './api/firebase.js'
-            $(document).ready(function () {
 
-                $('form.woocommerce-form-login').submit(async function (event) {
-
-                    event.preventDefault();
-
-
-                    var email = $('#username').val().toLowerCase();
-                    var password = $('#password').val();
-                    var rememberMeValue = $('#rememberme').prop('checked');
-
-
-                    if (email.trim() === '') {
-                        $('#emailError').text('Email is required');
-                        return;
-                    } else {
-                        $('#emailError').text('');
-                    }
-                    if (password.trim() === '') {
-                        $('#passwordError').text('Password is required');
-                        return;
-                    } else {
-                        $('#passwordError').text('');
-                    }
-
-                    const userDoc = await getdata('logindata', 'user')
-                    const users = userDoc.userDetails
-                    let userFound = false;
-
-                    users.forEach(user => {
-                        if (user.email === email && user.password === password) {
-                            userFound = true;
-                            return;
-                        }
-                    });
-
-                    if (userFound) {
-                        swal({
-                            title: "success!",
-                            text: "Login success.",
-                            icon: "success",
-                            button: "OK",
-                        }).then((ok) => {
-
-                            if (ok) {
-                                window.location.reload()
-                            }
-                        });
-                        sessionStorage.setItem('isLogin', email);
-
-                    } else {
-
-                        swal({
-                            title: "Error!",
-                            text: "User not found with provided credentials.",
-                            icon: "error",
-                            button: "OK",
-                        }).then((ok) => {
-
-                            if (ok) {
-                                $('input[type=text], input[type=password]').val('');
-                            }
-                        });
-                    }
-                });
-            });
-        </script>
-        <script type="module">
-            import { setdata2, getdata } from './api/firebase.js'
-            $(document).ready(async function () {
-
-                $('form.woocommerce-form-register').submit(async function (event) {
-                    event.preventDefault();
-
-                    var email = $('#reg_email').val().toLowerCase();
-                    var password = $('#reg_password').val();
-
-                    $('#emailError2').text('');
-                    $('#passwordError2').text('');
-
-
-                    if (!email.trim()) {
-                        $('#emailError2').text('Email is required');
-                        return;
-                    } else if (!isValidEmail(email)) {
-                        $('#emailError2').text('Invalid email format');
-                        return;
-                    }
-
-                    if (!password.trim()) {
-                        $('#passwordError2').text('Password is required');
-                        return;
-                    }
-
-                    const userDoc = await getdata('logindata', 'user');
-                    const users = userDoc.userDetails;
-
-
-                    if (users.some(user => user.email === email)) {
-                        swal("Error!", "User already registered.", "error");
-                    } else {
-
-                        await setdata2('logindata', 'user', { userDetails: [...users, { email, password }] });
-                        swal("Success!", "User registered successfully.", "success").then((value) => {
-
-                            if (value) {
-                                $('#reg_email').val('');
-                                $('#reg_password').val('');
-                            }
-                        });
-                    }
-                });
-            });
-
-
-            function isValidEmail(email) {
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-            }
-        </script>
 
         <div id="login-form-popup" class="lightbox-content mfp-hide">
             <div class="woocommerce">
@@ -2019,14 +1927,14 @@
 
                                 <h3 class="uppercase">Login</h3>
 
-                                <form class="woocommerce-form woocommerce-form-login login" method="post">
+                                <form id="loginForm" class="woocommerce-form woocommerce-form-login login"
+                                    method="post">
                                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                         <span id="emailError" style="color: red;"></span>
                                         <label for="username">Username or email address<span
                                                 class="required">*</span></label>
                                         <input type="text" class="woocommerce-Input woocommerce-Input--text input-text"
                                             name="username" id="username" autocomplete="username" value />
-
                                     </p>
                                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                         <label for="password">Password<span class="required">*</span></label>
@@ -2034,8 +1942,8 @@
                                         <input class="woocommerce-Input woocommerce-Input--text input-text"
                                             type="password" name="password" id="password"
                                             autocomplete="current-password" />
-
                                     </p>
+                                    <br />
                                     <div class="g-recaptcha" data-sitekey="6LezZ_EkAAAAAJ5mPw9RQ3AXTJUtegL30t2tHinV">
                                     </div>
                                     <br />
@@ -2049,7 +1957,7 @@
                                         <input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce"
                                             value="12df7e4eef" />
                                         <input type="hidden" name="_wp_http_referer" value="/" />
-                                        <button type="submit"
+                                        <button type="button"
                                             class="woocommerce-button button woocommerce-form-login__submit"
                                             name="login" value="Log in">Log in</button>
                                     </p>
@@ -2058,6 +1966,86 @@
                                             password?</a>
                                     </p>
                                 </form>
+
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script type="module">
+                                    import { getdata, setdata2 } from '../api/firebase.js'
+                                    $(document).ready(function () {
+                                        $('button[name="login"]').click(function () {
+                                            // Get the values of username and password fields
+                                            var username = $('#username').val().trim();
+                                            var password = $('#password').val().trim();
+
+                                            // Perform validation
+                                            var isValid = true;
+                                            if (username === '') {
+                                                $('#emailError').text('Username or email address is required');
+                                                isValid = false;
+                                            } else {
+                                                $('#emailError').text('');
+                                            }
+
+                                            if (password === '') {
+                                                $('#passwordError').text('Password is required');
+                                                isValid = false;
+                                            } else {
+                                                $('#passwordError').text('');
+                                            }
+
+                                            // If everything is valid, submit the form
+                                            if (isValid) {
+                                                // Here you can perform further validation if needed
+
+                                                // If validation passes, submit the form
+                                                doLogin(username, password);
+                                            }
+                                        });
+                                    });
+
+
+                                    async function doLogin(email, password) {
+                                        const userDoc = await getdata('logindata', 'user')
+                                        const users = userDoc.userDetails
+                                        let userFound = false;
+
+                                        users.forEach(user => {
+                                            if (user.email === email && user.password === password) {
+                                                userFound = true;
+                                                return;
+                                            }
+                                        });
+
+                                        if (userFound) {
+                                            swal({
+                                                title: "success!",
+                                                text: "Login success.",
+                                                icon: "success",
+                                                button: "OK",
+                                            }).then((ok) => {
+
+                                                if (ok) {
+                                                    window.location.reload()
+                                                }
+                                            });
+                                            sessionStorage.setItem('isLogin', email);
+
+                                        } else {
+
+                                            swal({
+                                                title: "Error!",
+                                                text: "User not found with provided credentials.",
+                                                icon: "error",
+                                                button: "OK",
+                                            }).then((ok) => {
+
+                                                if (ok) {
+                                                    $('input[type=text], input[type=password]').val('');
+                                                }
+                                            });
+                                        }
+                                    }
+                                </script>
+
                             </div>
 
                         </div>
@@ -2068,13 +2056,12 @@
 
                                 <h3 class="uppercase">Register</h3>
 
-                                <form method="post" class="woocommerce-form woocommerce-form-register register">
+                                <form id="registrationForm" method="post" class="register">
                                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                         <label for="reg_email">Email address<span class="required">*</span></label>
                                         <span id="emailError2" style="color: red;"></span>
                                         <input type="email" class="woocommerce-Input woocommerce-Input--text input-text"
                                             name="email" id="reg_email" autocomplete="email" value />
-
                                     </p>
                                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                         <label for="reg_password">Password<span class="required">*</span></label>
@@ -2082,9 +2069,7 @@
                                         <input type="password"
                                             class="woocommerce-Input woocommerce-Input--text input-text" name="password"
                                             id="reg_password" autocomplete="new-password" />
-
                                     </p>
-                                    <!--<div class="g-recaptcha" data-sitekey="6LezZ_EkAAAAAJ5mPw9RQ3AXTJUtegL30t2tHinV"></div>-->
                                     <br />
                                     <div class="woocommerce-privacy-policy-text">
                                         <p>Your personal data will be used to support your experience throughout this
@@ -2099,11 +2084,69 @@
                                         <input type="hidden" id="woocommerce-register-nonce"
                                             name="woocommerce-register-nonce" value="9fe54015e8" />
                                         <input type="hidden" name="_wp_http_referer" value="/" />
-                                        <button type="submit"
+                                        <button type="button"
                                             class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit"
-                                            name="register" value="Register">Register</button>
+                                            name="register2" value="Register2">Register</button>
                                     </p>
                                 </form>
+
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script type="module" src="../api//firebase.js"></script>
+                                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                                <script type="module">
+                                    import { getdata, setdata2 } from '../api/firebase.js'
+                                    $(document).ready(function () {
+                                        $('button[name="register2"]').click(function () {
+                                            // Get the values of email and password fields
+                                            var email = $('#reg_email').val().trim();
+                                            var password = $('#reg_password').val().trim();
+
+                                            // Perform validation
+                                            var isValid = true;
+                                            if (email === '') {
+                                                $('#emailError2').text('Email address is required');
+                                                isValid = false;
+                                            } else {
+                                                $('#emailError2').text('');
+                                            }
+
+                                            if (password === '') {
+                                                $('#passwordError2').text('Password is required');
+                                                isValid = false;
+                                            } else {
+                                                $('#passwordError2').text('');
+                                            }
+
+                                            // If everything is valid, submit the form
+                                            if (isValid) {
+                                                // Here you can perform further validation if needed
+
+                                                // If validation passes, submit the form
+                                                doRegister(email, password);
+                                            }
+                                        });
+                                    });
+                                    async function doRegister(email, password) {
+                                        const userDoc = await getdata('logindata', 'user');
+                                        const users = userDoc.userDetails;
+
+
+                                        if (users.some(user => user.email === email)) {
+                                            swal("Error!", "User already registered.", "error");
+                                        } else {
+
+                                            await setdata2('logindata', 'user', { userDetails: [...users, { email, password }] });
+                                            swal("Success!", "User registered successfully.", "success").then((value) => {
+
+                                                if (value) {
+                                                    $('#reg_email').val('');
+                                                    $('#reg_password').val('');
+                                                }
+                                            });
+                                        }
+                                    }
+                                </script>
+
 
                             </div>
 
@@ -2115,7 +2158,66 @@
 
             </div>
         </div>
+        </section>
+        <script src="../api//firebase.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+        <!-- <script type="module">
+            import { getdata, setdata, } from '../api/firebase.js'
+
+            $(document).ready(function () {
+                $('form.register').submit(function (e) {
+                    e.preventDefault(); // Prevent the form from submitting
+
+                    // Get the values of email and password fields
+                    var email = $('#reg_email').val().trim();
+                    var password = $('#reg_password').val().trim();
+
+                    // Perform validation
+                    var isValid = true;
+                    if (email === '') {
+                        $('#emailError2').text('Email address is required');
+                        isValid = false;
+                    } else {
+                        $('#emailError2').text('');
+                    }
+
+                    if (password === '') {
+                        $('#passwordError2').text('Password is required');
+                        isValid = false;
+                    } else {
+                        $('#passwordError2').text('');
+                    }
+
+                    // If everything is valid, submit the form
+                    if (isValid) {
+
+                        $(this).unbind('submit').submit();
+                    }
+                });
+            });
+
+            async function doRegister() {
+                const userDoc = await getdata('logindata', 'user');
+                const users = userDoc.userDetails;
+
+
+                if (users.some(user => user.email === email)) {
+                    swal("Error!", "User already registered.", "error");
+                } else {
+
+                    await setdata2('logindata', 'user', { userDetails: [...users, { email, password }] });
+                    swal("Success!", "User registered successfully.", "success").then((value) => {
+
+                        if (value) {
+                            $('#reg_email').val('');
+                            $('#reg_password').val('');
+                        }
+                    });
+                }
+            }
+
+        </script> -->
 
         <header id="header" class="header header-full-width has-sticky sticky-jump">
             <div class="header-wrapper">
@@ -2354,11 +2456,14 @@
                                                 </p>
 
 
-                                                <p class="woocommerce-mini-cart__buttons buttons"><a
-                                                        href="https://wordpress.becomeshakespeare.com/cart/"
-                                                        class="button wc-forward">View cart</a><a
-                                                        href="../checkout/"
-                                                        class="button checkout wc-forward">Checkout</a></p>
+                                                <p class="woocommerce-mini-cart__buttons buttons">
+													<!-- <a
+														href="https://wordpress.becomeshakespeare.com/cart/"
+														class="button wc-forward">View
+														cart</a> -->
+														<a
+														href="../checkout/"
+														class="button checkout wc-forward">Checkout</a></p>
 
 
 
