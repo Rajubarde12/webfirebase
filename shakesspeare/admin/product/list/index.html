@@ -2,492 +2,637 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="csrf-token" content="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">
-  <title>BecomeShakespeare</title>
-  <link rel="shortcut icon" href="http://cdn.sstatic.net/superuser/img/favicon.ico">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
-    rel="stylesheet" />
-  <link href="https://cards.forebearpro.co.in/public/assets/css/adminltev3.css" rel="stylesheet" />
-  <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
-  <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
-  <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-  <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
-  <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
-  <link href="https://cards.forebearpro.co.in/public/assets/css/custom.css" rel="stylesheet" />
-  <style>
-    .app-sidebar-footer>a {
-      width: 100%;
-      padding: 0.75rem 1.75rem;
-      border-top: 1px solid var(--gray-100);
-      display: flex;
-      align-items: center;
-      color: var(--gray-500);
-      font-size: .9rem;
-      font-weight: 500;
-      transition: background .3s;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">
+    <title>BecomeShakespeare</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/superuser/img/favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+        rel="stylesheet" />
+    <link href="https://cards.forebearpro.co.in/public/assets/css/adminltev3.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    <link href="https://cards.forebearpro.co.in/public/assets/css/custom.css" rel="stylesheet" />
+    <style>
+        .app-sidebar-footer>a {
+            width: 100%;
+            padding: 0.75rem 1.75rem;
+            border-top: 1px solid var(--gray-100);
+            display: flex;
+            align-items: center;
+            color: var(--gray-500);
+            font-size: .9rem;
+            font-weight: 500;
+            transition: background .3s;
+        }
 
-    .app-sidebar-avatar {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-    }
-  </style>
-  <style>
-    .container {
-      position: relative;
-      width: 150px;
-      height: 150px;
-      overflow: hidden;
-    }
+        .app-sidebar-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
 
-    .image {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+        .custom-input {
+            width: 100%;
+            /* Adjust the width as needed */
+            max-width: 200px;
+            /* Set a maximum width */
+        }
 
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 10px;
-      box-sizing: border-box;
-    }
+        .custom-input {
+            width: 100%;
+            /* Adjust the width as needed */
+            max-width: 200px;
+            /* Set a maximum width */
+            transition: border-color 0.3s, font-weight 0.3s;
+            /* Smooth transition for border color and font weight */
+            border-color: #ced4da;
+            /* Default border color */
+            font-weight: normal;
+            /* Default font weight */
+        }
 
-    .price {
-      align-self: flex-end;
-      font-weight: bold;
-      font-size: 14px;
-      margin-bottom: 5px;
-      text-align: center;
-      color: black;
-    }
+        .custom-input:focus {
+            border-color: #007bff;
+            /* Border color on focus */
+            font-weight: bold;
+            /* Font weight on focus */
+        }
+    </style>
+    <style>
+        .page-number {
+            border-color: red;
+            margin: 5px;
+            /* height: 28px;
+            width: 28px; */
+        }
+    </style>
+    <style>
+        .container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+        }
 
-    .name {
-      align-self: flex-start;
-      font-size: 12px;
-      margin-top: 5px;
-    }
+        .image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    #loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.7);
-      /* Semi-transparent white background */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      /* Ensure it appears above other elements */
-      border-color: #888;
-    }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
 
-    .spinner-border {
-      width: 2rem;
-      /* Adjust size as needed */
-      height: 2rem;
-      /* Adjust size as needed */
-    }
-  </style>
+        .price {
+            align-self: flex-end;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-align: center;
+            color: black;
+        }
+
+        .name {
+            align-self: flex-start;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Semi-transparent white background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Ensure it appears above other elements */
+            border-color: #888;
+        }
+
+        .spinner-border {
+            width: 2rem;
+            /* Adjust size as needed */
+            height: 2rem;
+            /* Adjust size as needed */
+        }
+    </style>
+    <style>
+        .page-item {
+            border: 2px solid transparent;
+            border-radius: 10px;
+            margin-right: 10px;
+            padding: 10px 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .page-item:hover {
+            border-color: red;
+            background-color: lightgray;
+            /* Optional: Change background color on hover */
+        }
+    </style>
 
 </head>
 
 <body class="sidebar-mini layout-fixed" style="height: auto;">
-  <div id="loader" style="display: none;">
-    <!-- Add your loading spinner or animation here -->
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden"></span>
+    <div id="loader" style="display: none;">
+        <!-- Add your loading spinner or animation here -->
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden"></span>
+        </div>
     </div>
-  </div>
-  <div class="wrapper">
-    <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#">
-            <i class="fa fa-bars"></i>
-          </a>
-        </li>
-      </ul>
-      <!-- Right navbar links -->
-    </nav>
-    <aside class="main-sidebar sidebar-primary elevation-4" style="min-height: 917px; overflow-y: clip;">
-      <!-- Brand Logo -->
-      <a href="#" class="brand-link" style="background-color: #fff;">
-        <span class="brand-text font-weight-light">
-          <image src="https://becomeshakespeare.com/webroot/uploads/Become-Shakespeare-Final-Logo.png" height="60px"
-            width="200px">
-        </span>
-      </a>
-      <!-- Brand Logo -->
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Sidebar user (optional) -->
-        <!-- Sidebar Menu -->
-        <nav class="mt-2" style="position: relative;">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item active btnclick">
-              <a class="nav-link active" href="../../dashboard/index.html">
-                <i class="fa fa-fw fa-sm fa-th mr-2" style="margin-right: 10px;"></i>
-                <p> Dashboard </p>
-              </a>
-            </li>
-            <li class="nav-item btnclick">
-              <a href="../list/index.html" class="nav-link ">
-                <i class="fa fa-address-card" aria-hidden="true" style="margin-right: 10px;"></i>
-                <p> Products </p>
-              </a>
-            </li>
-            <li class="nav-item has-treeview">
-              <a class="nav-link nav-dropdown-toggle" href="#">
-                <i class="fa-fw nav-icon fas fa-users"></i>
-                <p> User management <i class="right fa fa-fw fa-angle-left nav-icon"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item btnclick">
-                  <a href="/user/users" class="nav-link ">
-                    <i class="fa-fw nav-icon fas fa-user"></i>
-                    <p> Users </p>
-                  </a>
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#">
+                        <i class="fa fa-bars"></i>
+                    </a>
                 </li>
-              </ul>
-            </li>
-          </ul>
+            </ul>
+            <!-- Right navbar links -->
         </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const appSidebarFooter = document.querySelector('.app-sidebar-footer');
-        const dropdownMenu = document.querySelector('.dropdown-menu');
-        appSidebarFooter.addEventListener('click', function (event) {
-          dropdownMenu.classList.toggle('show');
-          event.stopPropagation();
-        });
-        document.addEventListener('click', function (event) {
-          const isClickInside = appSidebarFooter.contains(event.target);
-          if (!isClickInside) {
-            dropdownMenu.classList.remove('show');
-          }
-        });
-      });
-    </script>
-    <script type="module" src="../../../api/firebase.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <script type="module">
-      import { getdata ,setdata} from "../../../api/firebase.js"
-
-      $(document).ready(async function (e) {
-        try{
-        $('#loader').show();
-        const firebasedata = await getdata('Finction_update', 'products');
-        fetchdata(firebasedata);
-        }catch(err){
-          $('#loader').hide();
-          alert('some thing went wrong')
-        
-        }
-      });
-
-      async function fetchdata(firebasedata) {
-        try {
-         
-          const data = firebasedata.products.slice(0, 20);
-          const data2 = firebasedata.products;
-          if (data.length > 0) {
-            var outputelemt = $('#products');
-            for (let i = 0; i < data.length; i++) {
-              let item = data[i];
-              const urlRegex = /(https?:\/\/[^\s]+)/;
-              const matches = item['images'].match(urlRegex);
-              const url = matches ? matches[0] : null;
-              var myhtml = '';
-              myhtml += '<tr>';
-              myhtml += '<td>' + (i + 1) + '</td>';
-              myhtml += '<td style="align-items: center;justify-content: center;">';
-              myhtml += '<div class="container">';
-              myhtml += '<img class="image" src="' + url + '" alt="admin">';
-              myhtml += ' </div>';
-              myhtml += '</td>';
-              myhtml += '<td style="text-align: center;" > <div class="price">' + item["post_title"] + '</div> <div>price:₹' + item["regular_price"] + '</div></td>';
-              myhtml += '<td>' + item["tax:product_cat"] + '</td>';
-              myhtml += '<td>' + item["post_date"] + '</td>';
-              myhtml += '<td>';
-              myhtml += '<a class="btn btn-xs btn-info" href="../../product/edit/index.html?id=' + item["ID"] + '"> Edit </a>';
-              myhtml += '<form action="javascript:void(0)" method="POST" class="delete-form" style="display: inline-block;">';
-              myhtml += '<input type="hidden" name="_method" value="DELETE">';
-              myhtml += '<input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">';
-              myhtml += '<input type="hidden" name="product_id" value="' + item["ID"] + '">';
-              myhtml += '<input type="submit" class="btn btn-xs btn-danger delete-button" value="Delete">';
-              myhtml += '</form>';
-              myhtml += '</td>';
-              myhtml += '</tr>';
-              outputelemt.append(myhtml);
-            }
-            $('#loader').hide();
-
-            // Add click event handler for delete button
-            $('.delete-button').click(function (e) {
-              e.preventDefault();
-              var productId = $(this).closest('.delete-form').find('input[name="product_id"]').val();
-              // alert('Deleting product with ID: ' + productId);
-              // Call your delete function here passing the product ID
-              var confirmation = confirm('Are you sure you want to delete this product?');
-              if (confirmation) {
-                deleteProduct(data2,productId)
-              }
-            });
-          }
-        } catch (err) {
-          console.log(err);
-          $('#loader').hide();
-          alert('Some thing went wrong')
-        }
-      }
-      async function deleteProduct(products, id) {
-    try {
-      $('#loader').show();
-        const filtered = products.filter(item => item["ID"] != id);
-        await setdata('Finction_update', 'products', { products: filtered }); // Assuming setdata is a function to update the data
-        alert('Product deleted successfully');
-        location.reload(); // Refresh the page after deletion
-        $('#loader').hide();
-    } catch (error) {
-        console.error(error);
-        alert('Failed to delete product');
-        $('#loader').hide();
-    }
-}
-
-
-    </script>
-
-
-
-
-    <div class="content-wrapper" style="min-height: 650px;">
-      <!-- Main content -->
-      <section class="content" style="padding-top: 20px">
-        <!--                  -->
-        <div style="margin-bottom: 10px;" class="row">
-          <div class="col-lg-12">
-            <a href="../create/index.html" class="btn btn-sm btn-outline-primary">
-              <i class="fa fa-fw fa-sm fa-plus-circle"></i> Add Product </a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header"> Product List </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered table-striped table-hover datatable datatable-User">
-                <thead>
-                  <tr>
-                    <th width="10">ID</th>
-                    <th> Image </th>
-                    <th> Name & Price </th>
-                    <th>Product type </th>
-                    <th>Date </th>
-                    <th> Actions </th>
-                    <th> </th>
-                  </tr>
-                </thead>
-                <tbody id="products">
-                  <!-- Products will be dynamically added here using JavaScript -->
-                </tbody>
-              </table>
-
+        <aside class="main-sidebar sidebar-primary elevation-4" style="min-height: 917px; overflow-y: clip;">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link" style="background-color: #fff;">
+                <span class="brand-text font-weight-light">
+                    <image src="https://becomeshakespeare.com/webroot/uploads/Become-Shakespeare-Final-Logo.png"
+                        height="60px" width="200px">
+                </span>
+            </a>
+            <!-- Brand Logo -->
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <!-- Sidebar Menu -->
+                <nav class="mt-2" style="position: relative;">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item active btnclick">
+                            <a class="nav-link active" href="../../dashboard/index.html">
+                                <i class="fa fa-fw fa-sm fa-th mr-2" style="margin-right: 10px;"></i>
+                                <p> Dashboard </p>
+                            </a>
+                        </li>
+                        <li class="nav-item btnclick">
+                            <a href="../list/index.html" class="nav-link ">
+                                <i class="fa fa-address-card" aria-hidden="true" style="margin-right: 10px;"></i>
+                                <p> Products </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a class="nav-link nav-dropdown-toggle" href="#">
+                                <i class="fa-fw nav-icon fas fa-users"></i>
+                                <p> User management <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item btnclick">
+                                    <a href="/user/users" class="nav-link ">
+                                        <i class="fa-fw nav-icon fas fa-user"></i>
+                                        <p> Users </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
             </div>
-          </div>
+            <!-- /.sidebar -->
+        </aside>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const appSidebarFooter = document.querySelector('.app-sidebar-footer');
+                const dropdownMenu = document.querySelector('.dropdown-menu');
+                appSidebarFooter.addEventListener('click', function (event) {
+                    dropdownMenu.classList.toggle('show');
+                    event.stopPropagation();
+                });
+                document.addEventListener('click', function (event) {
+                    const isClickInside = appSidebarFooter.contains(event.target);
+                    if (!isClickInside) {
+                        dropdownMenu.classList.remove('show');
+                    }
+                });
+            });
+        </script>
+        <script type="module" src="../../../api/firebase.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+        <script type="module">
+            import { getdata, setdata } from "../../../api/firebase.js"
+
+            const productsPerPage = 15; // Change this value to adjust the number of products per page
+            let currentPage = 1;
+            let totalPages = 1;
+            let firebasedata;
+
+            $(document).ready(async function (e) {
+                try {
+                    $('#loader').show();
+                     firebasedata = await getdata('Finction_update', 'products');
+                    totalPages = Math.ceil(firebasedata.products.length / productsPerPage);
+                    fetchdata(firebasedata, currentPage);
+                    createPagination();
+                } catch (err) {
+                    $('#loader').hide();
+                    alert('Something went wrong');
+                }
+                $(document).on('click', '.page-item', function () {
+                    const page = parseInt($(this).text());
+                    changePage(page);
+                });
+                $(document).on('click', '.page-item', function () {
+                    const page = parseInt($(this).attr('data-page'));
+                    changePage(page);
+                });
+                $('#searchInput').on('focus', function () {
+                    $(this).addClass('focused');
+                }).on('blur', function () {
+                    $(this).removeClass('focused');
+                });
+                $('#searchInput').on('input', function () {
+                   
+                    const searchTerm = $(this).val().trim().toLowerCase();
+                    $('#loader').show();
+                    if (searchTerm !== '') {
+                        const filteredData = firebasedata.products.filter(product => {
+                            return product["post_title"].toLowerCase().includes(searchTerm);
+                        });
+                        totalPages = Math.ceil(filteredData.length / productsPerPage);
+                        fetchdata({ products: filteredData }, 1,true); // Fetch and display data for the first page
+                        createPagination();
+                    }
+                    if(searchTerm==''){
+                        $('#loader').hide()
+                    }
+                });
+
+            });
+
+            async function fetchdata(firebasedata, page,isse) {
+                try {
+                    const data = firebasedata.products.slice((page - 1) * productsPerPage, page * productsPerPage);
+                    if (data.length > 0) {
+                        var outputelemt = $('#products');
+                        const contentElement = document.getElementById('contents');
+                        outputelemt.empty(); // Clear previous products
+                        for (let i = 0; i < data.length; i++) {
+                            let item = data[i];
+                            const urlRegex = /(https?:\/\/[^\s]+)/;
+                            const matches = item['images'].match(urlRegex);
+                            const url = matches ? matches[0] : null;
+                            var myhtml = '';
+                            myhtml += '<tr>';
+                            myhtml += '<td>' + (i + 1) + '</td>';
+                            myhtml += '<td style="align-items: center;justify-content: center;">';
+                            myhtml += '<div class="container">';
+                            myhtml += '<img class="image" src="' + url + '" alt="admin">';
+                            myhtml += ' </div>';
+                            myhtml += '</td>';
+                            myhtml += '<td style="text-align: center;" > <div class="price">' + item["post_title"] + '</div> <div>price:₹' + item["regular_price"] + '</div></td>';
+                            myhtml += '<td>' + item["tax:product_cat"] + '</td>';
+                            myhtml += '<td>' + item["post_date"] + '</td>';
+                            myhtml += '<td>';
+                            myhtml += '<a class="btn btn-xs btn-info" href="../../product/edit/index.html?id=' + item["ID"] + '"> Edit </a>';
+                            myhtml += '<form action="javascript:void(0)" method="POST" class="delete-form" style="display: inline-block;">';
+                            myhtml += '<input type="hidden" name="_method" value="DELETE">';
+                            myhtml += '<input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">';
+                            myhtml += '<input type="hidden" name="product_id" value="' + item["ID"] + '">';
+                            myhtml += '<input type="submit" class="btn btn-xs btn-danger delete-button" value="Delete">';
+                            myhtml += '</form>';
+                            myhtml += '</td>';
+                            myhtml += '</tr>';
+                            outputelemt.append(myhtml);
+                        }
+                        $('#loader').hide();
+                        if (contentElement &&!isse) {
+                            contentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                        updatePaginationUI(page);
+                    }
+                } catch (err) {
+                    console.log(err);
+                    $('#loader').hide();
+                    alert('Something went wrong');
+                }
+            }
+
+            function createPagination() {
+                $('#pagination').empty();
+                const visiblePages = Math.min(totalPages, 8);
+                for (let i = 1; i <= visiblePages; i++) {
+                    $('#pagination').append(`<button class="page-item" data-page="${i}">${i}</button>`);
+                }
+                if (totalPages > visiblePages) {
+                    $('#pagination').append(`<span class="ellipsis">...</span>`);
+                    $('#pagination').append(`<button class="page-item" data-page="${totalPages - 2}">${totalPages - 2}</button>`);
+                    $('#pagination').append(`<button class="page-item" data-page="${totalPages - 1}">${totalPages - 1}</button>`);
+                    $('#pagination').append(`<button class="page-item" data-page="${totalPages}">${totalPages}</button>`);
+                }
+            }
+
+            function updatePaginationUI(currentPage) {
+
+                $('#pagination').empty();
+                const visiblePages = Math.min(totalPages, 8);
+                let startPage = 1;
+                let endPage = Math.min(totalPages, visiblePages);
+
+                if (totalPages > visiblePages && currentPage > 3) {
+                    startPage = Math.min(currentPage - 2, totalPages - visiblePages + 1);
+                    endPage = Math.min(currentPage + 2, totalPages);
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    const activeClass = currentPage === i ? 'active' : '';
+                    $('#pagination').append(`<button class="page-item ${activeClass}" data-page="${i}">${i}</button>`);
+                }
+
+                if (totalPages > visiblePages && endPage < totalPages) {
+                    if (endPage < totalPages - 3) {
+                        $('#pagination').append(`<span class="ellipsis">...</span>`);
+                    }
+                    for (let i = totalPages - 2; i <= totalPages; i++) {
+                        const activeClass = currentPage === i ? 'active' : '';
+                        $('#pagination').append(`<button class="page-item ${activeClass}" data-page="${i}">${i}</button>`);
+                    }
+                }
+            }
+            async function changePage(page) {
+                $('#loader').show();
+
+                const firebasedata = await getdata('Finction_update', 'products');
+
+                var currentPage = page;
+                fetchdata(firebasedata, currentPage);
+            }
+
+            async function deleteProduct(products, id) {
+                try {
+                    $('#loader').show();
+                    const filtered = products.filter(item => item["ID"] != id);
+                    await setdata('Finction_update', 'products', { products: filtered }); // Assuming setdata is a function to update the data
+                    alert('Product deleted successfully');
+                    location.reload(); // Refresh the page after deletion
+                    $('#loader').hide();
+                } catch (error) {
+                    console.error(error);
+                    alert('Failed to delete product');
+                    $('#loader').hide();
+                }
+            }
+        </script>
+
+
+
+
+        <div class="content-wrapper" style="min-height: 650px;">
+            <!-- Main content -->
+            <section class="content" style="padding-top: 20px">
+                <!--                  -->
+                <div style="margin-bottom: 10px;" class="row">
+                    <div class="col-lg-6">
+                        <a href="../create/index.html" class="btn btn-sm btn-outline-primary">
+                            <i class="fa fa-fw fa-sm fa-plus-circle"></i> Add Product
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input id="searchInput" type="text" class="form-control custom-input" placeholder="Search...">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-header"> Product List </div>
+                    <div class="card-body" id="contents">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover datatable datatable-User">
+                                <thead>
+                                    <tr>
+                                        <th width="10">ID</th>
+                                        <th> Image </th>
+                                        <th> Name & Price </th>
+                                        <th>Product type </th>
+                                        <th>Date </th>
+                                        <th> Actions </th>
+                                        <th> </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="products">
+                                    <!-- Products will be dynamically added here using JavaScript -->
+                                </tbody>
+                            </table>
+
+                            <div id="pagination" class="pagination">
+                                <!-- Pagination buttons will be appended here -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
         </div>
-      </section>
-      <!-- /.content -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.0.0-alpha
+            </div>
+            <strong> &copy;</strong> All rights reserved.
+        </footer>
     </div>
-    <footer class="main-footer">
-      <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.0.0-alpha
-      </div>
-      <strong> &copy;</strong> All rights reserved.
-    </footer>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
-  <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
-  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-  <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-  <script src="https://cards.forebearpro.co.in/public/assets/js/main.js"></script>
-  <!-- CDN Links for Popper.js and Bootstrap JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/jquery.slim.min.js"></script>
-  <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/popper.min.js"></script>
-  <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/bootstrap.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $(".btnclick").click(function () {
-        $(this).removeClass("active");
-        // Remove active class from all buttons
-        $(".btnclick").removeClass("active");
-        // Add active class to the clicked button
-        $(this).addClass("active");
-      });
-    });
-  </script>
-  <script>
-    $(document).ready(function () {
-      // Remove success alert after 20 seconds
-      setTimeout(function () {
-        $('#success-alert').fadeOut('slow');
-      }, 2000); // 20 seconds
-      // Remove error alert after 20 seconds
-      setTimeout(function () {
-        $('#error-alert').fadeOut('slow');
-      }, 2000); // 20 seconds
-    });
-  </script>
-  <script>
-    $(function () {
-      let copyButtonTrans = 'Copy'
-      let csvButtonTrans = 'CSV'
-      let excelButtonTrans = 'Excel'
-      let pdfButtonTrans = 'PDF'
-      let printButtonTrans = 'Print'
-      let colvisButtonTrans = 'Columns'
-      let selectAllButtonTrans = 'Select all'
-      let selectNoneButtonTrans = 'Deselect all'
-      let languages = {
-        'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
-      };
-      $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, {
-        className: 'btn'
-      })
-      $.extend(true, $.fn.dataTable.defaults, {
-        language: {
-          url: languages['en']
-        },
-        columnDefs: [{
-          orderable: false,
-          className: 'select-checkbox',
-          targets: 0
-        }, {
-          orderable: false,
-          searchable: false,
-          targets: -1
-        }],
-        select: {
-          style: 'multi+shift',
-          selector: 'td:first-child'
-        },
-        order: [],
-        scrollX: true,
-        pageLength: 100,
-        dom: 'lBfrtip<"actions">',
-        buttons: [{
-          extend: 'selectAll',
-          className: 'btn-primary',
-          text: selectAllButtonTrans,
-          exportOptions: {
-            columns: ':visible'
-          },
-          action: function (e, dt) {
-            e.preventDefault()
-            dt.rows().deselect();
-            dt.rows({
-              search: 'applied'
-            }).select();
-          }
-        }, {
-          extend: 'selectNone',
-          className: 'btn-primary',
-          text: selectNoneButtonTrans,
-          exportOptions: {
-            columns: ':visible'
-          }
-        }, {
-          extend: 'copy',
-          className: 'btn-default',
-          text: copyButtonTrans,
-          exportOptions: {
-            columns: ':visible'
-          }
-        }, {
-          extend: 'csv',
-          className: 'btn-default',
-          text: csvButtonTrans,
-          exportOptions: {
-            columns: ':visible'
-          }
-        }, {
-          extend: 'excel',
-          className: 'btn-default',
-          text: excelButtonTrans,
-          exportOptions: {
-            columns: ':visible'
-          }
-        }, {
-          extend: 'pdf',
-          className: 'btn-default',
-          text: pdfButtonTrans,
-          exportOptions: {
-            columns: ':visible'
-          }
-        }, {
-          extend: 'print',
-          className: 'btn-default',
-          text: printButtonTrans,
-          exportOptions: {
-            columns: ':visible'
-          }
-        }, {
-          extend: 'colvis',
-          className: 'btn-default',
-          text: colvisButtonTrans,
-          exportOptions: {
-            columns: ':visible'
-          }
-        }]
-      });
-      $.fn.dataTable.ext.classes.sPageButton = '';
-    });
-  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/main.js"></script>
+    <!-- CDN Links for Popper.js and Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/jquery.slim.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/popper.min.js"></script>
+    <script src="https://cards.forebearpro.co.in/public/assets/js/libraries/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".btnclick").click(function () {
+                $(this).removeClass("active");
+                // Remove active class from all buttons
+                $(".btnclick").removeClass("active");
+                // Add active class to the clicked button
+                $(this).addClass("active");
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Remove success alert after 20 seconds
+            setTimeout(function () {
+                $('#success-alert').fadeOut('slow');
+            }, 2000); // 20 seconds
+            // Remove error alert after 20 seconds
+            setTimeout(function () {
+                $('#error-alert').fadeOut('slow');
+            }, 2000); // 20 seconds
+        });
+    </script>
+    <script>
+        $(function () {
+            let copyButtonTrans = 'Copy'
+            let csvButtonTrans = 'CSV'
+            let excelButtonTrans = 'Excel'
+            let pdfButtonTrans = 'PDF'
+            let printButtonTrans = 'Print'
+            let colvisButtonTrans = 'Columns'
+            let selectAllButtonTrans = 'Select all'
+            let selectNoneButtonTrans = 'Deselect all'
+            let languages = {
+                'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
+            };
+            $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, {
+                className: 'btn'
+            })
+            $.extend(true, $.fn.dataTable.defaults, {
+                language: {
+                    url: languages['en']
+                },
+                columnDefs: [{
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0
+                }, {
+                    orderable: false,
+                    searchable: false,
+                    targets: -1
+                }],
+                select: {
+                    style: 'multi+shift',
+                    selector: 'td:first-child'
+                },
+                order: [],
+                scrollX: true,
+                pageLength: 100,
+                dom: 'lBfrtip<"actions">',
+                buttons: [{
+                    extend: 'selectAll',
+                    className: 'btn-primary',
+                    text: selectAllButtonTrans,
+                    exportOptions: {
+                        columns: ':visible'
+                    },
+                    action: function (e, dt) {
+                        e.preventDefault()
+                        dt.rows().deselect();
+                        dt.rows({
+                            search: 'applied'
+                        }).select();
+                    }
+                }, {
+                    extend: 'selectNone',
+                    className: 'btn-primary',
+                    text: selectNoneButtonTrans,
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'copy',
+                    className: 'btn-default',
+                    text: copyButtonTrans,
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'csv',
+                    className: 'btn-default',
+                    text: csvButtonTrans,
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'excel',
+                    className: 'btn-default',
+                    text: excelButtonTrans,
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'pdf',
+                    className: 'btn-default',
+                    text: pdfButtonTrans,
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'print',
+                    className: 'btn-default',
+                    text: printButtonTrans,
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'colvis',
+                    className: 'btn-default',
+                    text: colvisButtonTrans,
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }]
+            });
+            $.fn.dataTable.ext.classes.sPageButton = '';
+        });
+    </script>
 </body>
 
 </html>

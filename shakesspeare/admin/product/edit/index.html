@@ -361,6 +361,9 @@
         ["quantity"]: item.quantity??'0'
        
       };
+      const urlRegex = /(https?:\/\/[^\s]+)/;
+                            const matches = item['images'].match(urlRegex);
+                            const url = matches ? matches[0] : null;
       $('#name').val(inputs.post_title);
       $('#description').val(inputs.post_content);
       $('#price').val(inputs.regular_price);
@@ -369,6 +372,7 @@
       $('#text-field').val(inputs.textField);
       $('#roles').val(inputs["tax:product_cat"]);
       $('#quantity').val(inputs["quantity"]);
+      $('#product-image').attr('src', url);
       $('#loader').hide();
     }
     async function setdatadb(obj) {
