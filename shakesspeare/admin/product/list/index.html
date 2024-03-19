@@ -258,15 +258,23 @@
         </script>
         <script type="module" src="../../../api/firebase.js"></script>
         <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+
         <script type="module">
             import { getdata, setdata } from "../../../api/firebase.js"
-            
+
             const productsPerPage = 15;
             let currentPage = 1;
             let totalPages = 1;
             let firebasedata;
-            
+
             $(document).ready(async function () {
+                const email = await sessionStorage.getItem('admin')
+
+                if (email == null) {
+                    alert('you need to login first')
+                    window.location.href = '../../login/'
+                }
                 try {
                     $('#loader').show();
                     firebasedata = await getdata('Finction_update', 'products');
@@ -277,36 +285,36 @@
                     $('#loader').hide();
                     alert('Something went wrong');
                 }
-            
+
                 $(document).on('click', '.page-item', function () {
                     const page = parseInt($(this).attr('data-page'));
                     changePage(page);
                 });
-            
+
                 $(document).on('submit', '.delete-form', function (e) {
                     e.preventDefault();
                     const id = $(this).find('[name="product_id"]').val();
                     deleteProduct(firebasedata.products, id);
                 });
-            
+
                 $('#prevPage').click(function () {
                     if (currentPage > 1) {
                         changePage(currentPage - 1);
                     }
                 });
-            
+
                 $('#nextPage').click(function () {
                     if (currentPage < totalPages) {
                         changePage(currentPage + 1);
                     }
                 });
-            
+
                 $('#searchInput').on('focus', function () {
                     $(this).addClass('focused');
                 }).on('blur', function () {
                     $(this).removeClass('focused');
                 });
-            
+
                 $('#searchInput').on('input', function () {
                     const searchTerm = $(this).val().trim().toLowerCase();
                     $('#loader').show();
@@ -324,7 +332,7 @@
                     }
                 });
             });
-            
+
             async function fetchdata(firebasedata, page, isSearch) {
                 try {
                     const data = firebasedata.products.slice((page - 1) * productsPerPage, page * productsPerPage);
@@ -358,7 +366,7 @@
                             myhtml += '</tr>';
                             outputelemt.append(myhtml);
                         }
-                        alert('i am')
+
                         $('#loader').hide();
                         updatePaginationUI(page);
                     }
@@ -368,15 +376,18 @@
                     alert('Something went wrong');
                 }
             }
-            
+
             function createPagination() {
                 $('#pagination').empty();
                 if (totalPages > 1) {
                     $('#pagination').append(`<button id="prevPage" class="page-item">&laquo; Prev</button>`);
                 }
                 const visiblePages = Math.min(totalPages, 5);
-                const startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
+                let startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
                 const endPage = Math.min(totalPages, startPage + visiblePages - 1);
+                if (endPage - startPage + 1 < visiblePages) {
+                    startPage = Math.max(1, endPage - visiblePages + 1);
+                }
                 for (let i = startPage; i <= endPage; i++) {
                     $('#pagination').append(`<button class="page-item" data-page="${i}">${i}</button>`);
                 }
@@ -384,17 +395,18 @@
                     $('#pagination').append(`<button id="nextPage" class="page-item">Next &raquo;</button>`);
                 }
             }
-            
+
+
             function updatePaginationUI(currentPage) {
                 $('#pagination .page-item').removeClass('active');
                 $(`#pagination .page-item[data-page="${currentPage}"]`).addClass('active');
             }
-            
+
             async function changePage(page) {
                 currentPage = page;
                 fetchdata(firebasedata, currentPage);
             }
-            
+
             async function deleteProduct(products, id) {
                 try {
                     $('#loader').show();
@@ -417,8 +429,8 @@
                 }
             }
         </script>
-        
-        
+
+
 
 
         <div class="content-wrapper" style="min-height: 650px;">

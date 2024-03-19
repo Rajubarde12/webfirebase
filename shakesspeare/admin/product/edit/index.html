@@ -302,6 +302,12 @@
   <script type="module">
     import { getdata, setdata } from "../../../api/firebase.js"
     $(document).ready(async function () {
+      const email = await sessionStorage.getItem('admin')
+               
+                if (email==null) {
+                    alert('you need to login first')
+                    window.location.href = '../../login/'
+                }
       fetchData()
       $('#saveButton').click(function (e) {
         let isvalid = true

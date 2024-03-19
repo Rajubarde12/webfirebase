@@ -122,8 +122,7 @@
                 var username = $('#email').val();
                 var password = $('#password').val();
                 var remember = $('#remember').is(':checked') ? 'Yes' : 'No';
-    
-                await doLogin(username, password, remember); // Wait for login to finish
+                await doLogin(username, password, remember); 
             });
         });
     
@@ -132,9 +131,10 @@
             console.log(name, pass);
             console.log(data);
             const admin = data.admin.some(item => item.userName == name.toString() && item.password === pass.toString());
+            // alert(admin)
     
             if (admin) {
-                // Navigate to product.html
+                sessionStorage.setItem('admin',admin)
                 window.location.href = "../product/list";
             } else {
                 // Show error message
