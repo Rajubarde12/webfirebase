@@ -493,26 +493,20 @@
           "attribute_data:pa_lamination": ""
         };
 
-        // Merge the uploaded product object with the input object
         const productUpload = { ...obj, ...uploadItem };
 
         const id = await getParameterByName('id');
         const firebaseData = await getdata('Finction_update', 'products');
         let products = firebaseData.products;
 
-        // Find the index of the product with the matching ID
         const index = products.findIndex(product => product["ID"] == id);
 
-        // If the product with the matching ID exists, update it
         if (index !== -1) {
-          // Update the product using the spread operator
           products[index] = { ...products[index], ...productUpload };
         } else {
-          // If the product doesn't exist, push the new product to the array
           products.push(productUpload);
         }
 
-        // Set the updated products array in the database
         await setdata('Finction_update', 'products', { products: products });
         window.location.href = "../list";
       } catch (err) {
@@ -535,12 +529,9 @@
   </style>
   <script>
     $(document).ready(function () {
-      // Handle form submission
       $('form').submit(function (event) {
-        // Prevent the default form submission
         event.preventDefault();
 
-        // Retrieve values of input fields
         var productName = $('#name').val();
         var productDescription = $('#description').val();
         var productPrice = $('#price').val();
@@ -549,7 +540,6 @@
         var textField = $('#text-field').val();
         var roles = $('#roles').val();
 
-        // Display the retrieved values (you can modify this as needed)
         console.log('Product Name:', productName);
         console.log('Product Description:', productDescription);
         console.log('Product Price:', productPrice);
@@ -558,7 +548,6 @@
         console.log('Text Field:', textField);
         console.log('Roles:', roles);
 
-        // You can perform further actions here, such as sending the data via AJAX or updating the UI
       });
     });
   </script>

@@ -260,13 +260,13 @@
         <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
         <script type="module">
             import { getdata, setdata } from "../../../api/firebase.js"
-
-            const productsPerPage = 15; // Change this value to adjust the number of products per page
+            
+            const productsPerPage = 15;
             let currentPage = 1;
             let totalPages = 1;
             let firebasedata;
-
-            $(document).ready(async function (e) {
+            
+            $(document).ready(async function () {
                 try {
                     $('#loader').show();
                     firebasedata = await getdata('Finction_update', 'products');
@@ -277,28 +277,36 @@
                     $('#loader').hide();
                     alert('Something went wrong');
                 }
+            
                 $(document).on('click', '.page-item', function () {
                     const page = parseInt($(this).attr('data-page'));
                     changePage(page);
                 });
-
+            
+                $(document).on('submit', '.delete-form', function (e) {
+                    e.preventDefault();
+                    const id = $(this).find('[name="product_id"]').val();
+                    deleteProduct(firebasedata.products, id);
+                });
+            
                 $('#prevPage').click(function () {
                     if (currentPage > 1) {
                         changePage(currentPage - 1);
                     }
                 });
-
+            
                 $('#nextPage').click(function () {
                     if (currentPage < totalPages) {
                         changePage(currentPage + 1);
                     }
                 });
-
+            
                 $('#searchInput').on('focus', function () {
                     $(this).addClass('focused');
                 }).on('blur', function () {
                     $(this).removeClass('focused');
                 });
+            
                 $('#searchInput').on('input', function () {
                     const searchTerm = $(this).val().trim().toLowerCase();
                     $('#loader').show();
@@ -307,22 +315,22 @@
                             return product["post_title"].toLowerCase().includes(searchTerm);
                         });
                         totalPages = Math.ceil(filteredData.length / productsPerPage);
-                        fetchdata({ products: filteredData }, 1, true); // Fetch and display data for the first page
+                        fetchdata({ products: filteredData }, 1, true);
                         createPagination();
-                    }
-                    if (searchTerm == '') {
-                        $('#loader').hide()
+                    } else {
+                        totalPages = Math.ceil(firebasedata.products.length / productsPerPage);
+                        fetchdata(firebasedata, 1);
+                        createPagination();
                     }
                 });
             });
-
+            
             async function fetchdata(firebasedata, page, isSearch) {
                 try {
                     const data = firebasedata.products.slice((page - 1) * productsPerPage, page * productsPerPage);
                     if (data.length > 0) {
                         var outputelemt = $('#products');
-                        const contentElement = document.getElementById('contents');
-                        outputelemt.empty(); // Clear previous products
+                        outputelemt.empty();
                         for (let i = 0; i < data.length; i++) {
                             let item = data[i];
                             const urlRegex = /(https?:\/\/[^\s]+)/;
@@ -350,10 +358,8 @@
                             myhtml += '</tr>';
                             outputelemt.append(myhtml);
                         }
+                        alert('i am')
                         $('#loader').hide();
-                        if (!isSearch && contentElement) {
-                            contentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
                         updatePaginationUI(page);
                     }
                 } catch (err) {
@@ -362,41 +368,47 @@
                     alert('Something went wrong');
                 }
             }
-
+            
             function createPagination() {
                 $('#pagination').empty();
                 if (totalPages > 1) {
                     $('#pagination').append(`<button id="prevPage" class="page-item">&laquo; Prev</button>`);
                 }
                 const visiblePages = Math.min(totalPages, 5);
-                for (let i = 1; i <= visiblePages; i++) {
+                const startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
+                const endPage = Math.min(totalPages, startPage + visiblePages - 1);
+                for (let i = startPage; i <= endPage; i++) {
                     $('#pagination').append(`<button class="page-item" data-page="${i}">${i}</button>`);
                 }
                 if (totalPages > 1) {
                     $('#pagination').append(`<button id="nextPage" class="page-item">Next &raquo;</button>`);
                 }
             }
-
+            
             function updatePaginationUI(currentPage) {
                 $('#pagination .page-item').removeClass('active');
                 $(`#pagination .page-item[data-page="${currentPage}"]`).addClass('active');
             }
-
+            
             async function changePage(page) {
-                $('#loader').show();
-
-                const firebasedata = await getdata('Finction_update', 'products');
-
-                var currentPage = page;
+                currentPage = page;
                 fetchdata(firebasedata, currentPage);
             }
+            
             async function deleteProduct(products, id) {
                 try {
                     $('#loader').show();
                     const filtered = products.filter(item => item["ID"] != id);
-                    await setdata('Finction_update', 'products', { products: filtered }); // Assuming setdata is a function to update the data
+                    await setdata('Finction_update', 'products', { products: filtered });
                     alert('Product deleted successfully');
-                    location.reload(); // Refresh the page after deletion
+                    firebasedata.products = filtered; // Update local data after deletion
+                    const remainingPages = Math.ceil(filtered.length / productsPerPage);
+                    if (currentPage > remainingPages) {
+                        currentPage = Math.max(1, remainingPages);
+                    }
+                    totalPages = remainingPages;
+                    fetchdata(firebasedata, currentPage);
+                    createPagination();
                     $('#loader').hide();
                 } catch (error) {
                     console.error(error);
@@ -405,6 +417,8 @@
                 }
             }
         </script>
+        
+        
 
 
         <div class="content-wrapper" style="min-height: 650px;">
