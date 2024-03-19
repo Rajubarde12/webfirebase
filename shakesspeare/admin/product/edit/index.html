@@ -43,64 +43,59 @@
     }
 
     .select-wrapper {
-    position: relative;
-}
+      position: relative;
+    }
 
-.select-wrapper select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding-right: 30px;
-}
+    .select-wrapper select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding-right: 30px;
+    }
 
-.select-wrapper i {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    color: #888;
-}
-#loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Ensure it appears above other elements */
-    border-color: #888;
-}
+    .select-wrapper i {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #888;
+    }
 
-.spinner-border {
-    width: 3rem; /* Adjust size as needed */
-    height: 3rem; /* Adjust size as needed */
-}
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      /* Semi-transparent white background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      /* Ensure it appears above other elements */
+      border-color: #888;
+    }
 
-
-  </style>
-  <style>
-    /* Internal CSS for setting height and width of the image */
-    #product-image {
-      width: 200px;
-      /* Set width to 200px */
-      height: auto;
-      /* Automatically adjust height to maintain aspect ratio */
+    .spinner-border {
+      width: 3rem;
+      /* Adjust size as needed */
+      height: 3rem;
+      /* Adjust size as needed */
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-lFy0MwLoO7V1y6KfxX8HsD4bqTmcuT55Djwdq1rnXJPMHE9VJmLOqS6gsH5zkg0Wmwpbs5VSJojI8InF3MqghA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-lFy0MwLoO7V1y6KfxX8HsD4bqTmcuT55Djwdq1rnXJPMHE9VJmLOqS6gsH5zkg0Wmwpbs5VSJojI8InF3MqghA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="sidebar-mini layout-fixed" style="height: auto;">
   <div id="loader" style="display: none;">
     <!-- Add your loading spinner or animation here -->
     <div class="spinner-border" role="status">
-        <span class="visually-hidden"></span>
+      <span class="visually-hidden"></span>
     </div>
-</div>
+  </div>
   <div class="wrapper">
     <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
       <!-- Left navbar links -->
@@ -184,74 +179,85 @@
 
         <div class="card">
           <div class="card-header"> Edit Product </div>
-          
+
           <div class="card-body">
             <form id="productForm" method="POST" action="" enctype="multipart/form-data">
               <input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ" autocomplete="off">
               <div class="form-group">
-                  <label class="required" for="name">Product Name</label>
-                  <input class="form-control" type="text" name="name" id="name" value="" required>
-                  <span class="help-block"></span>
+                <label class="required" for="name">Product Name</label>
+                <input class="form-control" type="text" name="name" id="name" value="" required>
+                <span class="help-block"></span>
               </div>
               <div class="form-group">
-                  <label class="required" for="description">Product Description</label>
-                  <textarea class="form-control" name="description" id="description" required></textarea>
-                  <span class="help-block"></span>
+                <label class="required" for="description">Product Description</label>
+                <textarea class="form-control" name="description" id="description" required></textarea>
+                <span class="help-block"></span>
               </div>
               <div class="form-group">
-                  <label class="required" for="price">Product Price</label>
-                  <input class="form-control" type="text" name="price" id="price" value="" required>
-                  <span class="help-block"></span>
+                <label class="required" for="price">Product Price</label>
+                <input class="form-control" type="text" name="price" id="price" value="" required>
+                <span class="help-block"></span>
               </div>
               <div class="form-group">
-                  <label class="required" for="price">Product Quantity</label>
-                  <input class="form-control" type="text" name="quantity" id="quantity" value="" required>
-                  <span class="help-block"></span>
+                <label class="required" for="price">Product Quantity</label>
+                <input class="form-control" type="text" name="quantity" id="quantity" value="" required>
+                <span class="help-block"></span>
               </div>
               <div class="form-group">
-                  <label class="required" for="pages">Total Pages</label>
-                  <input class="form-control" type="text" name="pages" id="pages" value="" required>
-                  <span class="help-block"></span>
+                <label class="required" for="pages">Total Pages</label>
+                <input class="form-control" type="text" name="pages" id="pages" value="" required>
+                <span class="help-block"></span>
               </div>
               <div class="form-group">
-                  <label class="required" for="password">Product Sku</label>
-                  <input class="form-control" type="text" name="password" id="password" required>
-                  <span class="help-block"></span>
+                <label class="required" for="password">Product ISBN</label>
+                <input class="form-control" type="text" name="password" id="password" required>
+                <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                <label class="required" for="password">BINDING</label>
+                <input class="form-control" type="text" name="binding" id="binding" required>
+                <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                <label class="required" for="password">DIMENSIONS</label>
+                <input class="form-control" type="text" name="dimensions" id="dimensions" required>
+                <span class="help-block"></span>
               </div>
               <div class="form-group">
                 <label for="roles">Category</label>
                 <div class="select-wrapper">
-                    <select class="form-control select2" name="roles[]" id="roles" multiple required>
-                        <option value="Fiction">Fiction</option>
-                        <option value="Non-Fiction">Non-Fiction</option>
-                       
-                    </select>
-                    <i class="fas fa-caret-down"></i>
+                  <select class="form-control" name="roles" id="roles" required>
+                  
+                    <option selected  value="Fiction">Fiction</option>
+                    <option value="Non-Fiction">Non-Fiction</option>
+                  </select>
+                  <i class="fas fa-caret-down"></i>
                 </div>
-               
-            </div>
-              <div class="form-group">
-                  <label for="product-image">Product Image</label>
-                  <label for="upload-image" style="cursor: pointer;">
-                      <img id="product-image" src="https://www.becomeshakespeare.com/wp-content/uploads/2019/03/74A.jpg" alt="Product Image">
-                  </label>
-                  <input type="file" accept="image/*" id="upload-image" style="display: none;">
-                  <button type="button" id="select-image-button">+ Select Image</button>
+
               </div>
               <div class="form-group">
-                  <label for="text-field">Image Name</label>
-                  <input class="form-control" type="text" name="text-field" id="text-field">
-                  <span class="help-block"></span>
+                <label for="product-image">Product Image</label>
+                <!-- <label for="upload-image" style="cursor: pointer;"> -->
+                <img id="product-image" src="https://www.becomeshakespeare.com/wp-content/uploads/2019/03/74A.jpg"
+                  alt="Product Image">
+                <!-- </label> -->
+                <input type="file" accept="image/*" id="upload-image" style="display: none;">
+                <button type="button" id="select-image-button">+ Select Image</button>
               </div>
-             
-            
-            
-            
               <div class="form-group">
-                  <button id="saveButton" class="btn btn-danger" type="button"> Save </button>
+                <label for="text-field">Image Name</label>
+                <input class="form-control" type="text" name="text-field" id="text-field">
+                <span class="help-block"></span>
               </div>
-          </form>
-          
+
+
+
+
+              <div class="form-group">
+                <button id="saveButton" class="btn btn-danger" type="button"> Save </button>
+              </div>
+            </form>
+
 
           </div>
         </div>
@@ -296,23 +302,39 @@
   <script type="module" src="../../../api/firebase.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
   <script type="module">
-    import { getdata,setdata } from "../../../api/firebase.js"
+    import { getdata, setdata } from "../../../api/firebase.js"
     $(document).ready(async function () {
       fetchData()
       $('#saveButton').click(function (e) {
-     var   inputs2 = {
+        let isvalid=true
+        
+        $('#productForm .form-group input[required]').each(function() {
+                const input = $(this);
+                const label = input.siblings('label').text();
+                const value = input.val().trim();
+
+                // Check if input value is empty
+                if (value === '') {
+                   isvalid=false
+                    input.after(`<span class="error-message">${label} is required.</span>`);
+                }
+            });
+        var inputs2 = {
           post_title: $('#name').val(),
-          post_content:"<span>"+ $('#description').val()+"</span>",
+          post_content: "<span>" + $('#description').val() + "</span>",
           regular_price: $('#price').val(),
           ["attribute:Page Count"]: $('#pages').val(),
           ["attribute:ISBN"]: $('#password').val(),
           // textField: "Text Field Value",
           ["tax:product_cat"]: $('#roles').val(),
           ["quantity"]: $('#quantity').val(),
-          ["post_name"]:$('#name').val()
+          ["post_name"]: $('#name').val(),
+          ["attribute:pa_binding"]: $('#binding').val(),
+          ["attribute_data:DIMENSIONS"]: $('#dimensions').val()
         }
-        // var selectedRoles = $('#roles').val();
+       if(isvalid){
         setdatadb(inputs2)
+       }
       });
     })
     async function getParameterByName(name, url) {
@@ -326,16 +348,16 @@
     }
 
     async function fetchData() {
-      try{
+      try {
         $('#loader').show();
-      
-      const firebasedata = await getdata('Finction_update', 'products')
-      const produts = firebasedata.products.slice(0, 20)
-      const product_id = await getParameterByName('id')
 
-      const productdata = await getObjectById(produts, product_id)
-      setItme(productdata, produts)
-      }catch(err){
+        const firebasedata = await getdata('Finction_update', 'products')
+        const produts = firebasedata.products.slice(0, 20)
+        const product_id = await getParameterByName('id')
+
+        const productdata = await getObjectById(produts, product_id)
+        setItme(productdata, produts)
+      } catch (err) {
         alert('something went wrong')
         $('#loader').hide();
       }
@@ -344,13 +366,14 @@
       return array.find((item) => {
         return item['ID'] == id
       })
-    
+
     }
 
 
     async function setItme(item, array) {
+      console.log(item);
 
-      var inputs = {
+   try   {var inputs = {
         post_title: item["post_title"],
         post_content: $(item["post_content"]).text(),
         regular_price: item["regular_price"],
@@ -358,12 +381,15 @@
         ["attribute:ISBN"]: item["attribute:ISBN"],
         // textField: "Text Field Value",
         ["tax:product_cat"]: item["tax:product_cat"],
-        ["quantity"]: item.quantity??'0'
-       
+        ["quantity"]: item.quantity ?? '0',
+        ["attribute:pa_binding"]: item["attribute:pa_binding"],
+        ["attribute_data:DIMENSIONS"]: item["attribute_data:DIMENSIONS"]
+
       };
+      alert('thisis ', inputs["attribute:pa_binding"])
       const urlRegex = /(https?:\/\/[^\s]+)/;
-                            const matches = item['images'].match(urlRegex);
-                            const url = matches ? matches[0] : null;
+      const matches = item['images'].match(urlRegex);
+      const url = matches ? matches[0] : null;
       $('#name').val(inputs.post_title);
       $('#description').val(inputs.post_content);
       $('#price').val(inputs.regular_price);
@@ -372,39 +398,51 @@
       $('#text-field').val(inputs.textField);
       $('#roles').val(inputs["tax:product_cat"]);
       $('#quantity').val(inputs["quantity"]);
+      $('#binding').val(inputs["attribute:pa_binding"]);
+      $('#dimensions').val(inputs["attribute_data:DIMENSIONS"]);
       $('#product-image').attr('src', url);
-      $('#loader').hide();
+      $('#loader').hide();}
+      catch(erro){
+        alert('some thing went wrong')
+        $('#loader').hide();
+
+      }
     }
     async function setdatadb(obj) {
-      try{
-      $('#loader').show();
-    const id = await getParameterByName('id');
-    const firebasedata = await getdata('Finction_update', 'products');
-    let products = firebasedata.products;
+      try {
+        $('#loader').show();
+        const id = await getParameterByName('id');
+        const firebasedata = await getdata('Finction_update', 'products');
+        let products = firebasedata.products;
 
-    // Find the index of the product with the matching ID
-    const index = products.findIndex(product => product["ID"] == id);
+        // Find the index of the product with the matching ID
+        const index = products.findIndex(product => product["ID"] == id);
 
-    // If the product with the matching ID exists, update it
-    if (index !== -1) {
-        // Update the product using the spread operator
-        products[index] = { ...products[index], ...obj };
+        // If the product with the matching ID exists, update it
+        if (index !== -1) {
+          // Update the product using the spread operator
+          products[index] = { ...products[index], ...obj };
+        }
+
+        await setdata('Finction_update', 'products', { products: products })
+        window.location.href = "../list"
+        $('#loader').hide();
+      } catch (err) {
+        $('#loader').hide();
+        alert('something went wrong')
+      }
+      // You can now do something with the updated products array
+      // For example, save it back to the database or perform other operations
     }
-  
-    await  setdata('Finction_update', 'products',{products:products})
-    window.location.href="../list"
-    $('#loader').hide();
-  }catch(err){
-    $('#loader').hide();
-    alert('something went wrong')
-  }
-    // You can now do something with the updated products array
-    // For example, save it back to the database or perform other operations
-}
 
 
 
   </script>
+  <style>
+    .error-message{
+      color: red;
+    }
+  </style>
   <script>
     $(document).ready(function () {
       // Handle form submission
@@ -468,26 +506,26 @@
 
 
 
- 
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById('select-image-button').addEventListener('click', function() {
-          document.getElementById('upload-image').click();
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById('select-image-button').addEventListener('click', function () {
+        document.getElementById('upload-image').click();
       });
 
-      document.getElementById('upload-image').addEventListener('change', function(event) {
-          const file = event.target.files[0];
-          if (file) {
-              const reader = new FileReader();
-              reader.onload = function(e) {
-                  document.getElementById('product-image').src = e.target.result;
-              };
-              reader.readAsDataURL(file);
-          }
+      document.getElementById('upload-image').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            document.getElementById('product-image').src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
       });
-  });
-</script>
+    });
+  </script>
   <script>
     $(document).ready(function () {
       $(".btnclick").click(function () {

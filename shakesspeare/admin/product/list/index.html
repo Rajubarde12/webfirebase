@@ -63,33 +63,38 @@
         }
 
         .custom-input:focus {
-            border-color: #007bff;
+            border-color: #f26925;
             /* Border color on focus */
             font-weight: bold;
             /* Font weight on focus */
         }
-    </style>
-    <style>
+
         .page-number {
-            border-color: red;
+            border-color: #f26925;
             margin: 5px;
             /* height: 28px;
             width: 28px; */
         }
-    </style>
-    <style>
-        .container {
+
+        /* .container {
             position: relative;
             width: 150px;
             height: 150px;
             overflow: hidden;
+        } */
+
+        .table td,
+        .table th {
+            padding: 1.25rem !important;
+            vertical-align: top !important;
+            border-top: 1px solid #dee2e6;
         }
 
         .image {
             display: block;
-            width: 100%;
-            height: 100%;
             object-fit: cover;
+            max-width: 100%;
+            height: auto;
         }
 
         .overlay {
@@ -134,7 +139,7 @@
             align-items: center;
             z-index: 9999;
             /* Ensure it appears above other elements */
-            border-color: #888;
+            border-color: #f26925;
         }
 
         .spinner-border {
@@ -143,8 +148,7 @@
             height: 2rem;
             /* Adjust size as needed */
         }
-    </style>
-    <style>
+
         .page-item {
             border: 2px solid transparent;
             border-radius: 10px;
@@ -154,9 +158,15 @@
         }
 
         .page-item:hover {
-            border-color: red;
+            border-color: #f26925;
             background-color: lightgray;
             /* Optional: Change background color on hover */
+        }
+
+        .btn-outline-primary:hover {
+            color: #fff !important;
+            background-color: #f26925 !important;
+            border-color: #f26925 !important;
         }
     </style>
 
@@ -259,7 +269,7 @@
             $(document).ready(async function (e) {
                 try {
                     $('#loader').show();
-                     firebasedata = await getdata('Finction_update', 'products');
+                    firebasedata = await getdata('Finction_update', 'products');
                     totalPages = Math.ceil(firebasedata.products.length / productsPerPage);
                     fetchdata(firebasedata, currentPage);
                     createPagination();
@@ -268,20 +278,28 @@
                     alert('Something went wrong');
                 }
                 $(document).on('click', '.page-item', function () {
-                    const page = parseInt($(this).text());
-                    changePage(page);
-                });
-                $(document).on('click', '.page-item', function () {
                     const page = parseInt($(this).attr('data-page'));
                     changePage(page);
                 });
+
+                $('#prevPage').click(function () {
+                    if (currentPage > 1) {
+                        changePage(currentPage - 1);
+                    }
+                });
+
+                $('#nextPage').click(function () {
+                    if (currentPage < totalPages) {
+                        changePage(currentPage + 1);
+                    }
+                });
+
                 $('#searchInput').on('focus', function () {
                     $(this).addClass('focused');
                 }).on('blur', function () {
                     $(this).removeClass('focused');
                 });
                 $('#searchInput').on('input', function () {
-                   
                     const searchTerm = $(this).val().trim().toLowerCase();
                     $('#loader').show();
                     if (searchTerm !== '') {
@@ -289,17 +307,16 @@
                             return product["post_title"].toLowerCase().includes(searchTerm);
                         });
                         totalPages = Math.ceil(filteredData.length / productsPerPage);
-                        fetchdata({ products: filteredData }, 1,true); // Fetch and display data for the first page
+                        fetchdata({ products: filteredData }, 1, true); // Fetch and display data for the first page
                         createPagination();
                     }
-                    if(searchTerm==''){
+                    if (searchTerm == '') {
                         $('#loader').hide()
                     }
                 });
-
             });
 
-            async function fetchdata(firebasedata, page,isse) {
+            async function fetchdata(firebasedata, page, isSearch) {
                 try {
                     const data = firebasedata.products.slice((page - 1) * productsPerPage, page * productsPerPage);
                     if (data.length > 0) {
@@ -314,12 +331,11 @@
                             var myhtml = '';
                             myhtml += '<tr>';
                             myhtml += '<td>' + (i + 1) + '</td>';
-                            myhtml += '<td style="align-items: center;justify-content: center;">';
-                            myhtml += '<div class="container">';
-                            myhtml += '<img class="image" src="' + url + '" alt="admin">';
-                            myhtml += ' </div>';
+                            myhtml += '<td>';
+                            myhtml += '<img class="image" src="' + url + '" alt="admin" height="50%" width="50%">';
                             myhtml += '</td>';
-                            myhtml += '<td style="text-align: center;" > <div class="price">' + item["post_title"] + '</div> <div>price:₹' + item["regular_price"] + '</div></td>';
+                            myhtml += '<td> <div class="price">' + item["post_title"] + '</div> </td>';
+                            myhtml += '<td><div>₹' + item["regular_price"] + '</div></td>';
                             myhtml += '<td>' + item["tax:product_cat"] + '</td>';
                             myhtml += '<td>' + item["post_date"] + '</td>';
                             myhtml += '<td>';
@@ -335,7 +351,7 @@
                             outputelemt.append(myhtml);
                         }
                         $('#loader').hide();
-                        if (contentElement &&!isse) {
+                        if (!isSearch && contentElement) {
                             contentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }
                         updatePaginationUI(page);
@@ -349,45 +365,23 @@
 
             function createPagination() {
                 $('#pagination').empty();
-                const visiblePages = Math.min(totalPages, 8);
+                if (totalPages > 1) {
+                    $('#pagination').append(`<button id="prevPage" class="page-item">&laquo; Prev</button>`);
+                }
+                const visiblePages = Math.min(totalPages, 5);
                 for (let i = 1; i <= visiblePages; i++) {
                     $('#pagination').append(`<button class="page-item" data-page="${i}">${i}</button>`);
                 }
-                if (totalPages > visiblePages) {
-                    $('#pagination').append(`<span class="ellipsis">...</span>`);
-                    $('#pagination').append(`<button class="page-item" data-page="${totalPages - 2}">${totalPages - 2}</button>`);
-                    $('#pagination').append(`<button class="page-item" data-page="${totalPages - 1}">${totalPages - 1}</button>`);
-                    $('#pagination').append(`<button class="page-item" data-page="${totalPages}">${totalPages}</button>`);
+                if (totalPages > 1) {
+                    $('#pagination').append(`<button id="nextPage" class="page-item">Next &raquo;</button>`);
                 }
             }
 
             function updatePaginationUI(currentPage) {
-
-                $('#pagination').empty();
-                const visiblePages = Math.min(totalPages, 8);
-                let startPage = 1;
-                let endPage = Math.min(totalPages, visiblePages);
-
-                if (totalPages > visiblePages && currentPage > 3) {
-                    startPage = Math.min(currentPage - 2, totalPages - visiblePages + 1);
-                    endPage = Math.min(currentPage + 2, totalPages);
-                }
-
-                for (let i = startPage; i <= endPage; i++) {
-                    const activeClass = currentPage === i ? 'active' : '';
-                    $('#pagination').append(`<button class="page-item ${activeClass}" data-page="${i}">${i}</button>`);
-                }
-
-                if (totalPages > visiblePages && endPage < totalPages) {
-                    if (endPage < totalPages - 3) {
-                        $('#pagination').append(`<span class="ellipsis">...</span>`);
-                    }
-                    for (let i = totalPages - 2; i <= totalPages; i++) {
-                        const activeClass = currentPage === i ? 'active' : '';
-                        $('#pagination').append(`<button class="page-item ${activeClass}" data-page="${i}">${i}</button>`);
-                    }
-                }
+                $('#pagination .page-item').removeClass('active');
+                $(`#pagination .page-item[data-page="${currentPage}"]`).addClass('active');
             }
+
             async function changePage(page) {
                 $('#loader').show();
 
@@ -396,7 +390,6 @@
                 var currentPage = page;
                 fetchdata(firebasedata, currentPage);
             }
-
             async function deleteProduct(products, id) {
                 try {
                     $('#loader').show();
@@ -414,21 +407,20 @@
         </script>
 
 
-
-
         <div class="content-wrapper" style="min-height: 650px;">
             <!-- Main content -->
             <section class="content" style="padding-top: 20px">
                 <!--                  -->
                 <div style="margin-bottom: 10px;" class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-9">
                         <a href="../create/index.html" class="btn btn-sm btn-outline-primary">
                             <i class="fa fa-fw fa-sm fa-plus-circle"></i> Add Product
                         </a>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <div class="input-group">
-                            <input id="searchInput" type="text" class="form-control custom-input" placeholder="Search...">
+                            <input id="searchInput" type="text" class="form-control custom-input"
+                                placeholder="Search...">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button">
                                     <i class="fa fa-search"></i>
@@ -440,7 +432,9 @@
 
 
                 <div class="card">
-                    <div class="card-header"> Product List </div>
+                    <div class="card-header">
+                        <h4 style="margin-left: 10px; margin-top: 10px;"> Product List</h4>
+                    </div>
                     <div class="card-body" id="contents">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover datatable datatable-User">
@@ -448,11 +442,11 @@
                                     <tr>
                                         <th width="10">ID</th>
                                         <th> Image </th>
-                                        <th> Name & Price </th>
-                                        <th>Product type </th>
-                                        <th>Date </th>
+                                        <th> Name </th>
+                                        <th> Price </th>
+                                        <th> Product type </th>
+                                        <th> Date </th>
                                         <th> Actions </th>
-                                        <th> </th>
                                     </tr>
                                 </thead>
                                 <tbody id="products">

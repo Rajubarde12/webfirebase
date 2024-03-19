@@ -1586,7 +1586,9 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="module">
         import { getdata, setdata, } from '../api/firebase.js'
+        let firebasedata
         $(document).ready(async function () {
+            firebasedata = await getdata('Finction_update', 'products');
             const prevItem = await getdata2('cart_items');
             appendCart(prevItem)
             appendCheckout(prevItem)
@@ -1638,7 +1640,7 @@
 
 
         async function filteritems_id(idarr) {
-            const firebasedata = await getdata('Finction_update', 'products');
+
             const data = firebasedata.products.filter(item => {
                 return idarr.includes(item.ID.toString());
             });
@@ -1911,20 +1913,48 @@
                                 <li class="header-divider"></li>
                                 <li class="cart-item has-icon">
 
-                                    <a href="https://wordpress.becomeshakespeare.com/cart/"
-                                        class="header-cart-link off-canvas-toggle nav-top-link is-small"
+                                    <a href="cart/" class="header-cart-link off-canvas-toggle nav-top-link is-small"
                                         data-open="#cart-popup" data-class="off-canvas-cart" title="Cart"
                                         data-pos="right">
-
-
                                         <span class="image-icon header-cart-icon" data-icon-label="0">
-
                                             <img class="cart-img-icon" alt="Cart"
-                                                src="https://wordpress.becomeshakespeare.com/wp-content/uploads/2019/05/Shopping-Cart.png" />
+                                                src="../webroot/uploads/Shopping-Cart.png" />
                                         </span>
                                     </a>
+                                    <!-- <div id="cart-popup" style="width: 50%;"  class="mfp-hide widget_shopping_cart">
+                                        <div class="cart-popup-inner inner-padding">
+                                            <div class="cart-popup-title text-center">
+                                                <h4 class="uppercase">Cart</h4>
+                                                <div class="is-divider"></div>
+                                            </div>
+                                            <div class="widget_shopping_cart_content">
+            
+            
+                                                <ul class="woocommerce-mini-cart cart_list product_list_widget ">
+                                                    <div id="cartitems"></div>
+                                                </ul>
+            
+                                                <p class="woocommerce-mini-cart__total total">
+                                                    <strong>Subtotal:</strong> <span
+                                                        class="woocommerce-Price-amount amount"><bdi><span id="subtotal"
+                                                                class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
+                                                </p>
+            
+            
+                                                <p class="woocommerce-mini-cart__buttons buttons"><a
+                                                        href="https://wordpress.becomeshakespeare.com/cart/"
+                                                        class="button wc-forward">View cart</a><a href="../checkout/"
+                                                        class="button checkout wc-forward">Checkout</a></p>
+            
+            
+            
+                                            </div>
+                                            <div class="cart-sidebar-content relative"></div>
+                                        </div>
+                                    </div>  -->
 
                                 </li>
+
                             </ul>
                         </div>
                         <div id="login-form-popup" class="lightbox-content mfp-hide">
@@ -2192,37 +2222,7 @@
 
                             </div>
                         </div>
-                        <div id="cart-popup" class="mfp-hide widget_shopping_cart">
-                            <div class="cart-popup-inner inner-padding">
-                                <div class="cart-popup-title text-center">
-                                    <h4 class="uppercase">Cart</h4>
-                                    <div class="is-divider"></div>
-                                </div>
-                                <div class="widget_shopping_cart_content">
 
-
-                                    <ul class="woocommerce-mini-cart cart_list product_list_widget ">
-                                        <div id="cartitems"></div>
-                                    </ul>
-
-                                    <p class="woocommerce-mini-cart__total total">
-                                        <strong>Subtotal:</strong> <span
-                                            class="woocommerce-Price-amount amount"><bdi><span id="subtotal"
-                                                    class="woocommerce-Price-currencySymbol">&#8377;</span>00.00</bdi></span>
-                                    </p>
-
-
-                                    <p class="woocommerce-mini-cart__buttons buttons"><a
-                                            href="https://wordpress.becomeshakespeare.com/cart/"
-                                            class="button wc-forward">View cart</a><a href="../checkout/"
-                                            class="button checkout wc-forward">Checkout</a></p>
-
-
-
-                                </div>
-                                <div class="cart-sidebar-content relative"></div>
-                            </div>
-                        </div>
 
                         <!-- Mobile Right Elements -->
                         <div class="flex-col show-for-medium flex-right">
@@ -5838,72 +5838,176 @@
     <!--[if IE]>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/intersection-observer-polyfill@0.1.0/dist/IntersectionObserver.js?ver=0.1.0" id="intersection-observer-polyfill-js"></script>
 <![endif]-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 
-<!-- Magnific Popup JavaScript file -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <!-- Magnific Popup JavaScript file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script type="module">
         import { setdata2 } from '../api/firebase.js'
         $(document).ready(async function () {
             $("#oreder-btn").click(async function (e) {
-                e.preventDefault()
-                var values = "";
-                var firstName = $("#billing_first_name").val()
-                var lastName = $("#billing_last_name").val()
-                var company = $("#billing_company").val()
-                var country = $("#billing_country").val()
-                var address1 = $("#billing_address_1").val()
-                var address2 = $("#billing_address_2").val()
-                var city = $("#billing_city").val()
-                var state = $("#billing_state").val()
-                var pincode = $("#billing_postcode").val()
-                var phone = $("#billing_phone").val()
-                var email = $("#billing_email").val()
-                var commentas = $("#order_comments").val()
-                const usedetails = {
-                    firstName,
-                    lastName,
-                    company,
-                    country,
-                    address: address1 + " " + address2,
-                    city,
-                    state,
-                    pincode,
-                    phone,
-                    email,
-                    commentas
-                }
+                e.preventDefault();
+                $('.error-message').remove();
+                let isValid = true;
 
-                const orderitem = getdata2('cart_items')
-                const islogin = sessionStorage.getItem('isLogin');
-                if (islogin != null) {
-                    if(firstName!=''){
-                    await setdata2('product_order_list', islogin, { usedetails, orderitem: orderitem.cart })
-                    localStorage.setItem('cart_items', null)
-                    alert('order details aded succesfully')
-                    window.location.href = '../'
-                    }else{
-                        alert('please fill all the value')
+                $('.validate-required').each(function () {
+                    const input = $(this).find('input, select');
+                    const value = input.val().trim(); // Get trimmed value
+
+                    if (!value) {
+
+                        input.css('border-color', 'red');
+                        input.after('<span class="error-message">This field is required.</span>');
+
                     }
 
-                } else {
-                    alert("Please Login First")
-                    $.magnificPopup.open({
-                        items: {
-                            src: '#login-form-popup' // Identifier of the popup content
-                        },
-                        type: 'inline' // Type of content, in this case, inline content
+                    input.on('input', function () {
+                        if ($(this).val().trim()) {
+                            $(this).css('border-color', '');
+                            $(this).next('.error-message').remove();
+                        }
                     });
-                }
+                });
 
+
+                if (true) {
+                    var firstName = $("#billing_first_name").val();
+                    var islogin = sessionStorage.getItem('isLogin');
+
+                    if (firstName != '') {
+                        // Gather order details
+                        var lastName = $("#billing_last_name").val();
+                        var company = $("#billing_company").val();
+                        var country = $("#billing_country").val();
+                        var address1 = $("#billing_address_1").val();
+                        var address2 = $("#billing_address_2").val();
+                        var city = $("#billing_city").val();
+                        var state = $("#billing_state").val();
+                        var pincode = $("#billing_postcode").val();
+                        var phone = $("#billing_phone").val();
+                        var email = $("#billing_email").val();
+                        var commentas = $("#order_comments").val();
+                        // Validate last name
+
+                        if (!lastName.trim()) {
+                            isValid = false;
+
+                        }
+
+                        // Validate company
+                        if (!company.trim()) {
+                            isValid = false;
+
+                        }
+
+                        // Validate country
+                        if (!country.trim()) {
+                            isValid = false;
+
+                        }
+
+                        // Validate address1
+                        if (!address1.trim()) {
+                            isValid = false;
+
+                        }
+
+
+
+
+                        // Validate city
+                        if (!city.trim()) {
+                            isValid = false;
+
+                        }
+
+                        // Validate state
+                        if (!state.trim()) {
+                            isValid = false;
+
+                        }
+
+                        // Validate pincode
+                        if (!pincode.trim()) {
+                            isValid = false;
+
+                        }
+
+                        // Validate phone
+                        if (!phone.trim()) {
+                            isValid = false;
+
+                        }
+
+                        // Validate email
+                        if (!email.trim()) {
+                            isValid = false;
+
+                        } else if (!isValidEmail(email)) { // Optional: Validate email format
+                            isValid = false;
+                            // $("#billing_email").css('border-color', 'red');
+                            // $("#billing_email").after('<span class="error-message">Invalid email format.</span>');
+                            alert('Email is invalid')
+                        }
+
+                        const usedetails = {
+                            firstName,
+                            lastName,
+                            company,
+                            country,
+                            address: address1 + " " + address2,
+                            city,
+                            state,
+                            pincode,
+                            phone,
+                            email,
+                            commentas
+                        };
+                        if (isValid) {
+                            const islogin = sessionStorage.getItem('isLogin')
+                            if (islogin) {
+                                const orderitem = getdata2('cart_items');
+                                await setdata2('product_order_list', islogin, { usedetails, orderitem: orderitem.cart });
+                                localStorage.setItem('cart_items', null);
+                                alert('Order details added successfully');
+                                window.location.href = '../';
+                            } else {
+
+                                alert("Please Login First");
+                                $.magnificPopup.open({
+                                    items: {
+                                        src: '#login-form-popup'
+                                    },
+                                    type: 'inline'
+                                });
+                            }
+                        } else {
+                            alert('some thing')
+                        }
+
+                    }
+                }
             });
         });
+        function isValidEmail(email) {
+            // Regular expression for basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
 
         function getdata2(key) {
             const data = localStorage.getItem(key);
             return data ? JSON.parse(data) : null;
         }
     </script>
+
+    <style>
+        .error-message {
+            color: red;
+            margin-top: -5px;
+        }
+    </style>
+
 
 </body>
 
