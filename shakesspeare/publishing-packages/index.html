@@ -2375,7 +2375,7 @@
 				</div>
 			</div>
 		</header>
-		
+
 		<script>
 			function refresh() {
 				window.location.reload()
@@ -2427,7 +2427,9 @@
 							myhtml += '</div></div></div>';
 							myhtml += '<div id="gap-17965162" class="gap-element clearfix" style="display:block; height:auto;">	<style>#gap-17965162 {padding-top: 2%;}</style></div>';
 							outputElement.append(myhtml);
-							$(document).ready(function () {
+							$(document).ready(async function () {
+								const prevdata = await getdata("publishdata", 'packages')
+
 								$('.bn1 a').click(function (e) {
 									e.preventDefault();
 									var amountId = $(this).closest('td').attr('id').replace('in', 'amount');
@@ -2479,6 +2481,7 @@
 									alert('this is called')
 								});
 
+
 								$("#submitBtn").click(async function () {
 									var packageName = document.getElementById("packageName").value;
 									var packageAmount = document.getElementById("packageAmount").value;
@@ -2496,7 +2499,12 @@
 										email,
 										id
 									}
-									await setdata('pulbishdata', email.toString(), data)
+									const datatosubmit = {
+										packeges: [data]
+									}
+
+
+									await setdata('publishdata', 'packages', datatosubmit)
 									alert('package data insrted successfully')
 									refresh()
 
@@ -2668,13 +2676,13 @@
 			<form id="myForms" method="post" novalidate="novalidate">
 				<div class="form-group">
 					<label for="packageName">Package Name <span class="required">*</span></label>
-					<input name="packagename" id="packageName" autocomplete="given-name" type="text"
+					<input disabled name="packagename" id="packageName" autocomplete="given-name" type="text"
 						class="form-control">
 					<div class="alert-message" style="display: none;">Field is required</div>
 				</div>
 				<div class="form-group">
 					<label for="packageAmount">Package Amount <span class="required">*</span></label>
-					<input name="packageamount" id="packageAmount" autocomplete="given-name" type="text"
+					<input disabled  name="packageamount" id="packageAmount" autocomplete="given-name" type="text"
 						class="form-control">
 					<div class="alert-message" style="display: none;">Field is required</div>
 				</div>
@@ -3408,7 +3416,7 @@
 								</p>
 							</form>
 
-							
+
 							<script type="module">
 								import { getdata, setdata2 } from '../api/firebase.js'
 								$(document).ready(function () {
@@ -3530,7 +3538,7 @@
 								</p>
 							</form>
 
-							
+
 							<script type="module" src="../api//firebase.js"></script>
 							<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 							<script type="module">

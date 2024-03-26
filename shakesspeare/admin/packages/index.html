@@ -208,25 +208,25 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item  btnclick">
-                            <a class="nav-link " href="../../dashboard/index.html">
+                            <a class="nav-link " href="../dashboard/">
                                 <i class="fa fa-fw fa-sm fa-th mr-2" style="margin-right: 10px;"></i>
                                 <p> Dashboard </p>
                             </a>
                         </li>
                         <li class="nav-item btnclick">
-                            <a href="../list/index.html" class="nav-link ">
+                            <a href="../product/list/" class="nav-link ">
                                 <i class="fa fa-address-card" aria-hidden="true" style="margin-right: 10px;"></i>
                                 <p> Products </p>
                             </a>
                         </li>
                         <li class="nav-item btnclick">
-                            <a href="../Orders/" class="nav-link active ">
+                            <a href="../product/Orders/" class="nav-link ">
                                 <i class="fab fa-first-order" aria-hidden="true" style="margin-right: 10px;"></i>
                                 <p> Orders </p>
                             </a>
                         </li>
                         <li class="nav-item btnclick">
-                            <a href="../../packages/" class="nav-link ">
+                            <a href="index.html" class="nav-link active ">
                                 <i class="fab fa-first-order" aria-hidden="true" style="margin-right: 10px;"></i>
                                 <p> Packages </p>
                             </a>
@@ -289,14 +289,14 @@
                 }
                 try {
                     $('#loader').show();
-                    firebasedata = await getdata('Finction_update', 'products');
+                 
 
-                    const preveorder = await getdata('product_order_list', "order");
-                    console.log(preveorder);
-                    const orders = mergeOrdersWithUserDataAndAddress(preveorder)
+                    const prevdata = await getdata("publishdata", 'packages')
+                   
+                  
 
 
-                    fetchdata(orders);
+                    fetchdata(prevdata.packeges);
 
                 }
 
@@ -357,8 +357,8 @@
             async function fetchdata(orders, page, isSearch) {
                 try {
 
-                    const idrr = orders.map(item => item.orderitem.id)
-                    const data = await filteritems_id(idrr)
+                  
+                    const data = orders
                  
 
 
@@ -367,28 +367,22 @@
                         outputelemt.empty();
                         for (let i = 0; i < data.length; i++) {
                            let dateOjbe=orders[i].orderDate
-                           const milliseconds = dateOjbe.seconds * 1000 + Math.round(dateOjbe.nanoseconds / 1e6);
-                            let item = data[i];
-                            const urlRegex = /(https?:\/\/[^\s]+)/;
-                            const matches = item['images'].match(urlRegex);
-                            const url = matches ? matches[0] : null;
+                           let item=data[i]
+                           
+                          
                             var myhtml = '';
                             myhtml += '<tr>';
                             myhtml += '<td>' + (i + 1) + '</td>';
                             myhtml += '<td>';
-                            myhtml +=  new Date(milliseconds)??"" // '<img class="image" src="' + url + '" alt="admin" height="50%" width="50%">';
+                            myhtml += item["id"] // '<img class="image" src="' + url + '" alt="admin" height="50%" width="50%">';
                             myhtml += '</td>';
-                            myhtml += '<td> <div >₹' + item["regular_price"] * orders[i].orderitem.quantity + '</div> </td>';
-                            myhtml += '<td><div>' + "Bank Transfer" + '</div></td>';
-                            myhtml += '<td class="price">' + item["post_title"] + '</td>';
-                            myhtml += '<td>' + '<img class="image" src="' + url + '" alt="admin" height="50%" width="50%">' + '</td>';
-                            myhtml += '<td class="price">' + orders[i].bullingAddress.firstName + ' ' + orders[i].bullingAddress.lastName + '</td>';
-                            myhtml += '<td>' + orders[i].bullingAddress.address + ' ' + orders[i].bullingAddress.city + ' ' + orders[i].bullingAddress.state + ' ' + orders[i].bullingAddress.pincode + '</td>';
-                            myhtml += '<td class="price">' + orders[i].bullingAddress.phone + '</td>';
-                            myhtml += '<td class="price">' + orders[i].bullingAddress.email + '</td>';
-                            myhtml += '<td class="price">' + "shipped" + '</td>';
+                            myhtml += '<td><div>' + item["packageName"] + '</div></td>';
+                            myhtml += '<td><div>' + item["packageAmount"] + '</div></td>';
+                            myhtml += '<td class="price">' +item["firstName"]+' '+item["lastName"] + '</td>';
+                            myhtml += '<td class="price">' + item["email"] + '</td>';
+                            myhtml += '<td class="price">' + item["phone"] + '</td>';
                             myhtml += '<td>';
-                            myhtml += '<a class="btn btn-xs btn-info" href="detail/index.html?id=' + item["ID"] + '"> Edit </a>';
+                            myhtml += '<a class="btn btn-xs btn-info" href="#"> Action </a>';
                             myhtml += '<form action="javascript:void(0)" method="POST" cla  ss="delete-form" style="display: inline-block;">';
                             myhtml += '<input type="hidden" name="_method" value="DELETE">';
                             myhtml += '<input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">';
@@ -536,24 +530,21 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4 style="margin-left: 10px; margin-top: 10px;"> Order List</h4>
+                        <h4 style="margin-left: 10px; margin-top: 10px;">Package List</h4>
                     </div>
                     <div class="card-body" id="contents">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover datatable datatable-User">
                                 <thead>
                                     <tr>
-                                        <th width="10">Order No.</th>
-                                        <th> Order Date </th>
-                                        <th> Total Amount </th>
-                                        <th> Payment Method </th>
-                                        <th> Product Name </th>
-                                        <th> Product Image </th>
-                                        <th> User Name </th>
-                                        <th> User Address </th>
-                                        <th> Mobile Number </th>
-                                        <th> Email Address </th>
-                                        <th> Status </th>
+                                        <th width="10">Sr No.</th>
+                                        <th> Package Id </th>
+                                        <th> Package Name </th>
+                                        <th> Package Amount </th>
+                                        <th> USer Name </th>
+                                        <th> Email </th>
+                                        <th> Mobile No. </th>
+                                        
                                         <th> Action </th>
                                     </tr>
                                 </thead>

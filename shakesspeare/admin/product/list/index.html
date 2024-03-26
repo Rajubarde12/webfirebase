@@ -207,14 +207,14 @@
                 <nav class="mt-2" style="position: relative;">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item active btnclick">
-                            <a class="nav-link active" href="../../dashboard/index.html">
+                        <li class="nav-item  btnclick">
+                            <a class="nav-link " href="../../dashboard/index.html">
                                 <i class="fa fa-fw fa-sm fa-th mr-2" style="margin-right: 10px;"></i>
                                 <p> Dashboard </p>
                             </a>
                         </li>
                         <li class="nav-item btnclick">
-                            <a href="../list/index.html" class="nav-link ">
+                            <a href="../list/index.html" class="nav-link active ">
                                 <i class="fa fa-address-card" aria-hidden="true" style="margin-right: 10px;"></i>
                                 <p> Products </p>
                             </a>
@@ -223,6 +223,12 @@
                             <a href="../Orders/" class="nav-link ">
                                 <i class="fab fa-first-order" aria-hidden="true" style="margin-right: 10px;"></i>
                                 <p> Orders </p>
+                            </a>
+                        </li>
+                        <li class="nav-item btnclick">
+                            <a href="../../packages/" class="nav-link ">
+                                <i class="fab fa-first-order" aria-hidden="true" style="margin-right: 10px;"></i>
+                                <p> Packages </p>
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
@@ -275,13 +281,12 @@
             let firebasedata;
 
             $(document).ready(async function () {
-                // const email = await sessionStorage.getItem('admin')
-           
-
-                // if (email == null) {
-                //     alert('you need to login first')
-                //     window.location.href = '../../login/'
-                // }
+                const email = await sessionStorage.getItem('admin')
+               
+                if (email==null) {
+                    alert('you need to login first')
+                    window.location.href = '../../login/'
+                }
                 try {
                     $('#loader').show();
                     firebasedata = await getdata('Finction_update', 'products');
