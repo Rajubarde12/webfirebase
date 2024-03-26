@@ -90,12 +90,7 @@
                     <span id="errorMessage" style="color: red; display: none;">Incorrect username or password.</span>
 
                     <div class="row">
-                        <!-- <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" name="remember" id="remember">
-                                <label for="remember">Remember me</label>
-                            </div>
-                        </div> -->
+                      
                         <div class="col-12">
                             <button type="button" id="loginButton"
                                 class="btn btn-primary btn-block btn-flat">Login</button>
@@ -129,10 +124,8 @@
         async function doLogin(name, pass, rem) {
             const data = await getdata('admin_doc', 'admin');
             console.log(name, pass);
-            console.log(data);
-            const admin = data.admin.some(item => item.userName == name.toString() && item.password === pass.toString());
-            // alert(admin)
-    
+         
+            const admin = data.admin.some(item => item.userName == name.toString() && item.password === pass.toString())
             if (admin) {
                 sessionStorage.setItem('admin',admin)
                 window.location.href = "../product/list";

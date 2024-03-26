@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Detail</title>
+    <style>
+        /* Basic CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .order-details {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .order-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Order Details -->
+        <div class="order-details">
+            <h2>Order Details</h2>
+            <p><strong>Order ID:</strong> #123456</p>
+            <p><strong>Customer Name:</strong> John Doe</p>
+            <p><strong>Email:</strong> johndoe@example.com</p>
+            <p><strong>Phone:</strong> +1234567890</p>
+            <p><strong>Billing Address:</strong> 123 Main St, City, Country, 12345</p>
+            <!-- You can add more customer details here -->
+        </div>
+
+        <!-- Order Items -->
+        <div class="order-items">
+            <h2>Order Items</h2>
+            <div class="order-item">
+                <p><strong>Product Name:</strong> Product A</p>
+                <p><strong>Quantity:</strong> 2</p>
+                <p><strong>Price:</strong> $20.00 each</p>
+                <p><strong>Total:</strong> $40.00</p>
+            </div>
+            <div class="order-item">
+                <p><strong>Product Name:</strong> Product B</p>
+                <p><strong>Quantity:</strong> 1</p>
+                <p><strong>Price:</strong> $30.00 each</p>
+                <p><strong>Total:</strong> $30.00</p>
+            </div>
+            <!-- You can dynamically generate and display order items here -->
+        </div>
+    </div>
+</body>
+</html>

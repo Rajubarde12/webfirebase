@@ -1761,11 +1761,9 @@
 
                             <!-- Header logo -->
                             <a href="../" title="BecomeShakespeare - Give Your Book A Global Audience" rel="home">
-                                <img width="340" height="120"
-                                    src="../webroot/uploads/Become-Shakespeare-Final-Logo.png"
+                                <img width="340" height="120" src="../webroot/uploads/Become-Shakespeare-Final-Logo.png"
                                     class="header_logo header-logo" alt="BecomeShakespeare" /><img width="340"
-                                    height="120"
-                                    src="../webroot/uploads/Become-Shakespeare-Final-Logo.png"
+                                    height="120" src="../webroot/uploads/Become-Shakespeare-Final-Logo.png"
                                     class="header-logo-dark" alt="BecomeShakespeare" /></a>
                         </div>
 
@@ -5843,7 +5841,7 @@
     <!-- Magnific Popup JavaScript file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script type="module">
-        import { setdata2 } from '../api/firebase.js'
+        import { setdata2, getdata } from '../api/firebase.js'
         $(document).ready(async function () {
             $("#oreder-btn").click(async function (e) {
                 e.preventDefault();
@@ -5966,8 +5964,16 @@
                         if (isValid) {
                             const islogin = sessionStorage.getItem('isLogin')
                             if (islogin) {
+
                                 const orderitem = getdata2('cart_items');
-                                await setdata2('product_order_list', islogin, { usedetails, orderitem: orderitem.cart });
+                                const preveorder = await getdata('product_order_list', "order");
+                                const orderItem = {orderDate:new Date(), userData: islogin, bullingAddress: usedetails, orderitem: orderitem.cart };
+                                const orderList = preveorder?.orderList ? preveorder.orderList : [];
+                                console.log('this is orderList',orderList);
+
+                                // Setting data for the first time
+                                await setdata2('product_order_list', "order", { orderList: [...orderList, orderItem] });
+
                                 localStorage.setItem('cart_items', null);
                                 alert('Order details added successfully');
                                 window.location.href = '../';
@@ -5982,7 +5988,7 @@
                                 });
                             }
                         } else {
-                            alert('some thing')
+
                         }
 
                     }

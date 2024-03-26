@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details with Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody > tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        @media screen and (max-width: 600px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            th, td {
+                display: block;
+                padding: 8px;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Product Image</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate over orders here -->
+                <tr>
+                    <td><!-- User name --></td>
+                    <td><!-- Email --></td>
+                    <td><!-- Product image --></td>
+                    <td><!-- Price --></td>
+                    <td><!-- Quantity --></td>
+                    <td><!-- Category --></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // Your JavaScript code here...
+        const orders = {
+  "orderList": [
+    {
+      "userData": "tested@gmail.com",
+      "bullingAddress": {
+        "commentas": "",
+        "firstName": "RAJU",
+        "phone": "+918461955042",
+        "address": "kodiyakhal,birul,bhikangaon ",
+        "country": "IN",
+        "state": "MP",
+        "company": "NA",
+        "pincode": "451331",
+        "email": "rajubarde54@gmail.com",
+        "city": "KHARGONE",
+        "lastName": "BARDE"
+      },
+      "orderitem": [
+        {
+          image: 'iamge link',
+          price: '$500',
+          quantity: 2,
+          category: 'fiction'
+        },
+        {
+          image: 'iamge link',
+          price: '$500',
+          quantity: 2,
+          category: 'fiction'
+        },
+        {
+          image: 'iamge link',
+          price: '$500',
+          quantity: 2,
+          category: 'fiction'
+        }
+      ]
+    },
+    {
+      "orderitem": [
+        {
+          image: 'iamge link',
+          price: '$500',
+          quantity: 2,
+          category: 'fiction'
+        },
+        {
+          image: 'iamge link',
+          price: '$500',
+          quantity: 2,
+          category: 'fiction'
+        },
+        {
+          image: 'iamge link',
+          price: '$500',
+          quantity: 2,
+          category: 'fiction'
+        }
+      ],
+      "userData": "test12@gmail.com",
+      "bullingAddress": {
+        "pincode": "451331",
+        "email": "rajubarde54@gmail.com",
+        "commentas": "",
+        "phone": "+918461955042",
+        "address": "kodiyakhal,birul,bhikangaon ",
+        "state": "MP",
+        "company": "NA",
+        "country": "IN",
+        "lastName": "BARDE",
+        "city": "KHARGONE",
+        "firstName": "RAJU"
+      }
+    }
+  ]
+}
+
+        function displayOrders() {
+            const $tableBody = $('table tbody');
+            orders.orderList.forEach(order => {
+                const userData = order.userData;
+                const email = order.bullingAddress.email;
+
+                order.orderitem.forEach(item => {
+                    const $row = $('<tr>').appendTo($tableBody)
+                    $('<td>').text(userData).appendTo($row);
+                    $('<td>').text(email).appendTo($row);
+                    $('<td>').text(item.image).appendTo($row);
+                    $('<td>').text(item.price).appendTo($row);
+                    $('<td>').text(item.quantity).appendTo($row);
+                    $('<td>').text(item.category).appendTo($row);
+                });
+            });
+        }
+
+        $(document).ready(function() {
+            displayOrders();
+        });
+    </script>
+</body>
+</html>

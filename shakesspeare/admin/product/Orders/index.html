@@ -276,7 +276,7 @@
 
             $(document).ready(async function () {
                 // const email = await sessionStorage.getItem('admin')
-           
+
 
                 // if (email == null) {
                 //     alert('you need to login first')
@@ -285,10 +285,18 @@
                 try {
                     $('#loader').show();
                     firebasedata = await getdata('Finction_update', 'products');
-                    totalPages = Math.ceil(firebasedata.products.length / productsPerPage);
-                    fetchdata(firebasedata, currentPage);
-                    createPagination();
-                } catch (err) {
+
+                    const preveorder = await getdata('product_order_list', "order");
+                    console.log(preveorder);
+                    const orders = mergeOrdersWithUserDataAndAddress(preveorder)
+
+
+                    fetchdata(orders);
+
+                }
+
+
+                catch (err) {
                     $('#loader').hide();
                     alert('Something went wrong');
                 }
@@ -341,13 +349,20 @@
                 });
             });
 
-            async function fetchdata(firebasedata, page, isSearch) {
+            async function fetchdata(orders, page, isSearch) {
                 try {
-                    const data = firebasedata.products.slice((page - 1) * productsPerPage, page * productsPerPage);
+
+                    const idrr = orders.map(item => item.orderitem.id)
+                    const data = await filteritems_id(idrr)
+                 
+
+
                     if (data.length > 0) {
                         var outputelemt = $('#products');
                         outputelemt.empty();
                         for (let i = 0; i < data.length; i++) {
+                           let dateOjbe=orders[i].orderDate
+                           const milliseconds = dateOjbe.seconds * 1000 + Math.round(dateOjbe.nanoseconds / 1e6);
                             let item = data[i];
                             const urlRegex = /(https?:\/\/[^\s]+)/;
                             const matches = item['images'].match(urlRegex);
@@ -356,19 +371,24 @@
                             myhtml += '<tr>';
                             myhtml += '<td>' + (i + 1) + '</td>';
                             myhtml += '<td>';
-                            myhtml += '<img class="image" src="' + url + '" alt="admin" height="50%" width="50%">';
+                            myhtml +=  new Date(milliseconds)??"" // '<img class="image" src="' + url + '" alt="admin" height="50%" width="50%">';
                             myhtml += '</td>';
-                            myhtml += '<td> <div class="price">' + item["post_title"] + '</div> </td>';
-                            myhtml += '<td><div>₹' + item["regular_price"] + '</div></td>';
-                            myhtml += '<td>' + item["tax:product_cat"] + '</td>';
-                            myhtml += '<td>' + item["post_date"] + '</td>';
+                            myhtml += '<td> <div >₹' + item["regular_price"] * orders[i].orderitem.quantity + '</div> </td>';
+                            myhtml += '<td><div>' + "Bank Tranfer" + '</div></td>';
+                            myhtml += '<td class="price">' + item["post_title"] + '</td>';
+                            myhtml += '<td>' + '<img class="image" src="' + url + '" alt="admin" height="50%" width="50%">' + '</td>';
+                            myhtml += '<td class="price">' + orders[i].bullingAddress.firstName + ' ' + orders[i].bullingAddress.lastName + '</td>';
+                            myhtml += '<td>' + orders[i].bullingAddress.address + ' ' + orders[i].bullingAddress.city + ' ' + orders[i].bullingAddress.state + ' ' + orders[i].bullingAddress.pincode + '</td>';
+                            myhtml += '<td class="price">' + orders[i].bullingAddress.phone + '</td>';
+                            myhtml += '<td class="price">' + orders[i].bullingAddress.email + '</td>';
+                            myhtml += '<td class="price">' + "shipped" + '</td>';
                             myhtml += '<td>';
-                            myhtml += '<a class="btn btn-xs btn-info" href="../../product/edit/index.html?id=' + item["ID"] + '"> Edit </a>';
+                            myhtml += '<a class="btn btn-xs btn-info" href="detail/index.html?id=' + item["ID"] + '"> Edit </a>';
                             myhtml += '<form action="javascript:void(0)" method="POST" class="delete-form" style="display: inline-block;">';
                             myhtml += '<input type="hidden" name="_method" value="DELETE">';
                             myhtml += '<input type="hidden" name="_token" value="03PYo1gAPntadTi42cln3ylUAImXq73msnsTySZZ">';
                             myhtml += '<input type="hidden" name="product_id" value="' + item["ID"] + '">';
-                            myhtml += '<input type="submit" class="btn btn-xs btn-danger delete-button" value="Delete">';
+                            // myhtml += '<input type="submit" class="btn btn-xs btn-danger delete-button" value="Delete">';
                             myhtml += '</form>';
                             myhtml += '</td>';
                             myhtml += '</tr>';
@@ -382,6 +402,7 @@
                     console.log(err);
                     $('#loader').hide();
                     alert('Something went wrong');
+                    console.log(err);
                 }
             }
 
@@ -436,6 +457,49 @@
                     $('#loader').hide();
                 }
             }
+
+
+            function mergeOrdersWithUserDataAndAddress(orders) {
+                let mergedOrders = [];
+
+                orders.orderList.forEach(order => {
+                    const userData = order.userData;
+                    const billingAddress = order.bullingAddress;
+                    const orderItems = order.orderitem;
+                    const orderDate = order.orderDate;
+
+                    orderItems.forEach(item => {
+                        const mergedOrder = {
+                            userData: userData,
+                            bullingAddress: billingAddress,
+                            orderitem: item,
+                            orderDate:orderDate
+                           
+                        };
+                        //    console.log(mergedOrder);;
+                        mergedOrders.push(mergedOrder)
+                    });
+                });
+                console.log(mergedOrders);
+                return mergedOrders;
+            }
+
+            async function filteritems_id(idarr) {
+                let filteredData = [];
+
+                // Iterate over each ID in the idarr array
+                for (const id of idarr) {
+                    // Filter the items based on the current ID
+                    const items = firebasedata.products.filter(item => {
+                        return item.ID.toString() === id;
+                    });
+
+                    // Concatenate the filtered items to the result array
+                    filteredData = filteredData.concat(items);
+                }
+
+                return filteredData;
+            }
         </script>
 
 
@@ -446,11 +510,11 @@
             <section class="content" style="padding-top: 20px">
                 <!--                  -->
                 <div style="margin-bottom: 10px;" class="row">
-                    <div class="col-lg-9">
+                    <!-- <div class="col-lg-9">
                         <a href="../create/index.html" class="btn btn-sm btn-outline-primary">
                             <i class="fa fa-fw fa-sm fa-plus-circle"></i> Add Product
                         </a>
-                    </div>
+                    </div> -->
                     <div class="col-lg-3">
                         <div class="input-group">
                             <input id="searchInput" type="text" class="form-control custom-input"
@@ -467,20 +531,25 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4 style="margin-left: 10px; margin-top: 10px;"> Product List</h4>
+                        <h4 style="margin-left: 10px; margin-top: 10px;"> Order List</h4>
                     </div>
                     <div class="card-body" id="contents">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover datatable datatable-User">
                                 <thead>
                                     <tr>
-                                        <th width="10">ID</th>
-                                        <th> Image </th>
-                                        <th> Name </th>
-                                        <th> Price </th>
-                                        <th> Product type </th>
-                                        <th> Date </th>
-                                        <th> Actions </th>
+                                        <th width="10">Order No.</th>
+                                        <th> Order Date </th>
+                                        <th> Total Amount </th>
+                                        <th> Payment Method </th>
+                                        <th> Product Name </th>
+                                        <th> Product Image </th>
+                                        <th> User Name </th>
+                                        <th> User Address </th>
+                                        <th> Mobile Number </th>
+                                        <th> Email Address </th>
+                                        <th> Status </th>
+                                        <th> Action </th>
                                     </tr>
                                 </thead>
                                 <tbody id="products">

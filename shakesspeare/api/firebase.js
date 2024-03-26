@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
 import { } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js'
-import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
+import { getFirestore, doc, getDoc, setDoc, collection, onSnapshot, query, where, } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCluB5nhyjiSG-uDkUiH_xIhvapnUwXgUw",
@@ -50,4 +50,10 @@ export const setdata2 = async (docname, docloc, data) => {
     await setDoc(docRef, data)
 
 
+}
+export async function testdata() {
+    const q = query(collection(db, "Finction_update"), where('products', 'array-contains', { ID: 2001 }));
+
+    const data = await getDoc(q);
+    console.log(data.data());
 }
