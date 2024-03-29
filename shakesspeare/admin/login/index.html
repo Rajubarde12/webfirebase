@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="tMuBvGwZFCQyGWhHZCw08Qix8wpcyWsGMCPiPlZl">
 
-    <title>Digital Card</title>
+    <title>Become Shakespeare</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cards.forebearpro.co.in/public/assets/css/adminltev3.css" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
@@ -17,23 +17,25 @@
     <style>
         .btn-primary {
             color: #fff;
-            background-color: #f26925 ;
+            background-color: #f26925;
             border-color: #f26925;
             box-shadow: 0 1px 1px rgba(37, 37, 37, 0.075);
         }
 
         .btn-primary:hover {
             color: #fff;
-            background-color: #f26925 ;
-            border-color: #f26925 ;
+            background-color: #f26925;
+            border-color: #f26925;
         }
+
         a:hover {
             color: #f26925;
         }
-        a{
+
+        a {
             color: #f26925;
         }
-       
+
         .form-control:focus {
             color: #000;
             background-color: #fff;
@@ -42,7 +44,9 @@
             box-shadow: inset 0 0 0 transparent, 0 0 0 0.2rem rgb(233 128 38 / 25%);
         }
 
-        .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+        .btn-primary:not(:disabled):not(.disabled).active,
+        .btn-primary:not(:disabled):not(.disabled):active,
+        .show>.btn-primary.dropdown-toggle {
             color: #fff;
             background-color: #f26925;
             border-color: #f26925;
@@ -66,10 +70,10 @@
                 <div class="login-logo" style="margin-top: 20px;margin-bottom:40px;">
                     <div class="login-logo">
                         <a href="https://becomeshakespeare.com/"
-                        title="BecomeShakespeare - Give Your Book A Global Audience" rel="home">
-                        <img width="200" height="80"
-                            src="https://becomeshakespeare.com/wp-content/uploads/2019/03/Become-Shakespeare-Final-Logo.png"
-                            class="header_logo header-logo" alt="BecomeShakespeare" /></a>
+                            title="BecomeShakespeare - Give Your Book A Global Audience" rel="home">
+                            <img width="200" height="80"
+                                src="https://becomeshakespeare.com/wp-content/uploads/2019/03/Become-Shakespeare-Final-Logo.png"
+                                class="header_logo header-logo" alt="BecomeShakespeare" /></a>
                     </div>
                 </div>
 
@@ -78,19 +82,19 @@
                         autocomplete="off">
                     <div class="form-group">
                         <input id="email" type="text" class="form-control" required autocomplete="text" autofocus
-                            placeholder="User Name" name="User" value="">
+                            placeholder="Email" name="User" value="">
                     </div>
 
                     <div class="form-group">
                         <input id="password" type="password" class="form-control" name="password" required
                             placeholder="Password">
                     </div>
-                    
+
                     <!-- Message span -->
                     <span id="errorMessage" style="color: red; display: none;">Incorrect username or password.</span>
 
                     <div class="row">
-                      
+
                         <div class="col-12">
                             <button type="button" id="loginButton"
                                 class="btn btn-primary btn-block btn-flat">Login</button>
@@ -110,33 +114,43 @@
 
     <script type="module">
         import { setdata, getdata } from "../../api/firebase.js"
-    
+
         $(document).ready(function () {
             $('#loginButton').click(async function (event) {
                 event.preventDefault(); // Prevent form submission
                 var username = $('#email').val();
                 var password = $('#password').val();
                 var remember = $('#remember').is(':checked') ? 'Yes' : 'No';
-                
-                await doLogin(username, password, remember); 
+
+                await doLogin(username, password, remember);
             });
         });
-    
-        async function doLogin(name, pass, rem) {
+
+        async function doLogin(email, pass, rem) {
+            email = email.trim();
+
             const data = await getdata('admin_doc', 'admin');
-            console.log(name, pass);
-         
-            const admin = data.admin.some(item => item.userName == name.toString() && item.password === pass.toString())
+           
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                $('#errorMessage').text('please enter a valid email').show();
+                return; // Stop further execution
+            }
+               console.log(data);
+            const admin = data.admin.some(item => item.userName == email && item.password ==pass.toString());
             if (admin) {
-                sessionStorage.setItem('admin',admin)
+                sessionStorage.setItem('admin', admin);
                 window.location.href = "../product/list";
             } else {
-                // Show error message
-                $('#errorMessage').show();
+                $('#errorMessage').text('Invalid email or password').show();
             }
         }
+
+
     </script>
-    
+
 </body>
 
 </html>
